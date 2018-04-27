@@ -111,7 +111,7 @@ CREATE TABLE [Isik]
 	[eesnimi] Text(50),
 	[perenimi] Text(50),
 	[elukoht] Text(50),
-	[isik_kood] Short NOT NULL,
+	[isik_kood]  Short NOT NULL,
 	[isiku_seisundi_liik_kood] Short,
 	[isikukoodi_riik] Short
 )
@@ -216,15 +216,15 @@ CREATE TABLE [Tooraine]
 	[nimetus] Text(50),
 	[hulk_kg] Double,
 	[kommentaar] Text(50),
-	[tooraine_kood] Short NOT NULL
+	[tooraine_kood]  Short NOT NULL
 )
 ;
 
 CREATE TABLE [Tootaja]
 (
-	[tootaja_kood] Short NOT NULL,
+	[tootaja_kood]  AUTOINCREMENT(1,1),
 	[amet_kood] Short,
-	[tootaja_seisundi_liik_kood] Short,
+	[tootaja_seisundi_liik_kood] Short NOT NULL,
 	[mentor] Short
 )
 ;
@@ -238,7 +238,7 @@ CREATE TABLE [Tootaja_seisundi_liik]
 ;
 
 ALTER TABLE [Amet] ADD CONSTRAINT [PK_Amet]
-	PRIMARY KEY ([amet_kood])
+	PRIMARY KEY ([amet_kood]) 
 ;
 
 ALTER TABLE [Isik] ADD CONSTRAINT [PK_Isik]
