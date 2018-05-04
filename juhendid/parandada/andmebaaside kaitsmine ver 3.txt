@@ -1,0 +1,12 @@
+Byte - kohtade arv
+
+Default value 1 - laua_seisundi_liik_kood
+
+IN (2, 3) SQL Päring
+
+ON UPDATE ja ON DELETE ära võtta isik-mentor vahelt
+
+füüsilise disaini tabelid - long integer foreign keyd
+
+isik_id default value 0 isik tabelis???????
+
