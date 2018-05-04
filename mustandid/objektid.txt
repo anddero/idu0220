@@ -1,0 +1,57 @@
+andmekaitseinspektsioon (tulemas, toimunud)
+arendustöö
+arve
+arve tasumine
+audit
+broneering
+dokument
+eelarve
+eelarve täitmine
+ettekirjutus
+ettekirjutuses olev puuduse kõrvaldus
+ettepanek
+intsident
+inventuur
+isik
+
+kaebus
+kahvel
+kauba laoliikumine
+klienditeenindaja
+kokk
+kvaliteedikontroll
+laud
+leping
+lusikas
+muusikapala
+muusikapala esitus
+muusikapalade autoritasustamise leping
+muusikapalade autoritasustamise ajalugu
+nuga
+palga maksmine
+pann
+partner
+pliit
+pokaal
+praak
+probleem (kiiremas korras lahendatav)
+päevamenüü
+reklaam (kus, kuhu veel)
+reklaami tellimus
+reklamatsioon (kliendi kaebus)
+restoran (aktiivne, lahtiolev, mitteaktiivne)
+rike
+roog
+
+tagasiside
+taldrik
+tarnetellimus
+tellimus
+tool
+tooraine mittekõlbmatuks tunnistamine
+töögraafik
+töötamine
+tööõnnetus
+uudis (nt uued road)
+vara
+vargus

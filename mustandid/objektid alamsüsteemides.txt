@@ -1,0 +1,81 @@
+Arvepidamise alamsüsteem
+- arve
+- arve tasumine
+- palga maksmine
+
+Broneeringu alamsüsteem
+- broneering
+
+Dokumentide alamsüsteem
+- dokument
+- leping
+- partner
+- reklaami tellimus
+- tarnetellimus
+- tellimus
+
+Eelarvete alamsüsteem
+- eelarve
+- eelarve täitmine
+
+Inspektsioonide alamsüsteem
+- andmekaitseinspektsioon (tulemas, toimunud)
+- audit
+- ettekirjutus
+- ettekirjutuses olev puuduse kõrvaldus
+- intsident
+- kaebus
+- kvaliteedikontroll
+- praak
+- probleem
+- reklamatsioon
+- rike
+- tagasiside
+- tööõnnetus
+- vargus
+
+Isikute alamsüsteem
+- isik
+- klienditeenindaja
+- kokk
+
+Lao alamsüsteem
+- kahvel
+- kauba laoliikumine
+- laud
+- lusikas
+- nuga
+- pann
+- pliit
+- pokaal
+- taldrik
+- tool
+- vara
+
+Muusika alamsüsteem
+- muusikapala
+- muusikapala esitus
+- muusikapalade autoritasustamise leping
+- muusikapalade autoritasustamise ajalugu
+
+Promoveerimise alamsüsteem
+- reklaam (kus, kuhu veel)
+- uudis (nt uued road)
+
+Toitlustamise alamsüsteem
+- päevamenüü
+- restoran
+- roog
+
+Toorainete alamsüsteem
+- tooraine mittekõlbmatuks tunnistamine
+
+Töötajate alamsüsteem
+- töögraafik
+- töötaja
+- töötamine
+
+Ülalpidamise alamsüsteem
+- arendustöö
+- ettepanek
+- inventuur
