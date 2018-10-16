@@ -1,0 +1,9 @@
+SELECT '38711060321' Like '[A-Za-z0-9[:space:]/\//ig;-]+'; kontrollida kitsendusi postgreSQL sees
+text asemele varcharid
+onDelete ja onUpdate lisada
+chk kitsenduste puhul panna tabeli nimi kah juurde
+pealkirjade pikkus ei tohi olla suurem kui 63baiti
+veergude järjekord on tähtis. Et primaarvõti on esimene.
+riigi kood on 3 tähte
+pealkirjade stiil peab olema ühtlaselt sama
+numbrite tüübid seada vastavusse realse pikkusega. Näiteks tellimus ei saa olla 12312312312312312312321321323
