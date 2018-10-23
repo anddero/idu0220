@@ -1,7 +1,8 @@
-SELECT '38711060321' Like '[A-Za-z0-9[:space:]/\//ig;-]+'; kontrollida kitsendusi postgreSQL sees
+﻿SELECT '38711060321' Like '[A-Za-z0-9[:space:]/\//ig;-]+'; kontrollida kitsendusi postgreSQL sees
 text asemele varcharid
+veergude tüübid sobivaks
 onDelete ja onUpdate lisada
-chk kitsenduste puhul panna tabeli nimi kah juurde
-pealkirjade pikkus ei tohi olla suurem kui 63baiti
 veergude järjekord on tähtis. Et primaarvõti on esimene.
 pealkirjade stiil peab olema ühtlaselt sama
+Wordi dokumendis uuendada pildid
+Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
