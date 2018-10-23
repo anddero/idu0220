@@ -5,3 +5,27 @@ onDelete ja onUpdate lisada
 pealkirjade stiil peab olema ühtlaselt sama
 Wordi dokumendis uuendada pildid
 Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
+indeksid
+smallintid üle vaadata
+kui on mingi klassifikaator tabeli id, siis smallserial. Ja kõik viited sellele smallint
+counter läheb serial ja kõik viited sellele integer
+DEFAULT VALUED
+indexid välisvõtmeta põhjal kui need ei kattu PK-ga. IXFK
+eesnime ja perekonna nime kontroll ei ole tühi string vaid NULL. Accessist saab.
+tõstutundetu on Upper abil. Ül 10.
+
+
+
+
+
+
+SELECT regexp_matches('aiVar.loOpOpalu@gmail.com', '^[A-Za-z0-9.]+@[A-Za-z0-9.]+[A-Za-z]+$'); tõstutundetu
+äti check maha võtta
+
+
+
+perenimi!~'^[[:space:]]*$' OR eesnimi!~'^[[:space:]]*$'
+
+
+
+e_meil~'^[A-Za-z0-9.]+@[A-Za-z0-9.]+[A-Za-z]+$'
