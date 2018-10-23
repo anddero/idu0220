@@ -2,7 +2,6 @@
 text asemele varcharid
 veergude tüübid sobivaks
 onDelete ja onUpdate lisada
-veergude järjekord on tähtis. Et primaarvõti on esimene.
 pealkirjade stiil peab olema ühtlaselt sama
 Wordi dokumendis uuendada pildid
 Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
