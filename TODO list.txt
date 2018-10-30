@@ -6,7 +6,6 @@ Wordi dokumendis uuendada pildid
 Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
 indeksid
 indexid välisvõtmeta põhjal kui need ei kattu PK-ga. IXFK
-eesnime ja perekonna nime kontroll ei ole tühi string vaid NULL. Accessist saab.
 tõstutundetu on Upper abil. Ül 10.
 
 
@@ -20,6 +19,7 @@ TEHTUD:
 text asemele varcharid
 kui on mingi klassifikaator tabeli id, siis smallserial. Ja kõik viited sellele smallint
 smallintid üle vaadata
+eesnime ja perekonna nime kontroll ei ole tühi string vaid NULL. Accessist saab. perenimi IS NOT NULL OR eesnimi IS NOT NULL
 
 
 
