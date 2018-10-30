@@ -4,15 +4,15 @@ veergude tüübid sobivaks
 onDelete ja onUpdate lisada
 Wordi dokumendis uuendada pildid
 Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
-indeksid
-indexid välisvõtmeta põhjal kui need ei kattu PK-ga. IXFK
 tõstutundetu on Upper abil. Ül 10.
 
 
 VIST TEHTUD:
-counter läheb serial ja kõik viited sellele integer -  (meil pold countereid)
+
 pealkirjade stiil peab olema ühtlaselt sama
 DEFAULT VALUED
+indeksid
+indexid välisvõtmeta põhjal kui need ei kattu PK-ga. IXFK
 
 
 TEHTUD:
@@ -20,6 +20,7 @@ text asemele varcharid
 kui on mingi klassifikaator tabeli id, siis smallserial. Ja kõik viited sellele smallint
 smallintid üle vaadata
 eesnime ja perekonna nime kontroll ei ole tühi string vaid NULL. Accessist saab. perenimi IS NOT NULL OR eesnimi IS NOT NULL
+counter läheb serial ja kõik viited sellele integer -  (meil pold countereid)
 
 
 
