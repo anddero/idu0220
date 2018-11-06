@@ -1,10 +1,15 @@
 ﻿TEHA:
-SELECT '38711060321' Like '[A-Za-z0-9[:space:]/\//ig;-]+'; kontrollida kitsendusi postgreSQL sees
+kontrollida kitsendusi postgreSQL sees
 veergude tüübid sobivaks
-onDelete ja onUpdate lisada
 Wordi dokumendis uuendada pildid
 Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
 tõstutundetu on Upper abil. Ül 10.
+
+Klassifikaatorite registris Laua kategooria tabelis puudu FK laua kategooria tyyp kood + trigerid
+Klient tabelis yks FK yle. Klient_Isik FK
+Laud tabelis puudu kaks FK: laua_materjali_kood, laua_seisundi_liik_kood + trigerid
+Tootaja tabelis FK valesti: Mentor -> mentor. Peaks vist olema isik_id
+Tootaja tabelis FK yle: Tootaja_Isik
 
 
 VIST TEHTUD:
