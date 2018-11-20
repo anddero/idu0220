@@ -1,4 +1,40 @@
-﻿TEHA:
+﻿FEEDBACK:
+laua_kat_oma 
+kitsenduse nimes tabeli nimi
+liig indeks
+ixfk ei ole vaja 
+
+kompenseeriv tegevus puudub töötajate tabelis, 
+klassifikat. kitsendused puudu
+
+topelt kitsendused
+
+eesnimi ja perenimi length
+tuleb muuta olemusdiagrammi kui tahad jätta perenime kohustulikuks
+
+now() ei ole ajavööndid
+
+fk stiil samaks teha
+
+laua_kood maha ja nimetada laua_id laua_kood, Integeriks jätta
+
+tootaja iseenese mentor
+
+(((kirjeldus)::text!~'^[[:space:]]+$'::text))
+kirjeldus<>'', ei ole tegu tyhja stringiga
+
+lower and upper
+
+reg_aeg <= CURRENT_DATE see ei ole konseptuaalne mudel
+
+2101 jan 00:00:00
+
+riik kood suur t2hed 3
+
+registreerimis ajale vaikimisiv22rtus, laud tabel
+
+
+TEHA:
 Wordi dokumendis uuendada pildid
 Wordi dokumendis viia check nimed vastavusse EA faili check nimedega.
 tõstutundetu on Upper abil. Ül 10.
