@@ -65,3 +65,57 @@ counter läheb serial ja kõik viited sellele integer -  (meil pold countereid)
 SELECT regexp_matches('aiVar.loOpOpalu@gmail.com', '^[A-Za-z0-9.]+@[A-Za-z0-9.]+[A-Za-z]+$'); tõstutundetu
 perenimi!~'^[[:space:]]*$' OR eesnimi!~'^[[:space:]]*$'
 e_meil~'^[A-Za-z0-9.]+@[A-Za-z0-9.]+[A-Za-z]+$'
+
+
+stiil
+
+kitsendused korduvad erinevate nimedega
+
+ak laua kategooria laud  kitsendus ????
+
+kitsenduse nimes pole tabeli nime
+
+ixfk laua kategooria omamine laua kategooria indeksit pole vaja
+
+kitsenduste nimedes peavad olema tabeli nimed. FK omades kah ja indeksi omades kah
+
+
+töötaja tabelis on puudu on delete tegevus. Kui töötaja kustutatakse ära ja see on kellegi mentor, siis kustutamine peab õnnestumine
+
+töötaja ei tohi olla iseenda mentor
+
+tekstiveergudel peavad olema kitsendused. Ei tohi olla tühistring ja tühikutest koosnev string
+
+nimi peab olema pikema pikkusega.
+
+Kumbki peab olema kohustuslik, nimi või eesnimi.  Olemisuhte diagrammis ja atribuutide definitsioonis peab olema kah kirjas, et nimi on kohustuslik ja perekonna nimi ei ole kohustuslik
+
+now pole olemas    timestamp ja now ei sobi kokku
+
+
+SUUR KONTROLL:
+
+22-24 Sequence pole vaja. Need numbrid sisestab inimene käsitsi. Ei ole serial.
+Laua tabelis on töötaja_id   liiga üldise nimega. Töötaja võib olla lauaga seotudmitmel erineval viisil. Et peab täpsustama. Näiteks registreerija id. 
+
+Forein key kitsenduse nimed peavad olema sama stiiliga. Hetkel on FK-s 3 eri stiili. Peab olema 1. 
+Topelt indeksid tuleb eemaldada. 
+
+Laua tabelis pole vaja topelt  laua kood   ja   laud id  . 
+
+CHK kitsendused puudu osadel tabelitel.
+
+Tühja stringi ja tühikutest koosnemise CHK on samad, aga peavad olema erinevad. Lisaks peab need korda tegema.
+
+emaili CHK korda teha. Et oleks tõstutundetu. Ül 10. Peab olema kontroll, et ei ole 2 ätt märki. 
+
+reg aeg väiksem võrdne current date  on üleliigne. CHK.
+kuupäeva puhul peab olema 23.59.59 kah
+
+3 tähemärgi kitsendus riigikoodi puhul on SUURED tähed, mitte väiketähed.
+
+current date tuleb eemaldada. Kui kitsendusi juurde lisatakse, siis tuleb täiendada konteptuaalset andmemudelit. Vähemaks ei või võtta.
+
+Klassifikaatorite koodid ei ole serial, vaid käsitsi. 
+
+now()  on, ja sellel puudub vaikimisi väärtus.
