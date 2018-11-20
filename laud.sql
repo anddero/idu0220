@@ -106,7 +106,7 @@ CREATE TABLE Tootaja
 
 CREATE TABLE Laua_kategooria_omamine
 (
-	laua_kategooria_omamine_id serial NOT NULL DEFAULT nextval(('laua_kategooria_omamine_laua_kategooria_omamine_id_seq'::text)::regclass),
+	laua_kategooria_omamine_id Integer NOT NULL DEFAULT nextval(('laua_kategooria_omamine_laua_kategooria_omamine_id_seq'::text)::regclass),
 	laud_id smallint NOT NULL,
 	laua_kategooria_kood smallint NOT NULL,
 	CONSTRAINT PK_laua_kategooria_omamine PRIMARY KEY (laua_kategooria_omamine_id),
@@ -118,7 +118,7 @@ CREATE TABLE Laua_kategooria_omamine
 
 CREATE TABLE Laud
 (
-	laud_id serial NOT NULL DEFAULT nextval(('laud_laud_id_seq'::text)::regclass),
+	laud_id Integer NOT NULL DEFAULT nextval(('laud_laud_id_seq'::text)::regclass),
 	tootaja_id smallint NOT NULL,
 	laua_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
 	laua_materjal_kood smallint NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE Laud
 
 CREATE TABLE Klient
 (
-	isik_id serial NOT NULL DEFAULT nextval(('klient_isik_id_seq'::text)::regclass),
+	isik_id Integer NOT NULL DEFAULT nextval(('klient_isik_id_seq'::text)::regclass),
 	on_nous_tylitamisega boolean NOT NULL DEFAULT false,
 	kliendi_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
 	CONSTRAINT PK_Klient PRIMARY KEY (isik_id),
@@ -152,7 +152,7 @@ CREATE TABLE Klient
 
 CREATE TABLE Amet
 (
-	amet_kood serial NOT NULL DEFAULT nextval(('amet_amet_kood_seq'::text)::regclass),
+	amet_kood Integer NOT NULL DEFAULT nextval(('amet_amet_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	kirjeldus varchar(50)	,
 	CONSTRAINT PK_Amet PRIMARY KEY (amet_kood),
@@ -164,7 +164,7 @@ CREATE TABLE Amet
 
 CREATE TABLE Isiku_seisundi_liik
 (
-	isiku_seisundi_liik_kood serial NOT NULL DEFAULT nextval(('isiku_seisundi_liik_isiku_seisundi_liik_kood_seq'::text)::regclass),
+	isiku_seisundi_liik_kood Integer NOT NULL DEFAULT nextval(('isiku_seisundi_liik_isiku_seisundi_liik_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	CONSTRAINT PK_Isiku_seisundi_liik PRIMARY KEY (isiku_seisundi_liik_kood),
 	CONSTRAINT AK_Isiku_Seisundi_Liik_Nimetus UNIQUE (nimetus)
@@ -173,7 +173,7 @@ CREATE TABLE Isiku_seisundi_liik
 
 CREATE TABLE Kliendi_seisundi_liik
 (
-	kliendi_seisundi_liik_kood serial NOT NULL DEFAULT nextval(('kliendi_seisundi_liik_kliendi_seisundi_liik_kood_seq'::text)::regclass),
+	kliendi_seisundi_liik_kood Integer NOT NULL DEFAULT nextval(('kliendi_seisundi_liik_kliendi_seisundi_liik_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	CONSTRAINT PK_Kliendi_seisundi_liik PRIMARY KEY (kliendi_seisundi_liik_kood),
 	CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus)
@@ -182,9 +182,9 @@ CREATE TABLE Kliendi_seisundi_liik
 
 CREATE TABLE Laua_kategooria
 (
-	laua_kategooria_kood serial NOT NULL DEFAULT nextval(('laua_kategooria_laua_kategooria_kood_seq'::text)::regclass),
+	laua_kategooria_kood Integer NOT NULL DEFAULT nextval(('laua_kategooria_laua_kategooria_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
-	laua_kategooria_tyyp_kood serial NOT NULL DEFAULT nextval(('laua_kategooria_laua_kategooria_tyyp_kood_seq'::text)::regclass),
+	laua_kategooria_tyyp_kood Integer NOT NULL DEFAULT nextval(('laua_kategooria_laua_kategooria_tyyp_kood_seq'::text)::regclass),
 	CONSTRAINT PK_Laua_kategooria PRIMARY KEY (laua_kategooria_kood),
 	CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
 	CONSTRAINT FK_Laua_kategooria_Laua_kategooria_tyyp FOREIGN KEY (laua_kategooria_tyyp_kood) REFERENCES Laua_kategooria_tyyp (laua_kategooria_tyyp_kood) ON DELETE No Action ON UPDATE Cascade
@@ -193,7 +193,7 @@ CREATE TABLE Laua_kategooria
 
 CREATE TABLE Laua_kategooria_tyyp
 (
-	laua_kategooria_tyyp_kood serial NOT NULL DEFAULT nextval(('laua_kategooria_tyyp_laua_kategooria_tyyp_kood_seq'::text)::regclass),
+	laua_kategooria_tyyp_kood Integer NOT NULL DEFAULT nextval(('laua_kategooria_tyyp_laua_kategooria_tyyp_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	CONSTRAINT PK_Laua_kategooria_tyyp PRIMARY KEY (laua_kategooria_tyyp_kood),
 	CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus)
@@ -202,7 +202,7 @@ CREATE TABLE Laua_kategooria_tyyp
 
 CREATE TABLE Laua_materjal
 (
-	laua_materjal_kood serial NOT NULL DEFAULT nextval(('laua_materjal_laua_materjal_kood_seq'::text)::regclass),
+	laua_materjal_kood Integer NOT NULL DEFAULT nextval(('laua_materjal_laua_materjal_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	CONSTRAINT PK_Laua_materjal PRIMARY KEY (laua_materjal_kood),
 	CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus)
@@ -211,7 +211,7 @@ CREATE TABLE Laua_materjal
 
 CREATE TABLE Laua_seisundi_liik
 (
-	laua_seisundi_liik_kood serial NOT NULL DEFAULT nextval(('laua_seisundi_liik_laua_seisundi_liik_kood_seq'::text)::regclass),
+	laua_seisundi_liik_kood Integer NOT NULL DEFAULT nextval(('laua_seisundi_liik_laua_seisundi_liik_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	CONSTRAINT PK_Laua_seisundi_liik PRIMARY KEY (laua_seisundi_liik_kood),
 	CONSTRAINT AK_Laua_Seisundi_Liik_Nimetus UNIQUE (nimetus)
@@ -230,7 +230,7 @@ CREATE TABLE Riik
 
 CREATE TABLE Tootaja_seisundi_liik
 (
-	tootaja_seisundi_liik_kood serial NOT NULL DEFAULT nextval(('tootaja_seisundi_liik_tootaja_seisundi_liik_kood_seq'::text)::regclass),
+	tootaja_seisundi_liik_kood Integer NOT NULL DEFAULT nextval(('tootaja_seisundi_liik_tootaja_seisundi_liik_kood_seq'::text)::regclass),
 	nimetus varchar(50)	 NOT NULL,
 	CONSTRAINT PK_Tootaja_seisundi_liik PRIMARY KEY (tootaja_seisundi_liik_kood),
 	CONSTRAINT AK_Tootaja_Seisundi_Liik_Nimetus UNIQUE (nimetus)
@@ -239,7 +239,7 @@ CREATE TABLE Tootaja_seisundi_liik
 
 CREATE TABLE Isik
 (
-	isik_id serial NOT NULL DEFAULT nextval(('isik_isik_id_seq'::text)::regclass),
+	isik_id Integer NOT NULL DEFAULT nextval(('isik_isik_id_seq'::text)::regclass),
 	isikukoodi_riik char(3)	 NOT NULL,
 	isiku_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
 	e_meil varchar(255)	 NOT NULL,
