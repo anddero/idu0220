@@ -119,3 +119,7 @@ current date tuleb eemaldada. Kui kitsendusi juurde lisatakse, siis tuleb täien
 Klassifikaatorite koodid ei ole serial, vaid käsitsi. 
 
 now()  on, ja sellel puudub vaikimisi väärtus.
+
+nime pikkus on yle 255
+
+emaili regex on text ätt text . 2-4 tähemärki
