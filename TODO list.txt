@@ -48,6 +48,8 @@ DEFAULT VALUED
 indeksid
 indexid välisvõtmeta põhjal kui need ei kattu PK-ga. IXFK
 
+now()  on, ja sellel puudub vaikimisi väärtus. ASENDUS CURRENT_TIMESTAMP()
+
 
 TEHTUD:
 veergude tüübid sobivaks
@@ -58,6 +60,15 @@ kui on mingi klassifikaator tabeli id, siis smallserial. Ja kõik viited sellele
 smallintid üle vaadata
 eesnime ja perekonna nime kontroll ei ole tühi string vaid NULL. Accessist saab. perenimi IS NOT NULL OR eesnimi IS NOT NULL
 counter läheb serial ja kõik viited sellele integer -  (meil pold countereid)
+
+töötaja tabelis on puudu on delete tegevus. Kui töötaja kustutatakse ära ja see on kellegi mentor, siis kustutamine peab õnnestumine
+nimi peab olema pikema pikkusega.
+nime pikkus on yle 255
+reg aeg väiksem võrdne current date  on üleliigne. CHK.
+kuupäeva puhul peab olema 23.59.59 kah
+
+Tühja stringi ja tühikutest koosnemise CHK on samad, aga peavad olema erinevad. Lisaks peab need korda tegema.
+3 tähemärgi kitsendus riigikoodi puhul on SUURED tähed, mitte väiketähed.
 
 
 
@@ -80,13 +91,9 @@ ixfk laua kategooria omamine laua kategooria indeksit pole vaja
 kitsenduste nimedes peavad olema tabeli nimed. FK omades kah ja indeksi omades kah
 
 
-töötaja tabelis on puudu on delete tegevus. Kui töötaja kustutatakse ära ja see on kellegi mentor, siis kustutamine peab õnnestumine
-
 töötaja ei tohi olla iseenda mentor
 
 tekstiveergudel peavad olema kitsendused. Ei tohi olla tühistring ja tühikutest koosnev string
-
-nimi peab olema pikema pikkusega.
 
 Kumbki peab olema kohustuslik, nimi või eesnimi.  Olemisuhte diagrammis ja atribuutide definitsioonis peab olema kah kirjas, et nimi on kohustuslik ja perekonna nimi ei ole kohustuslik
 
@@ -105,21 +112,10 @@ Laua tabelis pole vaja topelt  laua kood   ja   laud id  .
 
 CHK kitsendused puudu osadel tabelitel.
 
-Tühja stringi ja tühikutest koosnemise CHK on samad, aga peavad olema erinevad. Lisaks peab need korda tegema.
-
 emaili CHK korda teha. Et oleks tõstutundetu. Ül 10. Peab olema kontroll, et ei ole 2 ätt märki. 
-
-reg aeg väiksem võrdne current date  on üleliigne. CHK.
-kuupäeva puhul peab olema 23.59.59 kah
-
-3 tähemärgi kitsendus riigikoodi puhul on SUURED tähed, mitte väiketähed.
 
 current date tuleb eemaldada. Kui kitsendusi juurde lisatakse, siis tuleb täiendada konteptuaalset andmemudelit. Vähemaks ei või võtta.
 
 Klassifikaatorite koodid ei ole serial, vaid käsitsi. 
-
-now()  on, ja sellel puudub vaikimisi väärtus.
-
-nime pikkus on yle 255
 
 emaili regex on text ätt text . 2-4 tähemärki
