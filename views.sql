@@ -1,6 +1,6 @@
 DROP VIEW IF EXISTS aktiivsed_ja_mitteaktiivsed_lauad;
 
-CREATE VIEW aktiivsed_ja_mitteaktiivsed_lauad AS
+CREATE VIEW aktiivsed_ja_mitteaktiivsed_lauad WITH (security_barrier) AS
 SELECT laud.laua_kood,
        laua_seisundi_liik.nimetus as laua_seisundi_liik_nimetus,
        laua_materjal.nimetus      as materjal_nimetus,
@@ -13,31 +13,31 @@ WHERE Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood
   And Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood
   And Laua_seisundi_liik.laua_seisundi_liik_kood In (2, 3);
 
-COMMENT ON VIEW aktiivsed_ja_mitteaktiivsed_lauad IS 'See vaade näitab kõiki aktiivseid ja mitteaktiivseid laudu.';
+COMMENT ON VIEW aktiivsed_ja_mitteaktiivsed_lauad IS 'See vaade näitab kõiki aktiivseid ja mitteaktiivseid laudu, mida on võimalik hetkel kasutada.';
 
 DROP VIEW IF EXISTS koik_lauad;
 
-CREATE VIEW koik_lauad AS
+CREATE VIEW koik_lauad WITH (security_barrier) AS
 SELECT Laud.laua_kood,
        Laua_seisundi_liik.nimetus AS hetkeseisund,
-       Laua_materjal.nimetus,
+       Laua_materjal.nimetus AS laua_materjali_nimetus,
        Laud.kohtade_arv,
        Laud.kommentaar,
        Laud.reg_kp,
-       Isik.eesnimi,
-       Isik.perenimi,
+       Isik.eesnimi AS tootaja_eesnimi,
+       Isik.perenimi AS tootaja_perenimi,
        Isik.e_meil
 FROM Laua_materjal,
      Isik,
      Laua_seisundi_liik
        INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
-WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.tootaja_id) = Isik.isiku_id));
+WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.isiku_id) = Isik.isiku_id));
 
 COMMENT ON VIEW koik_lauad IS 'See vaade näitab infot kõigi laudade kohta.';
 
 DROP VIEW IF EXISTS laudade_koondaruanne;
 
-CREATE VIEW laudade_koondaruanne AS
+CREATE VIEW laudade_koondaruanne WITH (security_barrier) AS
 SELECT Laua_seisundi_liik.laua_seisundi_liik_kood,
        UPPER(Laua_seisundi_liik.nimetus) AS seisundi_nimetus,
        Count(Laud.laua_kood)             AS laudade_arv

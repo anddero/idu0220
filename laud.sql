@@ -108,6 +108,7 @@ CREATE TABLE Isik
   CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_kp),
   CONSTRAINT isik_reg_kp_check_lubatud_vahemik CHECK (reg_kp >= '01.01.2010' AND reg_kp < '01.01.2101'),
   CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
+  CONSTRAINT isik_isikukood_check_ei_ole_tyhi_string CHECK (isikukood!~'^[[:space:]]*$'),
   CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
   CONSTRAINT isik_perenimi_check_ei_ole_tyhi_string CHECK (perenimi<>''),
   CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht!~'^[[:space:]]*$'),
@@ -127,10 +128,11 @@ CREATE TABLE Tootaja
   amet_kood integer NOT NULL,
   tootaja_seisundi_liik_kood integer NOT NULL DEFAULT 1,
   mentor integer,
+  CONSTRAINT tootaja_mentor_check_ei_ole_enda_mentor CHECK (isiku_id<>mentor),
   CONSTRAINT PK_Tootaja PRIMARY KEY (isiku_id),
   CONSTRAINT FK_Tootaja_Amet FOREIGN KEY (amet_kood) REFERENCES Amet (amet_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Tootaja_Tootaja_seisundi_liik FOREIGN KEY (tootaja_seisundi_liik_kood) REFERENCES Tootaja_seisundi_liik (tootaja_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-  CONSTRAINT FK_Tootaja_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action,
+  CONSTRAINT FK_Tootaja_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE Cascade, -- Enne oli ON UPDATE No Action
   CONSTRAINT FK_Tootaja_Mentor FOREIGN KEY (mentor) REFERENCES Tootaja (isiku_id) ON DELETE Set Null ON UPDATE Cascade
 )
 ;
@@ -161,20 +163,20 @@ CREATE TABLE Laua_seisundi_liik
 CREATE TABLE Laud
 (
   laua_kood integer NOT NULL,
-  tootaja_id smallint NOT NULL,
+  isiku_id integer NOT NULL,
   laua_seisundi_liik_kood integer NOT NULL DEFAULT 1,
   laua_materjal_kood integer,
   reg_kp date NOT NULL DEFAULT CURRENT_DATE,
   kohtade_arv Integer NOT NULL,
   kommentaar varchar(255)	,
-  CONSTRAINT PK_laua_kood PRIMARY KEY (laua_kood),
+  CONSTRAINT pk_laud_laua_kood PRIMARY KEY (laua_kood),
   CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
   CONSTRAINT laud_reg_kp_check_lubatud_vahemik CHECK (reg_kp >= '01.01.2010' AND reg_kp < '01.01.2101'),
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
   CONSTRAINT laud_reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_kp <= CURRENT_DATE),
   CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-  CONSTRAINT FK_Laud_Tootaja_Id_registreerib FOREIGN KEY (tootaja_id) REFERENCES Tootaja (isiku_id) ON DELETE No Action ON UPDATE Cascade
+  CONSTRAINT FK_Laud_isiku_id_registreerib FOREIGN KEY (isiku_id) REFERENCES Tootaja (isiku_id) ON DELETE No Action ON UPDATE Cascade
 )
 ;
 
@@ -236,7 +238,7 @@ CREATE TABLE Klient
   kliendi_seisundi_liik_kood integer NOT NULL DEFAULT 1,
   CONSTRAINT PK_Klient PRIMARY KEY (isiku_id),
   CONSTRAINT FK_Klient_Kliendi_seisundi_liik FOREIGN KEY (kliendi_seisundi_liik_kood) REFERENCES Kliendi_seisundi_liik (kliendi_seisundi_liik_kood) ON DELETE No Action ON UPDATE No Action,
-  CONSTRAINT FK_Klient_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action
+  CONSTRAINT FK_Klient_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE Cascade -- Enne oli ON UPDATE No Action
 )
 ;
 
@@ -254,6 +256,7 @@ DROP INDEX IF EXISTS IXFK_laua_kategooria_omamine_Laua_kategooria;
 DROP INDEX IF EXISTS IXFK_laua_kategooria_omamine_Laud;
 DROP INDEX IF EXISTS IXFK_Klient_Kliendi_seisundi_liik;
 DROP INDEX IF EXISTS IXFK_Klient_Isik;
+DROP INDEX IF EXISTS IXFK_Laud_Isiku_id;
 
 CREATE INDEX IXFK_Isik_Isiku_seisundi_liik ON Isik(isiku_seisundi_liik_kood ASC);
 CREATE INDEX IXFK_Isikukoodi_riik ON Isik(isikukoodi_riik ASC);
@@ -268,3 +271,4 @@ CREATE INDEX IXFK_laua_kategooria_omamine_Laua_kategooria ON Laua_kategooria_oma
 CREATE INDEX IXFK_laua_kategooria_omamine_Laud ON Laua_kategooria_omamine (laua_kood ASC);
 CREATE INDEX IXFK_Klient_Kliendi_seisundi_liik ON Klient (kliendi_seisundi_liik_kood ASC);
 CREATE INDEX IXFK_Klient_Isik ON Klient (isiku_id ASC);
+CREATE INDEX IXFK_Laud_Isiku_id ON Laud (isiku_id ASC);
