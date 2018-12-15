@@ -24,12 +24,12 @@ DROP VIEW IF EXISTS koik_lauad;
 CREATE VIEW koik_lauad AS
   SELECT Laud.laua_kood,
          Laua_seisundi_liik.nimetus AS hetkeseisund,
-         Laua_materjal.nimetus,
+         Laua_materjal.nimetus laua_materjal_nimetus,
          Laud.kohtade_arv,
          Laud.kommentaar,
          Laud.reg_kp,
-         Isik.eesnimi,
-         Isik.perenimi,
+         Isik.eesnimi registeerinud_tootaja_eesnimi,
+         Isik.perenimi registreerinud_tootaja_perenimi,
          Isik.e_meil
   FROM Laua_materjal,
        Isik,
@@ -48,12 +48,12 @@ DROP VIEW IF EXISTS laudade_detailandmed;
 
 CREATE VIEW laudade_detailandmed AS
   SELECT Laud.laud_kood,
-         Laua_materjal.nimetus,
+         Laua_materjal.nimetus laua_materjal_nimetus,
          Laud.kohtade_arv,
          Laud.kommentaar,
          Laud.reg_kp,
-         Isik.eesnimi,
-         Isik.perenimi,
+         Isik.eesnimi tootaja_eesnimie,
+         Isik.perenimi tootaja_perenimi,
          Isik.e_meil,
          Laua_seisundi_liik.nimetus AS hetkeseisund
   FROM (Isik INNER JOIN (Tootaja INNER JOIN (Laud INNER JOIN Laua_materjal ON Laud.laua_materjal_kood =
