@@ -47,6 +47,12 @@ insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (1
 insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (2, 'Mustas nimekirjas');
 select * from kliendi_seisundi_liik;
 
+delete from laua_kategooria_tyyp;
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (1, 'Omadussõnad');
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (2, 'Liiklus laua ümber');
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (3, 'Vaade');
+select * from laua_kategooria_tyyp;
+
 
 delete from laua_kategooria;
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (1, 'Ilus', 1);
@@ -58,12 +64,6 @@ insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (7, 'Ilus', 3);
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (8, 'kole', 3);
 select * from laua_kategooria;
-
-delete from laua_kategooria_tyyp;
-insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (1, 'Omadussõnad');
-insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (2, 'Liiklus laua ümber');
-insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (3, 'Vaade');
-select * from laua_kategooria_tyyp;
 
 
 delete from laua_materjal;
