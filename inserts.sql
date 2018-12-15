@@ -16,7 +16,7 @@ insert into amet (amet_kood, nimetus, kirjeldus)values (1, 'Kokk', 'Söögi tege
 insert into amet (amet_kood, nimetus, kirjeldus)values (2, 'Kelner', 'Klientide teenindamine');
 insert into amet (amet_kood, nimetus, kirjeldus)values (3, 'Müüja', 'Kassa teenindamine');
 insert into amet (amet_kood, nimetus, kirjeldus)values (4, 'Koristaja', 'Tööpindade puhastuse operaator');
-insert into amet (amet_kood, nimetu2s, kirjeldus)values (5, 'Juhataja', 'Vastutav isik töökoha eest');
+insert into amet (amet_kood, nimetus, kirjeldus)values (5, 'Juhataja', 'Vastutav isik töökoha eest');
 select * from amet;
 
 delete from isiku_seisundi_liik;
