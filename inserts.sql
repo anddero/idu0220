@@ -91,11 +91,11 @@ insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) 
 insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (4,TRUE,1);
 insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (5,FALSE,1);
 
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (6,2,1);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (7,3,3);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (8,4,5);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (9,5,6);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (10,2,4);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (11,6,2);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (12,5,2);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (13,3,1);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (6,21,1);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (7,21,3);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (8,22,5);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (9,23,6);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (10,11,4);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (11,12,2);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (12,11,2);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (13,12,1);
