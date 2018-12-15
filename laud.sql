@@ -52,7 +52,6 @@ CREATE TABLE Amet
 )
 ;
 
-ALTER TABLE Amet OWNER TO t164416;
 
 CREATE TABLE Tootaja_seisundi_liik
 (
@@ -64,7 +63,6 @@ CREATE TABLE Tootaja_seisundi_liik
 )
 ;
 
-ALTER TABLE Tootaja_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Isiku_seisundi_liik
 (
@@ -76,7 +74,6 @@ CREATE TABLE Isiku_seisundi_liik
 )
 ;
 
-ALTER TABLE Isiku_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Riik
 (
@@ -89,7 +86,6 @@ CREATE TABLE Riik
 )
 ;
 
-ALTER TABLE Riik OWNER TO t164416;
 
 CREATE TABLE Isik
 (
@@ -124,7 +120,6 @@ CREATE TABLE Isik
 )
 ;
 
-ALTER TABLE Isik OWNER TO t164416;
 
 CREATE TABLE Tootaja
 (
@@ -140,7 +135,6 @@ CREATE TABLE Tootaja
 )
 ;
 
-ALTER TABLE Tootaja OWNER TO t164416;
 
 CREATE TABLE Laua_materjal
 (
@@ -152,7 +146,6 @@ CREATE TABLE Laua_materjal
 )
 ;
 
-ALTER TABLE Laua_materjal OWNER TO t164416;
 
 CREATE TABLE Laua_seisundi_liik
 (
@@ -164,7 +157,6 @@ CREATE TABLE Laua_seisundi_liik
 )
 ;
 
-ALTER TABLE Laua_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Laud
 (
@@ -186,7 +178,6 @@ CREATE TABLE Laud
 )
 ;
 
-ALTER TABLE Laud OWNER TO t164416;
 
 CREATE TABLE Laua_kategooria_tyyp
 (
@@ -198,7 +189,6 @@ CREATE TABLE Laua_kategooria_tyyp
 )
 ;
 
-ALTER TABLE Laua_kategooria_tyyp OWNER TO t164416;
 
 CREATE TABLE Laua_kategooria
 (
@@ -212,7 +202,6 @@ CREATE TABLE Laua_kategooria
 )
 ;
 
-ALTER TABLE Laua_kategooria OWNER TO t164416;
 
 CREATE TABLE Laua_kategooria_omamine
 (
@@ -226,7 +215,7 @@ CREATE TABLE Laua_kategooria_omamine
 )
 ;
 
-ALTER TABLE Laua_kategooria_omamine OWNER TO t164416;
+
 
 CREATE TABLE Kliendi_seisundi_liik
 (
@@ -238,7 +227,7 @@ CREATE TABLE Kliendi_seisundi_liik
 )
 ;
 
-ALTER TABLE Kliendi_seisundi_liik OWNER TO t164416;
+
 
 CREATE TABLE Klient
 (
@@ -251,7 +240,6 @@ CREATE TABLE Klient
 )
 ;
 
-ALTER TABLE Klient OWNER TO t164416;
 
 DROP INDEX IF EXISTS IXFK_Isik_Isiku_seisundi_liik;
 DROP INDEX IF EXISTS IXFK_Isikukoodi_riik;
