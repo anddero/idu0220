@@ -13,7 +13,7 @@ WHERE Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood
   And Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood
   And Laua_seisundi_liik.laua_seisundi_liik_kood In (2, 3);
 
-ALTER VIEW aktiivsed_ja_mitteaktiivsed_lauad OWNER TO t164416;
+COMMENT ON VIEW aktiivsed_ja_mitteaktiivsed_lauad IS 'See vaade näitab kõiki aktiivseid ja mitteaktiivseid laudu.';
 
 DROP VIEW IF EXISTS koik_lauad;
 
@@ -33,31 +33,10 @@ FROM Laua_materjal,
        INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
 WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.tootaja_id) = Isik.isiku_id));
 
-ALTER VIEW koik_lauad OWNER TO t164416;
-
-DROP VIEW IF EXISTS laudade_detailandmed;
-
-CREATE VIEW laudade_detailandmed AS
-SELECT Laud.laua_kood,
-       Laua_materjal.nimetus,
-       Laud.kohtade_arv,
-       Laud.kommentaar,
-       Laud.reg_kp,
-       Isik.eesnimi,
-       Isik.perenimi,
-       Isik.e_meil,
-       Laua_seisundi_liik.nimetus AS hetkeseisund
-FROM (Isik INNER JOIN (Tootaja INNER JOIN (Laud INNER JOIN Laua_materjal ON Laud.laua_materjal_kood =
-                                                                            Laua_materjal.laua_materjal_kood) ON
-    Tootaja.isiku_id = Laud.tootaja_id) ON Isik.isiku_id = Tootaja.isiku_id)
-       INNER JOIN Laua_seisundi_liik ON Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood;
-
-ALTER VIEW laudade_detailandmed OWNER TO t164416;
-
-select *
-from laudade_detailandmed;
+COMMENT ON VIEW koik_lauad IS 'See vaade näitab infot kõigi laudade kohta.';
 
 DROP VIEW IF EXISTS laudade_koondaruanne;
+
 CREATE VIEW laudade_koondaruanne AS
 SELECT Laua_seisundi_liik.laua_seisundi_liik_kood,
        UPPER(Laua_seisundi_liik.nimetus) AS seisundi_nimetus,
@@ -67,4 +46,4 @@ FROM Laua_seisundi_liik
 GROUP BY Laua_seisundi_liik.laua_seisundi_liik_kood, UPPER(Laua_seisundi_liik.nimetus)
 ORDER BY Count(Laud.laua_kood) DESC, UPPER(Laua_seisundi_liik.nimetus);
 
-ALTER VIEW laudade_koondaruanne OWNER TO t164416;
+COMMENT ON VIEW laudade_koondaruanne IS 'See vaade näitab koondaruannet laua seisundi põhiselt.';

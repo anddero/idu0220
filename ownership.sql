@@ -12,3 +12,7 @@ ALTER TABLE Laua_kategooria OWNER TO t164416;
 ALTER TABLE Laua_kategooria_omamine OWNER TO t164416;
 ALTER TABLE Kliendi_seisundi_liik OWNER TO t164416;
 ALTER TABLE Klient OWNER TO t164416;
+ALTER VIEW aktiivsed_ja_mitteaktiivsed_lauad OWNER TO t164416;
+ALTER VIEW koik_lauad OWNER TO t164416;
+ALTER VIEW laudade_detailandmed OWNER TO t164416;
+ALTER VIEW laudade_koondaruanne OWNER TO t164416;
