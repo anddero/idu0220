@@ -75,23 +75,23 @@ select * from laua_materjal;
 
 
 delete from laud;
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (2,11,'02-05-2018 13:58',2,'Laud nagu laud ikka',1);
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (3,12,'02-05-2018 13:59',3,'Laud nagu laud ikka',2);
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (4,13,'02-05-2018 13:59',4,'Laud nagu laud ikka',3);
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (5,14,'02-05-2018 14:00',5,'Laud nagu laud ikka',3);
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (6,15,'02-05-2018 14:00',5,'Laud nagu laud ikka',3);
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (7,324,'03-05-2018 12:47','Eriline,habras.',?,2);
-insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (8,400,'03-05-2018 12:50',3,'Ruumi on ka rohkemate jaoks',1);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (2,11,'05.02.2018 13:58',2,'Laud nagu laud ikka',1);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (3,12,'05.02.2018 13:59',3,'Laud nagu laud ikka',2);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (4,13,'05.02.2018 13:59',4,'Laud nagu laud ikka',3);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (5,14,'05.02.2018 14:00',5,'Laud nagu laud ikka',3);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (6,15,'05.02.2018 14:00',5,'Laud nagu laud ikka',3);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (7,324,'05.03.2018 12:47','Eriline,habras.',?,2);
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (8,400,'05.03.2018 12:50',3,'Ruumi on ka rohkemate jaoks',1);
 select * from laud;
 
 
 delete from isik;
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (1,'nilsemil.lille@gmail.com',3554151,'20-03-2018','parool','02-05-2018 13:45','Nils','','Rakvere');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (2,'Kaspar@gmail.com',5152151,'01-05-2018','parool','02-05-2018 13:45','Kaspar','','Tallinn');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (3,'Merje@mail.ee',5125125,'01-05-2018','parool','02-05-2018 13:49','','Pajula','Keila');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (4,'Maxim@max.ee',5512422,'01-04-2018','paroo','02-05-2018 13:50','Maxim','','Tallinn');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (5,'Markus@ttu.ee',565122,'01-05-2018','PASSWORD','02-05-2018 13:51','Mihkel','Muhkel','Mägilinna');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (6,'hans@restoran.com',55555555,'28-11-2017','','03-05-2018 13:06','Hans','','Ei tea');
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (1,'nilsemil.lille@gmail.com',3554151,'03.20.2018','parool','05.02.2018 13:45','Nils','','Rakvere');
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (2,'Kaspar@gmail.com',5152151,'05.01.2018','parool','05.02.2018 13:45','Kaspar','','Tallinn');
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (3,'Merje@mail.ee',5125125,'05.01.2018','parool','05.02.2018 13:49','','Pajula','Keila');
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (4,'Maxim@max.ee',5512422,'04.01.2018','paroo','05.02.2018 13:50','Maxim','','Tallinn');
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (5,'Markus@ttu.ee',565122,'05.01.2018','PASSWORD','05.02.2018 13:51','Mihkel','Muhkel','Mägilinna');
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (6,'hans@restoran.com',55555555,'11.28.2017','','05.03.2018 13:06','Hans','','Ei tea');
 select * from isik;
 
 
