@@ -42,229 +42,473 @@ DROP TABLE IF EXISTS Klient CASCADE
 
 CREATE TABLE Amet
 (
-	amet_kood integer NOT NULL,
-	nimetus varchar(50)	 NOT NULL,
-	kirjeldus varchar(255)	,
-	CONSTRAINT PK_Amet PRIMARY KEY (amet_kood),
-	CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
-	CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus!~'^[[:space:]]*$'),
-	CONSTRAINT amet_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  amet_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  kirjeldus varchar(255)	,
+  CONSTRAINT PK_Amet PRIMARY KEY (amet_kood),
+  CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
+  CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus!~'^[[:space:]]*$'),
+  CONSTRAINT amet_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Amet OWNER TO t164416;
 
 CREATE TABLE Tootaja_seisundi_liik
 (
-	tootaja_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Tootaja_seisundi_liik PRIMARY KEY (tootaja_seisundi_liik_kood),
-	CONSTRAINT AK_Tootaja_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-	CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  tootaja_seisundi_liik_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Tootaja_seisundi_liik PRIMARY KEY (tootaja_seisundi_liik_kood),
+  CONSTRAINT AK_Tootaja_Seisundi_Liik_Nimetus UNIQUE (nimetus),
+  CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Tootaja_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Isiku_seisundi_liik
 (
-	isiku_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Isiku_seisundi_liik PRIMARY KEY (isiku_seisundi_liik_kood),
-	CONSTRAINT AK_Isiku_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-	CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  isiku_seisundi_liik_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Isiku_seisundi_liik PRIMARY KEY (isiku_seisundi_liik_kood),
+  CONSTRAINT AK_Isiku_Seisundi_Liik_Nimetus UNIQUE (nimetus),
+  CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Isiku_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Riik
 (
-	riik_kood char(3)	 NOT NULL,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Riik PRIMARY KEY (riik_kood),
-	CONSTRAINT AK_Riik_Nimetus UNIQUE (nimetus),
-	CONSTRAINT riik_riik_kood_check_on_kolm_suurtahte CHECK (riik_kood~'^[A-Z]{3}$'),
-	CONSTRAINT riik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  riik_kood char(3)	 NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Riik PRIMARY KEY (riik_kood),
+  CONSTRAINT AK_Riik_Nimetus UNIQUE (nimetus),
+  CONSTRAINT riik_riik_kood_check_on_kolm_suurtahte CHECK (riik_kood~'^[A-Z]{3}$'),
+  CONSTRAINT riik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Riik OWNER TO t164416;
 
 CREATE TABLE Isik
 (
-	isik_kood integer NOT NULL,
-	isikukoodi_riik char(3)	 NOT NULL,
-	isiku_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	e_meil varchar(254)	 NOT NULL,
-	isikukood varchar(20)	 NOT NULL,
-	synni_kp date NOT NULL,
-	parool varchar(100)	 NOT NULL,
-	reg_aeg date NOT NULL DEFAULT CURRENT_DATE,
-	eesnimi varchar(700)	 NOT NULL,
-	perenimi varchar(700)	,
-	elukoht varchar(20)	,
-	CONSTRAINT PK_Isik PRIMARY KEY (isik_kood),
-	CONSTRAINT AK_Isik_e_meil UNIQUE (e_meil),
-	CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
-	CONSTRAINT isik_e_meil_check_on_tostutundetu CHECK (e_meil~'^[A-Za-z0-9.]+@[A-Za-z0-9.]+[A-Za-z]+$'),
-	CONSTRAINT isik_isikukood_check_lubatud_symbolid CHECK (isikukood~'[A-Za-z0-9[:space:]/\//ig;-]+'),
-	CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
-	CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_aeg),
-	CONSTRAINT isik_reg_aeg_check_lubatud_vahemik CHECK (reg_aeg >= '01.01.2010' AND reg_aeg < '01.01.2101'),
-	CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
-	CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
-	CONSTRAINT isik_perenimi_check_ei_ole_tyhi_string CHECK (perenimi<>''),
-	CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht!~'^[[:space:]]*$'),
-	CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (synni_kp <= current_date),
-	CONSTRAINT isik_reg_aeg_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_aeg <= CURRENT_DATE),
-	CONSTRAINT isik_parool_check_ei_ole_tyhi_string CHECK (parool!~'^[[:space:]]*$'),
-	CONSTRAINT FK_Isik_Isiku_seisundi_liik FOREIGN KEY (isiku_seisundi_liik_kood) REFERENCES Isiku_seisundi_liik (isiku_seisundi_liik_kood) ON DELETE No Action ON UPDATE No Action,
-	CONSTRAINT FK_Isikukoodi_riik FOREIGN KEY (isikukoodi_riik) REFERENCES Riik (riik_kood) ON DELETE No Action ON UPDATE Cascade
+  isiku_id integer NOT NULL,
+  isikukoodi_riik char(3)	 NOT NULL,
+  isiku_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  e_meil varchar(254)	 NOT NULL,
+  isikukood varchar(20)	 NOT NULL,
+  synni_kp date NOT NULL,
+  parool varchar(100)	 NOT NULL,
+  reg_kp date NOT NULL DEFAULT CURRENT_DATE,
+  eesnimi varchar(700)	,
+  perenimi varchar(700)	,
+  elukoht varchar(20)	,
+  CONSTRAINT PK_Isik PRIMARY KEY (isiku_id),
+  CONSTRAINT AK_Isik_e_meil UNIQUE (e_meil),
+  CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
+  CONSTRAINT isik_e_meil_check_oige_vorm CHECK (e_meil~'^[a-z0-9.]+@[a-z0-9.]+[a-z]+$'),
+  CONSTRAINT isik_isikukood_check_lubatud_symbolid CHECK (isikukood~'[a-z0-9[:space:]\\-.]+'),
+  CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
+  CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_kp),
+  CONSTRAINT isik_reg_kp_check_lubatud_vahemik CHECK (reg_kp >= '01.01.2010' AND reg_kp < '01.01.2101'),
+  CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
+  CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
+  CONSTRAINT isik_perenimi_check_ei_ole_tyhi_string CHECK (perenimi<>''),
+  CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht!~'^[[:space:]]*$'),
+  CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (synni_kp <= current_date),
+  CONSTRAINT isik_reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_kp <= CURRENT_DATE),
+  CONSTRAINT isik_parool_check_ei_ole_tyhi_string CHECK (parool!~'^[[:space:]]*$'),
+  CONSTRAINT isik_e_meil_check_tostutundetu CHECK (e_meil = LOWER(e_meil)),
+  CONSTRAINT FK_Isik_Isiku_seisundi_liik FOREIGN KEY (isiku_seisundi_liik_kood) REFERENCES Isiku_seisundi_liik (isiku_seisundi_liik_kood) ON DELETE No Action ON UPDATE No Action,
+  CONSTRAINT FK_Isikukoodi_riik FOREIGN KEY (isikukoodi_riik) REFERENCES Riik (riik_kood) ON DELETE No Action ON UPDATE Cascade
 )
 ;
+
+ALTER TABLE Isik OWNER TO t164416;
 
 CREATE TABLE Tootaja
 (
-	isik_kood integer NOT NULL,
-	amet_kood integer NOT NULL,
-	tootaja_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	mentor smallint,
-	CONSTRAINT PK_Tootaja PRIMARY KEY (isik_kood),
-	CONSTRAINT FK_Tootaja_Amet FOREIGN KEY (amet_kood) REFERENCES Amet (amet_kood) ON DELETE No Action ON UPDATE Cascade,
-	CONSTRAINT FK_Tootaja_Tootaja_seisundi_liik FOREIGN KEY (tootaja_seisundi_liik_kood) REFERENCES Tootaja_seisundi_liik (tootaja_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-	CONSTRAINT FK_Tootaja_Isik FOREIGN KEY (isik_kood) REFERENCES Isik (isik_kood) ON DELETE Cascade ON UPDATE No Action,
-	CONSTRAINT FK_Mentor FOREIGN KEY (mentor) REFERENCES Tootaja (isik_kood) ON DELETE Set Null ON UPDATE Cascade
+  isiku_id integer NOT NULL,
+  amet_kood integer NOT NULL,
+  tootaja_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  mentor smallint,
+  CONSTRAINT PK_Tootaja PRIMARY KEY (isiku_id),
+  CONSTRAINT FK_Tootaja_Amet FOREIGN KEY (amet_kood) REFERENCES Amet (amet_kood) ON DELETE No Action ON UPDATE Cascade,
+  CONSTRAINT FK_Tootaja_Tootaja_seisundi_liik FOREIGN KEY (tootaja_seisundi_liik_kood) REFERENCES Tootaja_seisundi_liik (tootaja_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
+  CONSTRAINT FK_Tootaja_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action,
+  CONSTRAINT FK_Mentor FOREIGN KEY (mentor) REFERENCES Tootaja (isiku_id) ON DELETE Set Null ON UPDATE Cascade
 )
 ;
+
+ALTER TABLE Tootaja OWNER TO t164416;
 
 CREATE TABLE Laua_materjal
 (
-	laua_materjal_kood integer NOT NULL,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Laua_materjal PRIMARY KEY (laua_materjal_kood),
-	CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus),
-	CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  laua_materjal_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Laua_materjal PRIMARY KEY (laua_materjal_kood),
+  CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus),
+  CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Laua_materjal OWNER TO t164416;
 
 CREATE TABLE Laua_seisundi_liik
 (
-	laua_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Laua_seisundi_liik PRIMARY KEY (laua_seisundi_liik_kood),
-	CONSTRAINT AK_Laua_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-	CONSTRAINT laua_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  laua_seisundi_liik_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Laua_seisundi_liik PRIMARY KEY (laua_seisundi_liik_kood),
+  CONSTRAINT AK_Laua_Seisundi_Liik_Nimetus UNIQUE (nimetus),
+  CONSTRAINT laua_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Laua_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Laud
 (
-	laud_kood integer NOT NULL,
-	tootaja_kood smallint NOT NULL,
-	laua_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	laua_materjal_kood integer,
-	laua_kood integer NOT NULL,
-	reg_aeg date NOT NULL DEFAULT CURRENT_DATE,
-	kohtade_arv Integer NOT NULL,
-	kommentaar varchar(255)	,
-	CONSTRAINT PK_Laud PRIMARY KEY (laud_kood),
-	CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
-	CONSTRAINT laud_reg_aeg_check_lubatud_vahemik CHECK (reg_aeg >= '01.01.2010' AND reg_aeg < '01.01.2101'),
-	CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
-	CONSTRAINT AK_Laud_kood UNIQUE (laua_kood),
-	CONSTRAINT laud_reg_aeg_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_aeg <= CURRENT_DATE),
-	CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
-	CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-	CONSTRAINT FK_Laud_Tootaja_Id_registreerib FOREIGN KEY (tootaja_kood) REFERENCES Tootaja (isik_kood) ON DELETE No Action ON UPDATE Cascade
+  laua_id integer NOT NULL,
+  tootaja_id smallint NOT NULL,
+  laua_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  laua_materjal_kood integer,
+  laua_kood integer NOT NULL,
+  reg_kp date NOT NULL DEFAULT CURRENT_DATE,
+  kohtade_arv Integer NOT NULL,
+  kommentaar varchar(255)	,
+  CONSTRAINT PK_Laud PRIMARY KEY (laua_id),
+  CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
+  CONSTRAINT laud_reg_kp_check_lubatud_vahemik CHECK (reg_kp >= '01.01.2010' AND reg_kp < '01.01.2101'),
+  CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
+  CONSTRAINT AK_laua_kood UNIQUE (laua_kood),
+  CONSTRAINT laud_reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_kp <= CURRENT_DATE),
+  CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
+  CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
+  CONSTRAINT FK_Laud_Tootaja_Id_registreerib FOREIGN KEY (tootaja_id) REFERENCES Tootaja (isiku_id) ON DELETE No Action ON UPDATE Cascade
 )
 ;
+
+ALTER TABLE Laud OWNER TO t164416;
 
 CREATE TABLE Laua_kategooria_tyyp
 (
-	laua_kategooria_tyyp_kood integer NOT NULL,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Laua_kategooria_tyyp PRIMARY KEY (laua_kategooria_tyyp_kood),
-	CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus),
-	CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  laua_kategooria_tyyp_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Laua_kategooria_tyyp PRIMARY KEY (laua_kategooria_tyyp_kood),
+  CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus),
+  CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Laua_kategooria_tyyp OWNER TO t164416;
 
 CREATE TABLE Laua_kategooria
 (
-	laua_kategooria_kood integer NOT NULL,
-	nimetus varchar(50)	 NOT NULL,
-	laua_kategooria_tyyp_kood integer NOT NULL,
-	CONSTRAINT PK_Laua_kategooria PRIMARY KEY (laua_kategooria_kood),
-	CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
-	CONSTRAINT laua_kategooria_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$'),
-	CONSTRAINT FK_Laua_kategooria_Laua_kategooria_tyyp FOREIGN KEY (laua_kategooria_tyyp_kood) REFERENCES Laua_kategooria_tyyp (laua_kategooria_tyyp_kood) ON DELETE No Action ON UPDATE Cascade
+  laua_kategooria_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  laua_kategooria_tyyp_kood integer NOT NULL,
+  CONSTRAINT PK_Laua_kategooria PRIMARY KEY (laua_kategooria_kood),
+  CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
+  CONSTRAINT laua_kategooria_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT FK_Laua_kategooria_Laua_kategooria_tyyp FOREIGN KEY (laua_kategooria_tyyp_kood) REFERENCES Laua_kategooria_tyyp (laua_kategooria_tyyp_kood) ON DELETE No Action ON UPDATE Cascade
 )
 ;
+
+ALTER TABLE Laua_kategooria OWNER TO t164416;
 
 CREATE TABLE Laua_kategooria_omamine
 (
-	laua_kategooria_omamine_kood integer NOT NULL,
-	laud_kood integer NOT NULL,
-	laua_kategooria_kood integer NOT NULL,
-	CONSTRAINT PK_laua_kategooria_omamine PRIMARY KEY (laua_kategooria_omamine_kood),
-	CONSTRAINT AK_laua_kategooria_omamine_Laua_katogooria_Laud UNIQUE (laud_kood,laua_kategooria_kood),
-	CONSTRAINT FK_laua_kategooria_omamine_Laud FOREIGN KEY (laud_kood) REFERENCES Laud (laud_kood) ON DELETE Cascade ON UPDATE Cascade,
-	CONSTRAINT FK_laua_kategooria_omamine_Laua_kategooria FOREIGN KEY (laua_kategooria_kood) REFERENCES Laua_kategooria (laua_kategooria_kood) ON DELETE No Action ON UPDATE No Action
+  laua_kategooria_omamine_id integer NOT NULL,
+  laua_id integer NOT NULL,
+  laua_kategooria_kood integer NOT NULL,
+  CONSTRAINT PK_laua_kategooria_omamine PRIMARY KEY (laua_kategooria_omamine_id),
+  CONSTRAINT AK_laua_kategooria_omamine_Laua_katogooria_Laud UNIQUE (laua_id,laua_kategooria_kood),
+  CONSTRAINT FK_laua_kategooria_omamine_Laud FOREIGN KEY (laua_id) REFERENCES Laud (laua_id) ON DELETE Cascade ON UPDATE Cascade,
+  CONSTRAINT FK_laua_kategooria_omamine_Laua_kategooria FOREIGN KEY (laua_kategooria_kood) REFERENCES Laua_kategooria (laua_kategooria_kood) ON DELETE No Action ON UPDATE No Action
 )
 ;
+
+ALTER TABLE Laua_kategooria_omamine OWNER TO t164416;
 
 CREATE TABLE Kliendi_seisundi_liik
 (
-	kliendi_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	nimetus varchar(50)	 NOT NULL,
-	CONSTRAINT PK_Kliendi_seisundi_liik PRIMARY KEY (kliendi_seisundi_liik_kood),
-	CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-	CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  kliendi_seisundi_liik_kood integer NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Kliendi_seisundi_liik PRIMARY KEY (kliendi_seisundi_liik_kood),
+  CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus),
+  CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
+
+ALTER TABLE Kliendi_seisundi_liik OWNER TO t164416;
 
 CREATE TABLE Klient
 (
-	isik_kood integer NOT NULL,
-	on_nous_tylitamisega boolean NOT NULL DEFAULT false,
-	kliendi_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-	CONSTRAINT PK_Klient PRIMARY KEY (isik_kood),
-	CONSTRAINT FK_Klient_Kliendi_seisundi_liik FOREIGN KEY (kliendi_seisundi_liik_kood) REFERENCES Kliendi_seisundi_liik (kliendi_seisundi_liik_kood) ON DELETE No Action ON UPDATE No Action,
-	CONSTRAINT FK_Klient_Isik FOREIGN KEY (isik_kood) REFERENCES Isik (isik_kood) ON DELETE Cascade ON UPDATE No Action
+  isiku_id integer NOT NULL,
+  on_nous_tylitamisega boolean NOT NULL DEFAULT false,
+  kliendi_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  CONSTRAINT PK_Klient PRIMARY KEY (isiku_id),
+  CONSTRAINT FK_Klient_Kliendi_seisundi_liik FOREIGN KEY (kliendi_seisundi_liik_kood) REFERENCES Kliendi_seisundi_liik (kliendi_seisundi_liik_kood) ON DELETE No Action ON UPDATE No Action,
+  CONSTRAINT FK_Klient_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action
 )
 ;
 
-CREATE INDEX IXFK_Isik_Isiku_seisundi_liik ON Isik (isiku_seisundi_liik_kood ASC)
-;
-	
-CREATE INDEX IXFX_Isikukoodi_riik ON Isik (isikukoodi_riik ASC)
-;
+ALTER TABLE Klient OWNER TO t164416;
 
-CREATE INDEX IXFK_Tootaja_Amet ON Tootaja (amet_kood ASC)
-;
+DROP INDEX IF EXISTS IXFK_Isik_Isiku_seisundi_liik;
+DROP INDEX IF EXISTS IXFK_Isikukoodi_riik;
+DROP INDEX IF EXISTS IXFK_Tootaja_Amet;
+DROP INDEX IF EXISTS IXFK_Tootaja_Mentor_Isik;
+DROP INDEX IF EXISTS IXFK_Tootaja_Tootaja_Isik;
+DROP INDEX IF EXISTS IXFK_Tootaja_Tootaja_seisundi_liik;
+DROP INDEX IF EXISTS IXFK_Laud_Laua_materjal;
+DROP INDEX IF EXISTS IXFK_Laud_Laua_seisundi_liik;
+DROP INDEX IF EXISTS IXFK_Laua_kategooria_Laua_kategooria_tyyp;
+DROP INDEX IF EXISTS IXFK_laua_kategooria_omamine_Laua_kategooria;
+DROP INDEX IF EXISTS IXFK_laua_kategooria_omamine_Laud;
+DROP INDEX IF EXISTS IXFK_Klient_Kliendi_seisundi_liik;
+DROP INDEX IF EXISTS IXFK_Klient_Isik;
 
-CREATE INDEX IXFK_Tootaja_Mentor_Isik ON Tootaja (mentor ASC)
-;
+CREATE INDEX IXFK_Isik_Isiku_seisundi_liik ON Isik(isiku_seisundi_liik_kood ASC);
+CREATE INDEX IXFK_Isikukoodi_riik ON Isik(isikukoodi_riik ASC);
+CREATE INDEX IXFK_Tootaja_Amet ON Tootaja (amet_kood ASC);
+CREATE INDEX IXFK_Tootaja_Mentor_Isik ON Tootaja (mentor ASC);
+CREATE INDEX IXFK_Tootaja_Tootaja_Isik ON Tootaja (isiku_id ASC);
+CREATE INDEX IXFK_Tootaja_Tootaja_seisundi_liik ON Tootaja (tootaja_seisundi_liik_kood ASC);
+CREATE INDEX IXFK_Laud_Laua_materjal ON Laud (laua_materjal_kood ASC);
+CREATE INDEX IXFK_Laud_Laua_seisundi_liik ON Laud (laua_seisundi_liik_kood ASC);
+CREATE INDEX IXFK_Laua_kategooria_Laua_kategooria_tyyp ON Laua_kategooria (laua_kategooria_tyyp_kood ASC);
+CREATE INDEX IXFK_laua_kategooria_omamine_Laua_kategooria ON Laua_kategooria_omamine (laua_kategooria_kood ASC);
+CREATE INDEX IXFK_laua_kategooria_omamine_Laud ON Laua_kategooria_omamine (laua_id ASC);
+CREATE INDEX IXFK_Klient_Kliendi_seisundi_liik ON Klient (kliendi_seisundi_liik_kood ASC);
+CREATE INDEX IXFK_Klient_Isik ON Klient (isiku_id ASC);
 
-CREATE INDEX IXFK_Tootaja_Tootaja_Isik ON Tootaja (isik_kood ASC)
-;
+delete from riik;
+insert into riik (riik_kood, nimetus)values ('EST', 'Eesti');
+insert into riik (riik_kood, nimetus)values ('AFG', 'Afganistaan');
+insert into riik (riik_kood, nimetus)values ('RUS', 'Venemaa');
+insert into riik (riik_kood, nimetus)values ('GBR', 'Suurbritannia');
+insert into riik (riik_kood, nimetus)values ('ALB', 'Ahvenamaa');
+insert into riik (riik_kood, nimetus)values ('LVA', 'Läti');
+insert into riik (riik_kood, nimetus)values ('LTU', 'Leedu');
+insert into riik (riik_kood, nimetus)values ('DEU', 'Saksamaa');
+insert into riik (riik_kood, nimetus)values ('USA', 'Ameerika Ühendriigid');
+select * from riik;
 
-CREATE INDEX IXFK_Tootaja_Tootaja_seisundi_liik ON Tootaja (tootaja_seisundi_liik_kood ASC)
-;
+delete from amet;
+insert into amet (amet_kood, nimetus, kirjeldus)values (1, 'Kokk', 'Söögi tegemine');
+insert into amet (amet_kood, nimetus, kirjeldus)values (2, 'Kelner', 'Klientide teenindamine');
+insert into amet (amet_kood, nimetus, kirjeldus)values (3, 'Müüja', 'Kassa teenindamine');
+insert into amet (amet_kood, nimetus, kirjeldus)values (4, 'Koristaja', 'Tööpindade puhastuse operaator');
+insert into amet (amet_kood, nimetus, kirjeldus)values (5, 'Juhataja', 'Vastutav isik töökoha eest');
+select * from amet;
 
-CREATE INDEX IXFK_Laud_Laua_materjal ON Laud (laua_materjal_kood ASC)
-;
+delete from isiku_seisundi_liik;
+insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (1, 'Elus');
+insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (2, 'Surnud');
+select * from isiku_seisundi_liik;
 
-CREATE INDEX IXFK_Laud_Laua_seisundi_liik ON Laud (laua_seisundi_liik_kood ASC)
-;
+delete from tootaja_seisundi_liik;
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (1, 'Katseajal');
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (2, 'Tööl');
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (3, 'Puhkusel');
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (4, 'Haiguslehel');
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (5, 'Töösuhe peatatud');
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (6, 'Töösuhe lõpetatud oma soovil');
+insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (7, 'Vallandatud');
+select * from tootaja_seisundi_liik;
 
-CREATE INDEX IXFK_Laua_kategooria_Laua_kategooria_tyyp ON Laua_kategooria (laua_kategooria_tyyp_kood ASC)
-;
+delete from laua_seisundi_liik;
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (1, 'Ootel');
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (2, 'Mitteaktiivne');
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (3, 'Aktiivne');
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (4, 'Lõpetatud');
+select * from laua_seisundi_liik;
 
-CREATE INDEX IXFK_laua_kategooria_omamine_Laua_kategooria ON Laua_kategooria_omamine (laua_kategooria_kood ASC)
-;
 
-CREATE INDEX IXFK_laua_kategooria_omamine_Laud ON Laua_kategooria_omamine (laud_kood ASC)
-;
+delete from kliendi_seisundi_liik;
+insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (1, 'Aktiivne');
+insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (2, 'Mustas nimekirjas');
+select * from kliendi_seisundi_liik;
 
-CREATE INDEX IXFK_Klient_Kliendi_seisundi_liik ON Klient (kliendi_seisundi_liik_kood ASC)
-;
+delete from laua_kategooria_tyyp;
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (1, 'Omadussõnad');
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (2, 'Liiklus laua ümber');
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (3, 'Vaade');
+select * from laua_kategooria_tyyp;
 
-CREATE INDEX IXFK_Klient_Isik ON Klient (isik_kood ASC)
-;
 
-CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA
-public;
+delete from laua_kategooria;
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (1, 'Ilus', 1);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (2, 'Külmavõitu', 1);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (3, 'Hubane', 1);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (4, 'Palju', 2);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (5, 'Keskmiselt', 2);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (6, 'Vähe', 2);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (7, 'Ilus', 3);
+insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (8, 'kole', 3);
+select * from laua_kategooria;
+
+
+delete from laua_materjal;
+insert into laua_materjal (laua_materjal_kood, nimetus)values (1, 'Puit');
+insert into laua_materjal (laua_materjal_kood, nimetus)values (2, 'Klaas');
+insert into laua_materjal (laua_materjal_kood, nimetus)values (3, 'Metall');
+insert into laua_materjal (laua_materjal_kood, nimetus)values (4, 'Plastik');
+select * from laua_materjal;
+
+delete from isik;
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (1,'EST','nilsemil.lille@gmail.com',3554151,'03.20.2018','parool','Nils','Bob','Rakvere');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (2,'GER','kaspar@gmail.com',5152151,'05.01.2018','parool','Kaspar','Bob','Tallinn');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (3,'RUS','kerje@mail.ee',5125125,'05.01.2018','parool','Bob','Pajula','Keila');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (4,'RUS','kaxim@max.ee',5512422,'04.01.2018','paroo','Maxim','Bob','Tallinn');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (5,'RUS','karkus@ttu.ee',565122,'05.01.2018','password','Mihkel','Muhkel','Mägilinna');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (6,'USA','hans@restoran.com',55555555,'11.28.2017','3213','Hans','Bob','Ei tea');
+select * from isik;
+
+
+delete from tootaja;
+insert into tootaja (isiku_id, amet_kood, mentor) values (1,1,2);
+insert into tootaja (isiku_id, amet_kood, mentor) values (3,3,3);
+insert into tootaja (isiku_id, amet_kood, mentor) values (4,4,4);
+insert into tootaja (isiku_id, amet_kood, mentor) values (5,2,2);
+insert into tootaja (isiku_id, amet_kood, mentor) values (6,2,3);
+select * from tootaja;
+
+
+delete from laud;
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (2,1,1,2,2,'Laud nagu laud ikka');
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (3,2,2,3,2,'Laud nagu laud ikka');
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (4,3,3,4,2,'Laud nagu laud ikka');
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (5,4,3,5,2,'Laud nagu laud ikka');
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (6,5,3,5,2,'Laud nagu laud ikka');
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (7,6,2,5,2,'Eriline,habras.');
+insert into laud (laua_id, tootaja_id, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (8,6,1,3,2,'Ruumi on ka rohkemate jaoks');
+select * from laud;
+
+
+
+
+delete from klient;
+insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (3,-1,1);
+insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (4,0,1);
+insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (5,-1,1);
+select * from klient;
+
+
+delete from tootaja;
+insert into tootaja (isiku_id, amet_kood, mentor) values (1,1,2);
+insert into tootaja (isiku_id, amet_kood, mentor) values (3,3,3);
+insert into tootaja (isiku_id, amet_kood, mentor) values (4,4,4);
+insert into tootaja (isiku_id, amet_kood, mentor) values (5,2,2);
+insert into tootaja (isiku_id, amet_kood, mentor) values (6,2,3);
+select * from tootaja;
+
+delete from laua_kategooria_omamine;
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (6,2,1);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (7,3,3);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (8,4,5);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (9,5,6);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (10,2,4);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (11,6,2);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (12,5,2);
+insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_id, laua_kategooria_kood) values (13,3,1);
+select * from laua_kategooria_omamine;
+
+DROP VIEW IF EXISTS aktiivsed_ja_mitteaktiivsed_lauad;
+
+CREATE VIEW aktiivsed_ja_mitteaktiivsed_lauad AS
+SELECT laud.laua_kood,
+       laua_seisundi_liik.nimetus as laua_seisundi_liik_nimetus,
+       laua_materjal.nimetus      as materjal_nimetus,
+       laud.kohtade_arv,
+       laud.kommentaar
+FROM Laud,
+     Laua_seisundi_liik,
+     Laua_materjal
+WHERE Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood
+  And Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood
+  And Laua_seisundi_liik.laua_seisundi_liik_kood In (2, 3);
+
+ALTER VIEW aktiivsed_ja_mitteaktiivsed_lauad OWNER TO t164416;
+
+select *
+from aktiivsed_ja_mitteaktiivsed_lauad;
+
+
+DROP VIEW IF EXISTS koik_lauad;
+
+CREATE VIEW koik_lauad AS
+SELECT Laud.laua_kood,
+       Laua_seisundi_liik.nimetus AS hetkeseisund,
+       Laua_materjal.nimetus,
+       Laud.kohtade_arv,
+       Laud.kommentaar,
+       Laud.reg_kp,
+       Isik.eesnimi,
+       Isik.perenimi,
+       Isik.e_meil
+FROM Laua_materjal,
+     Isik,
+     Laua_seisundi_liik
+       INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
+WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.tootaja_id) = Isik.isiku_id));
+
+ALTER VIEW koik_lauad OWNER TO t164416;
+
+select *
+from koik_lauad;
+
+
+DROP VIEW IF EXISTS laudade_detailandmed;
+
+CREATE VIEW laudade_detailandmed AS
+SELECT Laud.laua_kood,
+       Laua_materjal.nimetus,
+       Laud.kohtade_arv,
+       Laud.kommentaar,
+       Laud.reg_kp,
+       Isik.eesnimi,
+       Isik.perenimi,
+       Isik.e_meil,
+       Laua_seisundi_liik.nimetus AS hetkeseisund
+FROM (Isik INNER JOIN (Tootaja INNER JOIN (Laud INNER JOIN Laua_materjal ON Laud.laua_materjal_kood =
+                                                                            Laua_materjal.laua_materjal_kood) ON
+    Tootaja.isiku_id = Laud.tootaja_id) ON Isik.isiku_id = Tootaja.isiku_id)
+       INNER JOIN Laua_seisundi_liik ON Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood;
+
+ALTER VIEW laudade_detailandmed OWNER TO t164416;
+
+select *
+from laudade_detailandmed;
+
+DROP VIEW IF EXISTS laudade_kategooria_omamine;
+CREATE VIEW laudade_kategooria_omamine AS
+SELECT Laua_kategooria_omamine.laua_id,
+       Laua_kategooria.nimetus || ' (' || Laua_kategooria_tyyp.nimetus || ')' AS kategooria
+FROM Laua_kategooria_tyyp
+       INNER JOIN (Laua_kategooria INNER JOIN Laua_kategooria_omamine ON Laua_kategooria.laua_kategooria_kood =
+                                                                         Laua_kategooria_omamine.laua_kategooria_kood)
+                  ON Laua_kategooria_tyyp.laua_kategooria_tyyp_kood = Laua_kategooria.laua_kategooria_tyyp_kood;
+
+ALTER VIEW laudade_kategooria_omamine OWNER TO t164416;
+
+select *
+from laudade_kategooria_omamine;
+
+
+DROP VIEW IF EXISTS laudade_koondaruanne;
+CREATE VIEW laudade_koondaruanne AS
+SELECT Laua_seisundi_liik.laua_seisundi_liik_kood,
+       UPPER(Laua_seisundi_liik.nimetus) AS seisundi_nimetus,
+       Count(Laud.laua_kood)             AS laudade_arv
+FROM Laua_seisundi_liik
+       LEFT JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
+GROUP BY Laua_seisundi_liik.laua_seisundi_liik_kood, UPPER(Laua_seisundi_liik.nimetus)
+ORDER BY Count(Laud.laua_kood) DESC, UPPER(Laua_seisundi_liik.nimetus);
+
+ALTER VIEW laudade_koondaruanne OWNER TO t164416;
+
+select *
+from laudade_koondaruanne;
