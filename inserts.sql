@@ -98,6 +98,9 @@ from laua_kategooria_omamine;
 
 delete
 from laua_kategooria_tyyp;
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (1, 'Omadussõnad');
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (2, 'Liiklus laua ümber');
+insert into laua_kategooria_tyyp (laua_kategooria_tyyp_kood, nimetus)values (3, 'Vaade');
 select *
 from laua_kategooria_tyyp;
 
