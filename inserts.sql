@@ -86,14 +86,13 @@ select * from laud;
 
 
 delete from isik;
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (1,'nilsemil.lille@gmail.com',3554151,'03.20.2018','parool','05.02.2018 13:45','Nils','','Rakvere');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (2,'Kaspar@gmail.com',5152151,'05.01.2018','parool','05.02.2018 13:45','Kaspar','','Tallinn');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (3,'Merje@mail.ee',5125125,'05.01.2018','parool','05.02.2018 13:49','','Pajula','Keila');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (4,'Maxim@max.ee',5512422,'04.01.2018','paroo','05.02.2018 13:50','Maxim','','Tallinn');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (5,'Markus@ttu.ee',565122,'05.01.2018','PASSWORD','05.02.2018 13:51','Mihkel','Muhkel','Mägilinna');
-insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (6,'hans@restoran.com',55555555,'11.28.2017','','05.03.2018 13:06','Hans','','Ei tea');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (1,'EST','nilsemil.lille@gmail.com',3554151,'03.20.2018','parool','Nils','','Rakvere');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (2,'GER','Kaspar@gmail.com',5152151,'05.01.2018','parool','Kaspar','','Tallinn');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (3,'RUS','Merje@mail.ee',5125125,'05.01.2018','parool','','Pajula','Keila');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (4,'RUS','Maxim@max.ee',5512422,'04.01.2018','paroo','Maxim','','Tallinn');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (5,'RUS','Markus@ttu.ee',565122,'05.01.2018','PASSWORD','Mihkel','Muhkel','Mägilinna');
+insert into isik (isiku_id, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (6,'USA','hans@restoran.com',55555555,'11.28.2017','','Hans','','Ei tea');
 select * from isik;
-
 
 delete from klient;
 insert into klient (isik_kood, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (3,-1,1);
