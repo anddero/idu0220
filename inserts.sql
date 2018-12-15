@@ -65,21 +65,20 @@ values (7, 'Vallandatud');
 select *
 from tootaja_seisundi_liik;
 
-
-delete
-from tootaja;
-select *
-from tootaja;
-
-
 delete
 from laua_seisundi_liik;
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (1, 'Ootel');
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (2, 'Mitteaktiivne');
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (3, 'Aktiivne');
+insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (4, 'Lõpetatud');
 select *
 from laua_seisundi_liik;
 
 
 delete
 from kliendi_seisundi_liik;
+insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (1, 'Aktiivne');
+insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (2, 'Mustas nimekirjas');
 select *
 from kliendi_seisundi_liik;
 
@@ -96,13 +95,6 @@ insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)values (8, 'kole', 3);
 select *
 from laua_kategooria;
-
-
-delete
-from laua_kategooria_omamine;
-select *
-from laua_kategooria_omamine;
-
 
 delete
 from laua_kategooria_tyyp;
@@ -139,4 +131,15 @@ delete
 from klient;
 select *
 from klient;
+
+
+delete
+from tootaja;
+select *
+from tootaja;
+
+delete
+from laua_kategooria_omamine;
+select *
+from laua_kategooria_omamine;
 
