@@ -131,7 +131,7 @@ CREATE TABLE Tootaja
   isiku_id integer NOT NULL,
   amet_kood integer NOT NULL,
   tootaja_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-  mentor smallint,
+  mentor integer,
   CONSTRAINT PK_Tootaja PRIMARY KEY (isiku_id),
   CONSTRAINT FK_Tootaja_Amet FOREIGN KEY (amet_kood) REFERENCES Amet (amet_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Tootaja_Tootaja_seisundi_liik FOREIGN KEY (tootaja_seisundi_liik_kood) REFERENCES Tootaja_seisundi_liik (tootaja_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
