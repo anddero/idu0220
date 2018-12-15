@@ -65,29 +65,63 @@ values (7, 'Vallandatud');
 select *
 from tootaja_seisundi_liik;
 
-delete
-from isik;
-select *
-from isik;
 
 delete
 from tootaja;
 select *
 from tootaja;
 
+
 delete
 from laua_seisundi_liik;
 select *
 from laua_seisundi_liik;
 
+
 delete
-from laud;
+from kliendi_seisundi_liik;
 select *
-from laud;
+from kliendi_seisundi_liik;
+
+
+delete
+from laua_kategooria;
+select *
+from laua_kategooria;
+
+
+delete
+from laua_kategooria_omamine;
+select *
+from laua_kategooria_omamine;
+
+
+delete
+from laua_kategooria_tyyp;
+select *
+from laua_kategooria_tyyp;
+
 
 delete
 from laua_materjal;
 select *
 from laua_materjal;
 
+
+delete
+from laud;
+select *
+from laud;
+
+
+delete
+from isik;
+select *
+from isik;
+
+
+delete
+from klient;
+select *
+from klient;
 
