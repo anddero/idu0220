@@ -117,29 +117,36 @@ from laua_materjal;
 
 delete
 from laud;
+insert into laud (laud_kood, tootaja_kood, laua_materjal_kood, laua_kood, kohtade_arv, kommentaar)values (?,?,?,?,?,?);
 select *
 from laud;
 
 
 delete
 from isik;
+insert into isik (isik_kood, isikukoodi_riik, e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (?,?,?,?,?,?,?,?,?);
+
 select *
 from isik;
 
 
 delete
 from klient;
+insert into klient (isik_kood, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (?,?,?);
+
 select *
 from klient;
 
 
 delete
 from tootaja;
+insert into tootaja (isik_kood, amet_kood, mentor) values (?,?,?);
 select *
 from tootaja;
 
 delete
 from laua_kategooria_omamine;
+insert into laua_kategooria_omamine (laua_kategooria_omamine_kood, laud_kood, laua_kategooria_kood) value (?,?,?)
 select *
 from laua_kategooria_omamine;
 
