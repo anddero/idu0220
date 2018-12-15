@@ -17,7 +17,7 @@ ALTER VIEW aktiivsed_ja_mitteaktiivsed_lauad OWNER TO t164416;
 
 select *
 from aktiivsed_ja_mitteaktiivsed_lauad;
-
+comment on view aktiivsed_ja_mitteaktiivsed_lauad is 'Aktiivsed ning mitteaktiivsed lauad';
 
 DROP VIEW IF EXISTS koik_lauad;
 
@@ -41,6 +41,7 @@ ALTER VIEW koik_lauad OWNER TO t164416;
 
 select *
 from koik_lauad;
+comment on view koik_lauad is 'Kõik lauad';
 
 
 DROP VIEW IF EXISTS laudade_detailandmed;
@@ -64,6 +65,7 @@ ALTER VIEW laudade_detailandmed OWNER TO t164416;
 
 select *
 from laudade_detailandmed;
+comment on view laudade_detailandmed is 'Laudade detailandmed';
 
 DROP VIEW IF EXISTS laudade_kategooria_omamine;
 CREATE VIEW laudade_kategooria_omamine AS
@@ -75,6 +77,7 @@ CREATE VIEW laudade_kategooria_omamine AS
            ON Laua_kategooria_tyyp.laua_kategooria_tyyp_kood = Laua_kategooria.laua_kategooria_tyyp_kood;
 
 ALTER VIEW laudade_kategooria_omamine OWNER TO t164416;
+comment on view laudade_kategooria_omamine is 'Laudade kategooriate omamise aruanne';
 
 select *
 from laudade_kategooria_omamine;
@@ -92,3 +95,5 @@ CREATE VIEW laudade_koondaruanne AS
 
 select *
 from laudade_koondaruanne;
+
+comment on view laudade_koondaruanne is 'Laudade koond aruanne';
