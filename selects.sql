@@ -15,3 +15,6 @@ select * from riik;
 
 
 select * from isik INNER JOIN tootaja ON  isik.isiku_id = tootaja.isiku_id
+SELECT f_on_juhataja(p_kasutajanimi:='nilsemil.lille2@gmail.com',p_parool:='parool');
+SELECT f_on_juhataja(p_kasutajanimi:='nilsemil.lille2@gmail.com',p_parool:='vale_parrol');
+SELECT f_on_juhataja(p_kasutajanimi:='aivar@gmail.com',p_parool:='parool');
