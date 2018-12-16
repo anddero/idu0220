@@ -293,13 +293,9 @@ CREATE INDEX IXFK_Isik_Isiku_seisundi_liik ON Isik(isiku_seisundi_liik_kood ASC)
 CREATE INDEX IXFK_Isikukoodi_riik ON Isik(isikukoodi_riik ASC);
 CREATE INDEX IXFK_Tootaja_Amet ON Tootaja (amet_kood ASC);
 CREATE INDEX IXFK_Tootaja_Mentor_Isik ON Tootaja (mentor ASC);
-CREATE INDEX IXFK_Tootaja_Tootaja_Isik ON Tootaja (isiku_id ASC);
 CREATE INDEX IXFK_Tootaja_Tootaja_seisundi_liik ON Tootaja (tootaja_seisundi_liik_kood ASC);
 CREATE INDEX IXFK_Laud_Laua_materjal ON Laud (laua_materjal_kood ASC);
 CREATE INDEX IXFK_Laud_Laua_seisundi_liik ON Laud (laua_seisundi_liik_kood ASC);
-CREATE INDEX IXFK_Laua_kategooria_Laua_kategooria_tyyp ON Laua_kategooria (laua_kategooria_tyyp_kood ASC);
 CREATE INDEX IXFK_laua_kategooria_omamine_Laua_kategooria ON Laua_kategooria_omamine (laua_kategooria_kood ASC);
-CREATE INDEX IXFK_laua_kategooria_omamine_Laud ON Laua_kategooria_omamine (laua_kood ASC);
 CREATE INDEX IXFK_Klient_Kliendi_seisundi_liik ON Klient (kliendi_seisundi_liik_kood ASC);
-CREATE INDEX IXFK_Klient_Isik ON Klient (isiku_id ASC);
 CREATE INDEX IXFK_Laud_Isiku_id ON Laud (isiku_id ASC);
