@@ -66,17 +66,17 @@ insert into laua_materjal (laua_materjal_kood, nimetus)values (2, 'Klaas');
 insert into laua_materjal (laua_materjal_kood, nimetus)values (3, 'Metall');
 insert into laua_materjal (laua_materjal_kood, nimetus)values (4, 'Plastik');
 
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (1,'EST',1,'nilsemil.lille@gmail.com',3554151,'03.20.2018','parool','Nils','Nils','Rakvere');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (2,'DEU',1,'kaspar@gmail.com',5152151,'05.01.2018','parool','Kaspar','Nils','Tallinn');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (3,'RUS',1,'merje@mail.ee','09.09.2018',5125125,'05.01.2018','parool','Nils','Pajula','Keila');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (4,'RUS',2,'maxim@max.ee',5512422,'04.01.2018','paroo','Maxim','Nils','Tallinn');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (5,'RUS',2,'markus@ttu.ee',565122,'05.01.2018','PASSWORD','Mihkel','Muhkel','Mägilinna');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (6,'USA',1,'hans@restoran.com','11.23.2018',55555555,'11.28.2017','PASSWORD','Hans','Nils','Ei tea');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (7,'EST',1,'nilsemil.lille2@gmail.com','06.06.2018',3554152,'03.20.2018','parool','Nils','Nils','Rakvere');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (8,'DEU',1,'kaspar2@gmail.com','05.05.2018',5152152,'05.01.2018','parool','Kaspar','Nils','Tallinn');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (9,'RUS',1,'merje2@mail.ee',5125126,'05.01.2018','parool','Nils','Pajula','Keila');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (10,'RUS',2,'maxim2@max.ee',5512423,'04.01.2018','paroo','Maxim','Nils','Tallinn');
-insert into isik (isiku_id, isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values (11,'RUS',1,'markus2@ttu.ee',565123,'05.01.2018','PASSWORD','Mihkel','Muhkel','Mägilinna');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('EST',1,'nilsemil.lille@gmail.com',3554151,'03.20.2018','parool','Nils','Nils','Rakvere');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('DEU',1,'kaspar@gmail.com',5152151,'05.01.2018','parool','Kaspar','Nils','Tallinn');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',1,'merje@mail.ee','09.09.2018',5125125,'05.01.2018','parool','Nils','Pajula','Keila');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',2,'maxim@max.ee',5512422,'04.01.2018','paroo','Maxim','Nils','Tallinn');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',2,'markus@ttu.ee',565122,'05.01.2018','PASSWORD','Mihkel','Muhkel','Mägilinna');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('USA',1,'hans@restoran.com','11.23.2018',55555555,'11.28.2017','PASSWORD','Hans','Nils','Ei tea');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('EST',1,'nilsemil.lille2@gmail.com','06.06.2018',3554152,'03.20.2018','parool','Nils','Nils','Rakvere');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('DEU',1,'kaspar2@gmail.com','05.05.2018',5152152,'05.01.2018','parool','Kaspar','Nils','Tallinn');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',1,'merje2@mail.ee',5125126,'05.01.2018','parool','Nils','Pajula','Keila');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',2,'maxim2@max.ee',5512423,'04.01.2018','paroo','Maxim','Nils','Tallinn');
+insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',1,'markus2@ttu.ee',565123,'05.01.2018','PASSWORD','Mihkel','Muhkel','Mägilinna');
 
 insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (1,1,2,null );
 insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (2,3,2,null );
@@ -114,14 +114,14 @@ insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) 
 insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (11,TRUE,1);
 
 
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (1,1,1);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (2,2,3);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (3,3,5);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (4,4,6);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (5,5,4);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (6,6,2);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (7,7,2);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (8,8,1);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (9,9,2);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (10,10,2);
-insert into laua_kategooria_omamine (laua_kategooria_omamine_id, laua_kood, laua_kategooria_kood) values (11,11,1);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (1,1);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (2,3);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (3,5);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (4,6);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (5,4);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (6,2);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (7,2);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (8,1);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (9,2);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (10,2);
+insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (11,1);
