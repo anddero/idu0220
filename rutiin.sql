@@ -8,6 +8,8 @@ RETURNING laua_kood;
 $$ LANGUAGE SQL SECURITY DEFINER
 SET search_path=public, pg_temp;
 
+SELECT f_lisa_laud(p_laua_kood:=13, p_isiku_id:=3, p_laua_materjal_kood:=4, p_kohtade_arv:=3, p_kommentaar:='Kena laud!');
+
 CREATE OR REPLACE FUNCTION f_laua_kustutamine(p_laua_kood
 Laud.laua_kood%TYPE) RETURNS BOOLEAN
 AS $$
@@ -19,6 +21,7 @@ END; $$
 LANGUAGE plpgsql SECURITY DEFINER STRICT
 SET search_path = public, pg_temp;
 
+SELECT f_lisa_laud(p_laua_kood:=13);
 
 CREATE OR REPLACE FUNCTION f_muuda_laud (p_laua_kood_vana
 Laud.laua_kood%TYPE, p_laua_kood_uus Laud.laua_kood%TYPE,
@@ -30,5 +33,7 @@ isiku_id=p_isiku_id, kohtade_arv=p_kohtade_arv, kommentaar=p_kommentaar
 WHERE laua_kood=p_laua_kood_vana;
 $$ LANGUAGE SQL SECURITY DEFINER
 SET search_path=public, pg_temp;
+
+SELECT f_muuda_laud(p_laua_kood_vana:=13,p_laua_kood_uus:=12,p_kohtade_arv:=5,p_kommentaar:='Uuem ja parem laud');
 
 --Välja kutsumiseks SELECT f_laua_kustutamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
