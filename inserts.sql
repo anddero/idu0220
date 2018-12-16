@@ -13,15 +13,9 @@ delete from isiku_seisundi_liik;
 delete from amet;
 delete from riik;
 
-insert into riik (riik_kood, nimetus)values ('EST', 'Eesti');
-insert into riik (riik_kood, nimetus)values ('AFG', 'Afganistaan');
-insert into riik (riik_kood, nimetus)values ('RUS', 'Venemaa');
-insert into riik (riik_kood, nimetus)values ('GBR', 'Suurbritannia');
-insert into riik (riik_kood, nimetus)values ('ALB', 'Ahvenamaa');
-insert into riik (riik_kood, nimetus)values ('LVA', 'Läti');
-insert into riik (riik_kood, nimetus)values ('LTU', 'Leedu');
-insert into riik (riik_kood, nimetus)values ('DEU', 'Saksamaa');
-insert into riik (riik_kood, nimetus)values ('USA', 'Ameerika Ühendriigid');
+INSERT INTO Riik (riik_kood, nimetus)
+SELECT riik->>'Alpha-3 code' AS riik_kood,
+riik->>'English short name lower case' AS nimetus FROM Riik_jsonb;
 
 insert into amet (amet_kood, nimetus, kirjeldus)values (1, 'Kokk', 'Söögi tegemine');
 insert into amet (amet_kood, nimetus, kirjeldus)values (2, 'Kelner', 'Klientide teenindamine');
@@ -41,6 +35,9 @@ insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (1, 'Oot
 insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (2, 'Mitteaktiivne');
 insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (3, 'Aktiivne');
 insert into laua_seisundi_liik (laua_seisundi_liik_kood, nimetus)values (4, 'Lõpetatud');
+
+insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (1, 'Elus');
+insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (2, 'Surnud');
 
 insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (1, 'Aktiivne');
 insert into kliendi_seisundi_liik (kliendi_seisundi_liik_kood, nimetus)values (2, 'Mustas nimekirjas');
@@ -74,6 +71,29 @@ insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, reg_kp,isiku
 insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',1,'merje2@mail.ee',5125126,'05.01.2018','parool','Nils','Pajula','Keila');
 insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',2,'maxim2@max.ee',5512423,'04.01.2018','paroo','Maxim','Nils','Tallinn');
 insert into isik (isikukoodi_riik, isiku_seisundi_liik_kood,e_meil, isikukood, synni_kp, parool, eesnimi, perenimi, elukoht)values ('RUS',1,'markus2@ttu.ee',565123,'05.01.2018','PASSWORD','Mihkel','Muhkel','Mägilinna');
+
+INSERT INTO Isik(isikukoodi_riik, isikukood, eesnimi, perenimi,
+e_meil, synni_kp, isiku_seisundi_liik_kood, parool, elukoht)
+
+SELECT riik_kood, isikukood, eesnimi, perenimi, e_mail,
+synni_kp::date, isiku_seisundi_liik_kood::smallint, parool,
+elukoht
+FROM (SELECT isik->>'riik' AS riik_kood,
+jsonb_array_elements(isik->'isikud')->>'isikukood' AS isikukood,
+jsonb_array_elements(isik->'isikud')->>'eesnimi' AS eesnimi,
+jsonb_array_elements(isik->'isikud')->>'perekonnanimi' AS
+perenimi,
+jsonb_array_elements(isik->'isikud')->>'email' AS e_mail,
+jsonb_array_elements(isik->'isikud')->>'synni_aeg' AS synni_kp,
+jsonb_array_elements(isik->'isikud')->>'seisund' AS
+isiku_seisundi_liik_kood,
+jsonb_array_elements(isik->'isikud')->>'parool' AS parool,
+jsonb_array_elements(isik->'isikud')->>'aadress' AS elukoht
+FROM isik_jsonb)
+
+AS lahteandmed
+WHERE isiku_seisundi_liik_kood::smallint=1;
+
 
 insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (1,1,2,null );
 insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (2,3,2,null );
@@ -122,3 +142,5 @@ insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (8,
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (9,2);
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (10,2);
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (11,1);
+
+

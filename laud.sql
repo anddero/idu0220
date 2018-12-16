@@ -31,10 +31,6 @@ CREATE TABLE Riik
 )
 ;
 
-INSERT INTO Riik (riik_kood, nimetus)
-SELECT riik->>'Alpha-3 code' AS riik_kood,
-riik->>'English short name lower case' AS nimetus FROM Riik_jsonb;
-
 SELECT * FROM Riik;
 
 CREATE FOREIGN TABLE IF NOT EXISTS Isik_jsonb (
@@ -168,34 +164,6 @@ WITH (
 )
 TABLESPACE pg_default;
 ;
-
-delete from isiku_seisundi_liik;
-insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (1, 'Elus');
-insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (2, 'Surnud');
-
-INSERT INTO Isik(isikukoodi_riik, isikukood, eesnimi, perenimi,
-e_meil, synni_kp, isiku_seisundi_liik_kood, parool, elukoht)
-
-SELECT riik_kood, isikukood, eesnimi, perenimi, e_mail,
-synni_kp::date, isiku_seisundi_liik_kood::smallint, parool,
-elukoht
-FROM (SELECT isik->>'riik' AS riik_kood,
-jsonb_array_elements(isik->'isikud')->>'isikukood' AS isikukood,
-jsonb_array_elements(isik->'isikud')->>'eesnimi' AS eesnimi,
-jsonb_array_elements(isik->'isikud')->>'perekonnanimi' AS
-perenimi,
-jsonb_array_elements(isik->'isikud')->>'email' AS e_mail,
-jsonb_array_elements(isik->'isikud')->>'synni_aeg' AS synni_kp,
-jsonb_array_elements(isik->'isikud')->>'seisund' AS
-isiku_seisundi_liik_kood,
-jsonb_array_elements(isik->'isikud')->>'parool' AS parool,
-jsonb_array_elements(isik->'isikud')->>'aadress' AS elukoht
-FROM isik_jsonb) 
-
-AS lahteandmed
-WHERE isiku_seisundi_liik_kood::smallint=1;
-
-SELECT * FROM Isik; 
 
 
 CREATE TABLE Tootaja
