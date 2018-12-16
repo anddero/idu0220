@@ -43,6 +43,11 @@ DROP TABLE IF EXISTS Klient CASCADE
 DROP SEQUENCE IF EXISTS seq_laua_kategooria_omamine_id;
 DROP SEQUENCE IF EXISTS seq_isik_isiku_id;
 
+DROP DOMAIN public.d_reg_kp;
+CREATE DOMAIN d_reg_kp date NOT NULL DEFAULT CURRENT_DATE;
+ALTER DOMAIN public.d_reg_kp OWNER to t164416;
+
+
 CREATE TABLE Amet
 (
   amet_kood integer NOT NULL,
@@ -105,7 +110,7 @@ CREATE TABLE Isik
   isikukood varchar(20)	 NOT NULL,
   synni_kp date NOT NULL,
   parool varchar(100)	 NOT NULL,
-  reg_kp date NOT NULL DEFAULT CURRENT_DATE,
+  reg_kp d_reg_kp,
   eesnimi varchar(700)	,
   perenimi varchar(700)	,
   elukoht varchar(20)	,
@@ -115,14 +120,12 @@ CREATE TABLE Isik
   CONSTRAINT isik_e_meil_check_oige_vorm CHECK (e_meil~'^[a-z0-9.]+@[a-z0-9.]+[a-z]+$'),
   CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
   CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_kp),
-  CONSTRAINT isik_reg_kp_check_lubatud_vahemik CHECK (reg_kp >= '01.01.2010' AND reg_kp < '01.01.2101'),
   CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
   CONSTRAINT isik_isikukood_check_ei_ole_tyhi_string CHECK (isikukood!~'^[[:space:]]*$'),
   CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
   CONSTRAINT isik_perenimi_check_ei_ole_tyhi_string CHECK (perenimi<>''),
   CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht!~'^[[:space:]]*$'),
   CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (synni_kp <= current_date),
-  CONSTRAINT isik_reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_kp <= CURRENT_DATE),
   CONSTRAINT isik_parool_check_ei_ole_tyhi_string CHECK (parool!~'^[[:space:]]*$'),
   CONSTRAINT isik_e_meil_check_tostutundetu CHECK (e_meil = LOWER(e_meil)),
   CONSTRAINT FK_Isik_Isiku_seisundi_liik FOREIGN KEY (isiku_seisundi_liik_kood) REFERENCES Isiku_seisundi_liik (isiku_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
@@ -185,14 +188,12 @@ CREATE TABLE Laud
   isiku_id integer NOT NULL,
   laua_seisundi_liik_kood integer NOT NULL DEFAULT 1,
   laua_materjal_kood integer,
-  reg_kp date NOT NULL DEFAULT CURRENT_DATE,
+  reg_kp d_reg_kp,
   kohtade_arv Integer NOT NULL,
   kommentaar varchar(255)	,
   CONSTRAINT pk_laud_laua_kood PRIMARY KEY (laua_kood),
   CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
-  CONSTRAINT laud_reg_kp_check_lubatud_vahemik CHECK (reg_kp >= '01.01.2010' AND reg_kp < '01.01.2101'),
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
-  CONSTRAINT laud_reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_kp <= CURRENT_DATE),
   CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_isiku_id_registreerib FOREIGN KEY (isiku_id) REFERENCES Tootaja (isiku_id) ON DELETE No Action ON UPDATE No Action
