@@ -1,3 +1,47 @@
+DROP FOREIGN TABLE IF EXISTS Riik_jsonb CASCADE;
+DROP FOREIGN TABLE IF EXISTS Isik_jsonb CASCADE;
+DROP USER MAPPING FOR t164416 SERVER
+minu_testandmete_server_apex;
+DROP SERVER IF EXISTS minu_testandmete_server_apexCASCADE;
+DROP EXTENSION IF EXISTS postgres_fdw CASCADE;
+
+CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+CREATE SERVER _testandmete_server_apex FOREIGN DATA WRAPPER
+postgres_fdw OPTIONS (host 'apex.ttu.ee', dbname 'testandmed',
+port '5432');
+CREATE USER MAPPING FOR t164416 SERVER
+minu_testandmete_server_apex OPTIONS (user 't164416', password
+'laintrusa');
+CREATE FOREIGN TABLE Riik_jsonb (
+riik JSONB )
+SERVER minu_testandmete_server_apex;
+SELECT * FROM Riik_jsonb;
+
+DROP TABLE IF EXISTS Riik CASCADE
+;
+
+CREATE TABLE Riik
+(
+  riik_kood char(3)	 NOT NULL,
+  nimetus varchar(50)	 NOT NULL,
+  CONSTRAINT PK_Riik PRIMARY KEY (riik_kood),
+  CONSTRAINT AK_Riik_Nimetus UNIQUE (nimetus),
+  CONSTRAINT riik_riik_kood_check_on_kolm_suurtahte CHECK (riik_kood~'^[A-Z]{3}$'),
+  CONSTRAINT riik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+)
+;
+
+INSERT INTO Riik (riik_kood, nimetus)
+SELECT riik->>'Alpha-3 code' AS riik_kood,
+riik->>'English short name lower case' AS nimetus FROM Riik_jsonb;
+
+SELECT * FROM Riik;
+
+CREATE FOREIGN TABLE Isik_jsonb (
+isik JSONB )
+SERVER minu_testandmete_server_apex;
+SELECT * FROM Isik_jsonb;
+
 DROP TABLE IF EXISTS Amet CASCADE
 ;
 
@@ -5,9 +49,6 @@ DROP TABLE IF EXISTS Tootaja_seisundi_liik CASCADE
 ;
 
 DROP TABLE IF EXISTS Isiku_seisundi_liik CASCADE
-;
-
-DROP TABLE IF EXISTS Riik CASCADE
 ;
 
 DROP TABLE IF EXISTS Isik CASCADE
@@ -89,18 +130,6 @@ CREATE TABLE Isiku_seisundi_liik
 )
 ;
 
-
-CREATE TABLE Riik
-(
-  riik_kood char(3)	 NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
-  CONSTRAINT PK_Riik PRIMARY KEY (riik_kood),
-  CONSTRAINT AK_Riik_Nimetus UNIQUE (nimetus),
-  CONSTRAINT riik_riik_kood_check_on_kolm_suurtahte CHECK (riik_kood~'^[A-Z]{3}$'),
-  CONSTRAINT riik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
-)
-;
-
 CREATE SEQUENCE seq_isik_isiku_id INCREMENT 1 START 1;
 
 CREATE TABLE Isik
@@ -139,6 +168,27 @@ WITH (
 )
 TABLESPACE pg_default;
 ;
+
+INSERT INTO Isik(riik_kood, isikukood, eesnimi, perenimi,
+e_mail, synni_kp, isiku_seisundi_liik_kood, parool, elukoht)
+SELECT riik_kood, isikukood, eesnimi, perenimi, e_mail,
+synni_kp::date, isiku_seisundi_liik_kood::smallint, parool,
+elukoht
+FROM (SELECT isik->>'riik' AS riik_kood,
+jsonb_array_elements(isik->'isikud')->>'isikukood' AS isikukood,
+jsonb_array_elements(isik->'isikud')->>'eesnimi' AS eesnimi,
+jsonb_array_elements(isik->'isikud')->>'perekonnanimi' AS
+perenimi,
+jsonb_array_elements(isik->'isikud')->>'email' AS e_mail,
+jsonb_array_elements(isik->'isikud')->>'synni_aeg' AS synni_kp,
+jsonb_array_elements(isik->'isikud')->>'seisund' AS
+isiku_seisundi_liik_kood,
+jsonb_array_elements(isik->'isikud')->>'parool' AS parool,
+jsonb_array_elements(isik->'isikud')->>'aadress' AS elukoht
+FROM isik_jsonb) AS lahteandmed
+WHERE isiku_seisundi_liik_kood::smallint=1;
+
+SELECT * FROM Isik; 
 
 
 CREATE TABLE Tootaja
