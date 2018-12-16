@@ -17,11 +17,11 @@ INSERT INTO Riik (riik_kood, nimetus)
 SELECT riik->>'Alpha-3 code' AS riik_kood,
 riik->>'English short name lower case' AS nimetus FROM Riik_jsonb;
 
-insert into amet (amet_kood, nimetus, kirjeldus)values (1, 'Kokk', 'Söögi tegemine');
+insert into amet (amet_kood, nimetus, kirjeldus)values (5, 'Kokk', 'Söögi tegemine');
 insert into amet (amet_kood, nimetus, kirjeldus)values (2, 'Kelner', 'Klientide teenindamine');
 insert into amet (amet_kood, nimetus, kirjeldus)values (3, 'Müüja', 'Kassa teenindamine');
 insert into amet (amet_kood, nimetus, kirjeldus)values (4, 'Koristaja', 'Tööpindade puhastuse operaator');
-insert into amet (amet_kood, nimetus, kirjeldus)values (5, 'Juhataja', 'Vastutav isik töökoha eest');
+insert into amet (amet_kood, nimetus, kirjeldus)values (1, 'Juhataja', 'Vastutav isik töökoha eest');
 
 insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (1, 'Katseajal');
 insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (2, 'Tööl');

@@ -12,3 +12,6 @@ select * from tootaja_seisundi_liik;
 select * from isiku_seisundi_liik;
 select * from amet;
 select * from riik;
+
+
+select * from isik INNER JOIN tootaja ON  isik.isiku_id = tootaja.isiku_id

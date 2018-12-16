@@ -142,7 +142,7 @@ CREATE TABLE Isik
   perenimi varchar(700)	,
   elukoht varchar(100)	,
   CONSTRAINT PK_Isik PRIMARY KEY (isiku_id),
-  CONSTRAINT AK_Isik_e_meil UNIQUE (e_meil),
+  CONSTRAINT AK_Isik_e_meil UNIQUE (UPPER(e_meil)),
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
   CONSTRAINT isik_e_meil_check_oige_vorm CHECK (e_meil~'^[a-z0-9.]+@[a-z0-9.]+[a-z]+$'),
   CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
