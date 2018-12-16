@@ -1,0 +1,34 @@
+CREATE OR REPLACE FUNCTION f_lisa_laud (p_laua_kood Laud.laua_kood%TYPE, p_isiku_id Laud.isiku_id%TYPE,
+p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
+p_kommentaar Laud.kommentaar%TYPE)
+RETURNS Laud.laua_kood%TYPE AS $$
+INSERT INTO Laud(laua_kood, isiku_id, laua_materjal_kood, kohtade_arv, kommentaar) VALUES
+(p_laua_kood,p_isiku_id, p_laua_materjal_kood, p_kohtade_arv, p_kommentaar) ON CONFLICT DO NOTHING
+RETURNING laua_kood;
+$$ LANGUAGE SQL SECURITY DEFINER
+SET search_path=public, pg_temp;
+
+CREATE OR REPLACE FUNCTION f_laua_kustutamine(p_laua_kood
+Laud.laua_kood%TYPE) RETURNS BOOLEAN
+AS $$
+BEGIN
+DELETE FROM Laud WHERE laua_kood=p_laua_kood;
+--Kui kustutati vahemalt 1 rida, siis FOUND=TRUE
+RETURN FOUND;
+END; $$
+LANGUAGE plpgsql SECURITY DEFINER STRICT
+SET search_path = public, pg_temp;
+
+
+CREATE OR REPLACE FUNCTION f_muuda_laud (p_laua_kood_vana
+Laud.laua_kood%TYPE, p_laua_kood_uus Laud.laua_kood%TYPE,
+p_isiku_id Laud.isiku_id%TYPE, p_kohtade_arv
+Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE)
+RETURNS VOID AS $$
+UPDATE Laud SET laua_kood=p_laua_kood_uus,
+isiku_id=p_isiku_id, kohtade_arv=p_kohtade_arv, kommentaar=p_kommentaar
+WHERE laua_kood=p_laua_kood_vana;
+$$ LANGUAGE SQL SECURITY DEFINER
+SET search_path=public, pg_temp;
+
+--Välja kutsumiseks SELECT f_laua_kustutamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
