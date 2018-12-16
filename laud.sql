@@ -1,18 +1,18 @@
-DROP FOREIGN TABLE IF EXISTS Riik_jsonb CASCADE;
-DROP FOREIGN TABLE IF EXISTS Isik_jsonb CASCADE;
-DROP USER MAPPING FOR t164416 SERVER
-minu_testandmete_server_apex;
-DROP SERVER IF EXISTS minu_testandmete_server_apex CASCADE;
-DROP EXTENSION IF EXISTS postgres_fdw CASCADE;
+--DROP FOREIGN TABLE IF EXISTS Riik_jsonb CASCADE;
+--DROP FOREIGN TABLE IF EXISTS Isik_jsonb CASCADE;
+--DROP USER MAPPING FOR t164416 SERVER
+--minu_testandmete_server_apex;
+--DROP SERVER IF EXISTS minu_testandmete_server_apex CASCADE;
+--DROP EXTENSION IF EXISTS postgres_fdw CASCADE;
 
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
-CREATE SERVER _testandmete_server_apex FOREIGN DATA WRAPPER
+CREATE SERVER IF NOT EXISTS minu_testandmete_server_apex FOREIGN DATA WRAPPER
 postgres_fdw OPTIONS (host 'apex.ttu.ee', dbname 'testandmed',
 port '5432');
-CREATE USER MAPPING FOR t164416 SERVER
+CREATE USER MAPPING IF NOT EXISTS FOR t164416 SERVER
 minu_testandmete_server_apex OPTIONS (user 't164416', password
 'laintrusa');
-CREATE FOREIGN TABLE Riik_jsonb (
+CREATE FOREIGN TABLE IF NOT EXISTS Riik_jsonb (
 riik JSONB )
 SERVER minu_testandmete_server_apex;
 SELECT * FROM Riik_jsonb;
@@ -37,7 +37,7 @@ riik->>'English short name lower case' AS nimetus FROM Riik_jsonb;
 
 SELECT * FROM Riik;
 
-CREATE FOREIGN TABLE Isik_jsonb (
+CREATE FOREIGN TABLE IF NOT EXISTS Isik_jsonb (
 isik JSONB )
 SERVER minu_testandmete_server_apex;
 SELECT * FROM Isik_jsonb;
@@ -84,10 +84,10 @@ DROP TABLE IF EXISTS Klient CASCADE
 DROP SEQUENCE IF EXISTS seq_laua_kategooria_omamine_id;
 DROP SEQUENCE IF EXISTS seq_isik_isiku_id;
 
-DROP DOMAIN public.d_reg_kp;
+DROP DOMAIN IF EXISTS public.d_reg_kp;
 CREATE DOMAIN d_reg_kp date NOT NULL DEFAULT CURRENT_DATE;
 ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_lubatud_vahemik CHECK (VALUE >= '01.01.2010' AND VALUE < '01.01.2101');
-ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (reg_kp <= CURRENT_DATE);
+ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (VALUE <= CURRENT_DATE);
 ALTER DOMAIN public.d_reg_kp OWNER to t164416;
 
 
@@ -138,13 +138,13 @@ CREATE TABLE Isik
   isikukoodi_riik char(3)	 NOT NULL,
   isiku_seisundi_liik_kood integer NOT NULL DEFAULT 1,
   e_meil varchar(254)	 NOT NULL,
-  isikukood varchar(20)	 NOT NULL,
+  isikukood varchar(100)	 NOT NULL,
   synni_kp date NOT NULL,
   parool varchar(100)	 NOT NULL,
   reg_kp d_reg_kp,
   eesnimi varchar(700)	,
   perenimi varchar(700)	,
-  elukoht varchar(20)	,
+  elukoht varchar(100)	,
   CONSTRAINT PK_Isik PRIMARY KEY (isiku_id),
   CONSTRAINT AK_Isik_e_meil UNIQUE (e_meil),
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
@@ -169,8 +169,13 @@ WITH (
 TABLESPACE pg_default;
 ;
 
-INSERT INTO Isik(riik_kood, isikukood, eesnimi, perenimi,
-e_mail, synni_kp, isiku_seisundi_liik_kood, parool, elukoht)
+delete from isiku_seisundi_liik;
+insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (1, 'Elus');
+insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (2, 'Surnud');
+
+INSERT INTO Isik(isikukoodi_riik, isikukood, eesnimi, perenimi,
+e_meil, synni_kp, isiku_seisundi_liik_kood, parool, elukoht)
+
 SELECT riik_kood, isikukood, eesnimi, perenimi, e_mail,
 synni_kp::date, isiku_seisundi_liik_kood::smallint, parool,
 elukoht
@@ -185,7 +190,9 @@ jsonb_array_elements(isik->'isikud')->>'seisund' AS
 isiku_seisundi_liik_kood,
 jsonb_array_elements(isik->'isikud')->>'parool' AS parool,
 jsonb_array_elements(isik->'isikud')->>'aadress' AS elukoht
-FROM isik_jsonb) AS lahteandmed
+FROM isik_jsonb) 
+
+AS lahteandmed
 WHERE isiku_seisundi_liik_kood::smallint=1;
 
 SELECT * FROM Isik; 

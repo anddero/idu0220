@@ -29,9 +29,6 @@ insert into amet (amet_kood, nimetus, kirjeldus)values (3, 'Müüja', 'Kassa tee
 insert into amet (amet_kood, nimetus, kirjeldus)values (4, 'Koristaja', 'Tööpindade puhastuse operaator');
 insert into amet (amet_kood, nimetus, kirjeldus)values (5, 'Juhataja', 'Vastutav isik töökoha eest');
 
-insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (1, 'Elus');
-insert into isiku_seisundi_liik (isiku_seisundi_liik_kood, nimetus)values (2, 'Surnud');
-
 insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (1, 'Katseajal');
 insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (2, 'Tööl');
 insert into tootaja_seisundi_liik (tootaja_seisundi_liik_kood, nimetus)values (3, 'Puhkusel');
