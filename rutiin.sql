@@ -19,7 +19,6 @@ AS $$
 BEGIN
 DELETE FROM Laud WHERE laua_kood=p_laua_kood;
 --Kui kustutati vahemalt 1 rida, siis FOUND=TRUE
-COMMENT ON TABLE Laud.laua_kood IS 'Kustutatav laud';
 RETURN FOUND;
 END; $$
 LANGUAGE plpgsql SECURITY DEFINER STRICT
@@ -38,10 +37,15 @@ UPDATE Laud SET laua_kood=p_laua_kood_uus,
 isiku_id=p_isiku_id, kohtade_arv=p_kohtade_arv, kommentaar=p_kommentaar
 WHERE laua_kood=p_laua_kood_vana;
 $$ LANGUAGE SQL SECURITY DEFINER
-SET search_path=private, pg_temp;
+SET search_path=public, pg_temp;
 
 COMMENT ON FUNCTION f_muuda_laud IS 'Laua muutmine parameetrid on laua_kood_vana, laua_kood_uus, isiku_id, kohtade_arv ja kommmentaar';
 
 SELECT f_muuda_laud(p_laua_kood_vana:=13,p_laua_kood_uus:=12,p_kohtade_arv:=5,p_kommentaar:='Uuem ja parem laud');
 
 --Välja kutsumiseks SELECT f_laua_kustutamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
+
+--Public to Private
+REVOKE ALL
+  ON FUNCTION f_laua_kustutamine, f_lisa_laud, f_muuda_laud
+  FROM PUBLIC ;
