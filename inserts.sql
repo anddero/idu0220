@@ -143,4 +143,4 @@ insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (9,
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (10,2);
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (11,1);
 
-UPDATE isik SET parool = public.crypt(parool,public.gen_salt('bf', 11));
+--UPDATE isik SET parool = public.crypt(parool,public.gen_salt('bf', 11));
