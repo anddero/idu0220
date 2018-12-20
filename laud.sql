@@ -95,7 +95,7 @@ CREATE TABLE Amet
   kirjeldus varchar(1000)	,
   CONSTRAINT PK_Amet_Amet_kood PRIMARY KEY (amet_kood),
   CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
-  CONSTRAINT amet_amet_kood_check_suurem_nullist CHECK (amet_kood >= 1),
+  CONSTRAINT amet_kood_check_suurem_nullist CHECK (amet_kood >= 1),
   CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus!~'^[[:space:]]*$'),
   CONSTRAINT amet_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
@@ -302,7 +302,7 @@ CREATE TABLE Klient
   on_nous_tylitamisega boolean NOT NULL DEFAULT false,
   kliendi_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   CONSTRAINT PK_Klient_Klient_id PRIMARY KEY (klient_id),
-  CONSTRAINT klient_kliendi_seisundi_liik_kood_check_lubatud_vaartus CHECK (kliendi_seisundi_liik_kood = 1 OR kliendi_seisundi_liik_kood = 2),
+  CONSTRAINT kliendi_seisundi_liik_kood_check_suurem_nullist CHECK (kliendi_seisundi_liik_kood >= 1),
   CONSTRAINT FK_Klient_Kliendi_seisundi_liik FOREIGN KEY (kliendi_seisundi_liik_kood) REFERENCES Kliendi_seisundi_liik (kliendi_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Klient_Isik FOREIGN KEY (klient_id) REFERENCES Isik (isik_id) ON DELETE Cascade ON UPDATE No Action
 )

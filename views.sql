@@ -1,4 +1,4 @@
-CREATE ROLE t164416_juhataja WITH LOGIN PASSWORD '164416';
+--CREATE ROLE t164416_juhataja WITH LOGIN PASSWORD '164416';
 
 DROP VIEW IF EXISTS aktiivsed_ja_mitteaktiivsed_lauad;
 
