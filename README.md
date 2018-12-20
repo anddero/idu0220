@@ -10,7 +10,7 @@ Andmebaasid II rühmatöö failid
 - [x] Kirjeldus peab olema 1000 ja kommentaar kah 1000, mitte 255
 - [X] Tõstutundetu email peab olema.  Upper või lower peab olema. 
 - [X] Seda reeglit ei old, et emailis on väiketähed.
-- [ ] Emaili õrge vormi  check  peab olema  tilde tärn         ~ asemel mingi *
+- [X] Emaili õrge vormi  check  peab olema  tilde tärn         ~ asemel mingi *
 - [X] Isiku seisundi liik kood ei tohi olla integer vaid small int. käik klassifikaatorid peaks olema small int
 - [X] Laua_materjal_kood ei ole õige. 
 - [ ] Registreerimise aeg peab olema kellaajaga
