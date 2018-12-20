@@ -194,11 +194,11 @@ TABLESPACE pg_default;
 
 CREATE TABLE Laua_materjal
 (
-  laud_materjal_kood smallint NOT NULL,
+  laua_materjal_kood smallint NOT NULL,
   nimetus varchar(60)	 NOT NULL,
-  CONSTRAINT PK_Laua_materjal_Laud_materjal_kood PRIMARY KEY (laud_materjal_kood),
+  CONSTRAINT PK_Laua_materjal_laua_materjal_kood PRIMARY KEY (laua_materjal_kood),
   CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus),
-  CONSTRAINT laua_materjal_check_kood_suurem_nullist CHECK (laud_materjal_kood >= 1),
+  CONSTRAINT laua_materjal_check_kood_suurem_nullist CHECK (laua_materjal_kood >= 1),
   CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
@@ -221,14 +221,14 @@ CREATE TABLE Laud
   laud_kood integer NOT NULL,
   registreerija_id integer NOT NULL,
   laua_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
-  laud_materjal_kood smallint NOT NULL,
+  laua_materjal_kood smallint NOT NULL,
   reg_kp d_reg_kp,
   kohtade_arv Integer NOT NULL,
   kommentaar varchar(1000)	,
   CONSTRAINT PK_Laud_laud_kood PRIMARY KEY (laud_kood),
   CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
-  CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laud_materjal_kood) REFERENCES Laua_materjal (laud_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
+  CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Tootaja FOREIGN KEY (registreerija_id) REFERENCES Tootaja (tootaja_id) ON DELETE No Action ON UPDATE No Action
 )
@@ -318,7 +318,7 @@ DROP INDEX IF EXISTS IXFK_Isik_Isikukoodi_riik;
 DROP INDEX IF EXISTS IXFK_Tootaja_Amet_kood;
 DROP INDEX IF EXISTS IXFK_Tootaja_Mentor;
 DROP INDEX IF EXISTS IXFK_Tootaja_Tootaja_seisundi_liik_kood;
-DROP INDEX IF EXISTS IXFK_Laud_Laud_materjal_kood;
+DROP INDEX IF EXISTS IXFK_Laud_laua_materjal_kood;
 DROP INDEX IF EXISTS IXFK_Laud_Laua_seisundi_liik_kood;
 DROP INDEX IF EXISTS IXFK_laua_kategooria_omamine_Laua_kategooria_kood;
 DROP INDEX IF EXISTS IXFK_Klient_Kliendi_seisundi_liik_kood;
@@ -329,7 +329,7 @@ CREATE INDEX IXFK_Isik_Isikukoodi_riik ON Isik(isikukoodi_riik ASC);
 CREATE INDEX IXFK_Tootaja_Amet_kood ON Tootaja (amet_kood ASC);
 CREATE INDEX IXFK_Tootaja_Mentor ON Tootaja (mentor ASC);
 CREATE INDEX IXFK_Tootaja_Tootaja_seisundi_liik_kood ON Tootaja (tootaja_seisundi_liik_kood ASC);
-CREATE INDEX IXFK_Laud_Laud_materjal_kood ON Laud (laud_materjal_kood ASC);
+CREATE INDEX IXFK_Laud_laua_materjal_kood ON Laud (laua_materjal_kood ASC);
 CREATE INDEX IXFK_Laud_Laua_seisundi_liik_kood ON Laud (laua_seisundi_liik_kood ASC);
 CREATE INDEX IXFK_Laua_kategooria_omamine_Laua_kategooria_kood ON Laua_kategooria_omamine (laua_kategooria_kood ASC);
 CREATE INDEX IXFK_Klient_Kliendi_seisundi_liik_kood ON Klient (kliendi_seisundi_liik_kood ASC);

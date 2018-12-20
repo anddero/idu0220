@@ -12,7 +12,7 @@ FROM Laud,
      Laua_seisundi_liik,
      Laua_materjal
 WHERE Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood
-  And Laud.laud_materjal_kood = Laua_materjal.laud_materjal_kood
+  And Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood
   And Laua_seisundi_liik.laua_seisundi_liik_kood In (2, 3);
 
 COMMENT ON VIEW aktiivsed_ja_mitteaktiivsed_lauad IS 'See vaade näitab kõiki aktiivseid ja mitteaktiivseid laudu, mida on võimalik hetkel kasutada.';
@@ -38,7 +38,7 @@ FROM Laua_materjal,
      Isik,
      Laua_seisundi_liik
        INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
-WHERE (((Laud.laud_materjal_kood) = Laua_materjal.laud_materjal_kood) And ((Laud.registreerija_id) = Isik.isik_id));
+WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.registreerija_id) = Isik.isik_id));
 
 COMMENT ON VIEW koik_lauad IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, hetkeseisund, laua materjali nimetus, kohtade arv, kommentaar, registreerimise kuupäev, töötaja nimi ja tema e-meil.';
 
