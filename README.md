@@ -13,7 +13,7 @@ Andmebaasid II rühmatöö failid
 - [X] Emaili õrge vormi  check  peab olema  tilde tärn         ~ asemel mingi *
 - [X] Isiku seisundi liik kood ei tohi olla integer vaid small int. käik klassifikaatorid peaks olema small int
 - [X] Laua_materjal_kood ei ole õige. 
-- [ ] Registreerimise aeg peab olema kellaajaga
+- [X] Registreerimise aeg peab olema kellaajaga
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
 - [ ] EA korda teha
 - [ ] View-des minna soovitud ajaformaatide peale ümber
