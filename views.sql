@@ -40,7 +40,7 @@ FROM Laua_materjal,
        INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
 WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.isiku_id) = Isik.isiku_id));
 
-COMMENT ON VIEW koik_lauad IS 'See vaade näitab infot kõigi laudade kohta.';
+COMMENT ON VIEW koik_lauad IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, hetkeseisund, laua materjali nimetus, kohtade arv, kommentaar, registreerimise kuupäev, töötaja nimi ja tema e-meil.';
 
 ALTER TABLE public.koik_lauad OWNER TO t164416;
 GRANT ALL ON TABLE public.koik_lauad TO t164416;

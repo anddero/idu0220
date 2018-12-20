@@ -2,12 +2,7 @@ AIVAR:
 
 164225
 
-Lisaks sellele on  veeru nimi isik liiga yldine nimi. Parem oleks registreerija id níteks.
-
-
 SUUR TESTER
-
-Comments on views    see vaade n2itab infot k6igi kohta. Parem kommentaar panna. 
 
 fk childtab primarytab    fk primatytab childcol    stiil korda teha. 2 stiili on hetkel.
 
@@ -35,10 +30,6 @@ Registreerimise aeg on kuup2ev + kellaaeg. Mitte lihtsalt kuup2ev.
 Robin:
 
 164225
-
-isiku_id liiga üleüldine
-
-koik_lauad kommentaar pinnapealne
 
 fk_childtab_primarytab 9 ja 11 on üle
 e_meil t6sstutundetu
