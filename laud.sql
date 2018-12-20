@@ -140,7 +140,7 @@ CREATE TABLE Isik
   e_meil varchar(254)	 NOT NULL,
   isikukood varchar(255)	 NOT NULL,
   synni_kp date NOT NULL,
-  parool varchar(100)	 NOT NULL,
+  parool varchar(60)	 NOT NULL,
   reg_aeg d_reg_aeg,
   eesnimi varchar(1000)	,
   perenimi varchar(1000)	,
