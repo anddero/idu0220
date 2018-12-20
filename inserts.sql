@@ -125,7 +125,7 @@ values ('EST',
         '06.06.2018',
         3554152,
         '03.20.2018',
-        public.crypt(parool, public.gen_salt('parool'), 'Nils', 'Nils', 'Rakvere');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Nils', 'Rakvere');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -140,7 +140,7 @@ values ('EST',
         'nilsemil.lille@gmail.com',
         3554151,
         '03.20.2018',
-        public.crypt(parool, public.gen_salt('parool'), 'Nils', 'Nils', 'Rakvere');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Nils', 'Rakvere');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -155,7 +155,7 @@ values ('DEU',
         'kaspar@gmail.com',
         5152151,
         '05.01.2018',
-        public.crypt(parool, public.gen_salt('parool'), 11),
+        public.crypt('parool',  public.gen_salt('bf', 11)),
         'Kaspar',
         'Nils',
         'Tallinn');
@@ -175,7 +175,7 @@ values ('RUS',
         '09.09.2018',
         5125125,
         '05.01.2018',
-        public.crypt(parool, public.gen_salt('parool'), 'Nils', 'Pajula', 'Keila');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Pajula', 'Keila');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -190,7 +190,7 @@ values ('RUS',
         'maxim@max.ee',
         5512422,
         '04.01.2018',
-        public.crypt(parool, public.gen_salt('paroo'), 'Maxim', 'Nils', 'Tallinn');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Maxim', 'Nils', 'Tallinn');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -205,7 +205,7 @@ values ('RUS',
         'markus@ttu.ee',
         565122,
         '05.01.2018',
-        public.crypt(parool, public.gen_salt('PASSWORD'), 'Mihkel', 'Muhkel', 'Mägilinna');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Mihkel', 'Muhkel', 'Mägilinna');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -222,7 +222,7 @@ values ('USA',
         '11.23.2018',
         55555555,
         '11.28.2017',
-        public.crypt(parool, public.gen_salt('PASSWORD'), 'Hans', 'Nils', 'Ei tea');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Hans', 'Nils', 'Ei tea');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -242,7 +242,7 @@ values ('DEU',
         '05.05.2018',
         5152152,
         '05.01.2018',
-        public.crypt(parool, public.gen_salt('parool'), 'Kaspar', 'Nils', 'Tallinn');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Kaspar', 'Nils', 'Tallinn');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -260,7 +260,7 @@ values ('RUS',
         'merje2@mail.ee',
         5125126,
         '05.01.2018',
-        public.crypt(parool, public.gen_salt('parool'), 'Nils', 'Pajula', 'Keila');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Pajula', 'Keila');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik synni_kp,
                   parool,
@@ -278,7 +278,7 @@ values ('RUS',
         'maxim2@max.ee',
         5512423,
         '04.01.2018',
-        public.crypt(parool, public.gen_salt('paroo'), 'Maxim', 'Nils', 'Tallinn');
+        public.crypt('parool',  public.gen_salt('bf', 11)), 'Maxim', 'Nils', 'Tallinn');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_lii synni_kp,
                   parool,
@@ -296,7 +296,7 @@ values ('RUS',
         'markus2@ttu.ee',
         565123,
         '05.01.2018',
-        public.crypt(parool, public.gen_salt('PASSWORD'), 'Mihkel', 'Muhkel', 'Mägilinna');
+        public.crypt(p'parool',  public.gen_salt('bf', 11)), 'Mihkel', 'Muhkel', 'Mägilinna');
 synni_kp, parool, eesnimi, perenimi
 INSERT INTO Isik (isikukoodi_riik,
                   isikukood,
@@ -324,7 +324,7 @@ FROM (SELECT isik->>'riik'                                          AS riik_kood
              jsonb_array_elements(isik->'isikud')->>'email'         AS e_mail,
              jsonb_array_elements(isik->'isikud')->>'synni_aeg'     AS synni_kp,
              jsonb_array_elements(isik->'isikud')->>'seisund'       AS isiku_seisundi_liik_kood,,
-             public.crypt(parool, public.gen_salt(jsonb_array_elements(isik->'isikud')->>'parool') AS parool,
+             public.crypt(jsonb_array_elements(isik->'isikud')->>'email' ,public.gen_salt('bf', 11)) AS parool,
                           jsonb_array_elements(isik->'isikud')->>'aadress' AS elukoht
                           FROM isik_jsonb)                          AS lahteandmed
       WHERE isiku_seisundi_liik_kood :: smallint = 1;
