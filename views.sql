@@ -1,9 +1,9 @@
---CREATE ROLE t164416_juhataja WITH LOGIN PASSWORD '164416';
+CREATE ROLE t164416_juhataja WITH LOGIN PASSWORD '164416';
 
 DROP VIEW IF EXISTS aktiivsed_ja_mitteaktiivsed_lauad;
 
 CREATE VIEW public.aktiivsed_ja_mitteaktiivsed_lauad WITH (security_barrier) AS
-SELECT laud.laua_kood,
+SELECT laud.laud_kood,
        laua_seisundi_liik.nimetus as laua_seisundi_liik_nimetus,
        laua_materjal.nimetus      as materjal_nimetus,
        laud.kohtade_arv,
@@ -25,7 +25,7 @@ GRANT SELECT ON TABLE public.aktiivsed_ja_mitteaktiivsed_lauad TO t164416_juhata
 DROP VIEW IF EXISTS koik_lauad;
 
 CREATE VIEW public.koik_lauad WITH (security_barrier) AS
-SELECT Laud.laua_kood,
+SELECT Laud.laud_kood,
        Laua_seisundi_liik.nimetus AS hetkeseisund,
        Laua_materjal.nimetus AS laua_materjali_nimetus,
        Laud.kohtade_arv,
@@ -38,7 +38,7 @@ FROM Laua_materjal,
      Isik,
      Laua_seisundi_liik
        INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
-WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.isiku_id) = Isik.isiku_id));
+WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.registreerija_id) = Isik.isik_id));
 
 COMMENT ON VIEW koik_lauad IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, hetkeseisund, laua materjali nimetus, kohtade arv, kommentaar, registreerimise kuupäev, töötaja nimi ja tema e-meil.';
 
@@ -52,11 +52,11 @@ DROP VIEW IF EXISTS laudade_koondaruanne;
 CREATE VIEW public.laudade_koondaruanne WITH (security_barrier) AS
 SELECT Laua_seisundi_liik.laua_seisundi_liik_kood,
        UPPER(Laua_seisundi_liik.nimetus) AS seisundi_nimetus,
-       Count(Laud.laua_kood)             AS laudade_arv
+       Count(Laud.laud_kood)             AS laudade_arv
 FROM Laua_seisundi_liik
        LEFT JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
 GROUP BY Laua_seisundi_liik.laua_seisundi_liik_kood, UPPER(Laua_seisundi_liik.nimetus)
-ORDER BY Count(Laud.laua_kood) DESC, UPPER(Laua_seisundi_liik.nimetus);
+ORDER BY Count(Laud.laud_kood) DESC, UPPER(Laua_seisundi_liik.nimetus);
 
 COMMENT ON VIEW laudade_koondaruanne IS 'See vaade näitab koondaruannet laua seisundi põhiselt.';
 

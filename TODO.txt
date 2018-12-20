@@ -1,51 +1,10 @@
-AIVAR:
-
-164225
-
-SUUR TESTER
-
-fk childtab primarytab    fk primatytab childcol    stiil korda teha. 2 stiili on hetkel.
-
-T6stutundetu email peab olema.  Upper v]i lower peab olema. 
-
-seda reeglit ei old, et emailis on v2iket2hed.
-emaili orge vormi  check  peab olema  tilde t2rn
-
-Kontseptuaalsesse andmemudelisse viia samad kontrollid sisse wordis.
-
-laua_materjal_kood ei ole 6ige. 
-
-registreerimise aeg peab olema koosk6las. Et peab olema nii wordis kuup2ev ilma kella ajata kui ka serveris.
-
-isiku seisundi liik kood ei tohi olla integer vaid small int. k6ik klassifikaatorid peaks olema small int
-
-ameti kirjeldus peab olema andmetyyp, mis v6imaldab k6ige suuremat hulka. Ei saa olla varchar 255
-
-3 vaate puhul peab t2helepanu p66rama sellele, et kasutus k2ib l2bi virtuaalse andmete kihi. Vaata k6iki laudu view puhul ei tohiks n2ha laua detaili. Peab olema eraldi view selle jaoks.
-
-Registreerimise aeg on kuup2ev + kellaaeg. Mitte lihtsalt kuup2ev.
-
--------------------------------------------------------------------------------------
-
-Robin:
-
-164225
-
-fk_childtab_primarytab 9 ja 11 on üle
-e_meil t6sstutundetu
-
-laua_kategooria_omamine tabelis 
-
-check constraints -> ei ole e_meilis k6ik v2iksed t2hed 7 rida see lower(..)
-6 ~ asemel mingi *
-Current_date peaks reg_kp 
-
-laua_materjal_kood in vale kaotsi läinud
-
-reg_kp on kuupäev mitte kellaajaga
-
-klassifikaatori koodid smallint mitte integer
-
-andmete kasutus läbi virtuaalsete kihi
-
-reg aeg kuupäev + kellaaeg
+1)Non-foreign key columns that   ... check    Seal on checkid puudu.
+2)isik.parool=parool    Tabelis peavad olema hashid, mitte paroolid
+3)T6stutundetu email peab olema.  Upper v]i lower peab olema. 
+4)seda reeglit ei old, et emailis on v2iket2hed.
+5)emaili orge vormi  check  peab olema  tilde t2rn         ~ asemel mingi *
+6)kirjeldus peab olema 1000 ja kommentaar kah 1000, mitte 255
+7)laua_materjal_kood ei ole 6ige. 
+8)registreerimise aeg peab olema kellaajaga
+9)isiku seisundi liik kood ei tohi olla integer vaid small int. k6ik klassifikaatorid peaks olema small int
+10)3 vaate puhul peab t2helepanu p66rama sellele, et kasutus k2ib l2bi virtuaalse andmete kihi. Vaata k6iki laudu view puhul ei tohiks n2ha laua detaili. Peab olema eraldi view selle jaoks.
