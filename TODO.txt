@@ -44,10 +44,6 @@ Robin:
 
 Trigerid iseseisva töö tegemine "creat or rep trigger kaup_u before update" lk 43
 
-laua unustamine mitte kustutamine 
-viitamine operatsioon 1 operatsioon 2 nt op1, op2 jne
-
-isiku_id= seda ei update' 
 isiku_id liiga üleüldine
 
 koik_lauad kommentaar pinnapealne
