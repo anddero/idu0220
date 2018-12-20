@@ -11,3 +11,4 @@
 11)EA korda teha
 12)Kasutajaliides korda teha
 13)Word korda teha
+14)Boonuspunkti asju lisada (7 erinevat).
