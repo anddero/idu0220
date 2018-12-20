@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS Riik CASCADE
 
 CREATE TABLE Riik
 (
-  riik_kood char(3)	 NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  riik_kood varchar(3)	 NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Riik PRIMARY KEY (riik_kood),
   CONSTRAINT AK_Riik_Nimetus UNIQUE (nimetus),
   CONSTRAINT riik_riik_kood_check_on_kolm_suurtahte CHECK (riik_kood~'^[A-Z]{3}$'),
@@ -89,8 +89,8 @@ ALTER DOMAIN public.d_reg_kp OWNER to t164416;
 
 CREATE TABLE Amet
 (
-  amet_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  amet_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   kirjeldus varchar(255)	,
   CONSTRAINT PK_Amet PRIMARY KEY (amet_kood),
   CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
@@ -107,8 +107,8 @@ TABLESPACE pg_default;
 
 CREATE TABLE Tootaja_seisundi_liik
 (
-  tootaja_seisundi_liik_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  tootaja_seisundi_liik_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Tootaja_seisundi_liik PRIMARY KEY (tootaja_seisundi_liik_kood),
   CONSTRAINT AK_Tootaja_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
@@ -118,8 +118,8 @@ CREATE TABLE Tootaja_seisundi_liik
 
 CREATE TABLE Isiku_seisundi_liik
 (
-  isiku_seisundi_liik_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  isiku_seisundi_liik_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Isiku_seisundi_liik PRIMARY KEY (isiku_seisundi_liik_kood),
   CONSTRAINT AK_Isiku_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
@@ -131,16 +131,16 @@ CREATE SEQUENCE seq_isik_isiku_id INCREMENT 1 START 1;
 CREATE TABLE Isik
 (
   isiku_id integer NOT NULL DEFAULT nextval('seq_isik_isiku_id'::regclass),
-  isikukoodi_riik char(3)	 NOT NULL,
-  isiku_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  isikukoodi_riik varchar(3)	 NOT NULL,
+  isiku_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   e_meil varchar(254)	 NOT NULL,
-  isikukood varchar(100)	 NOT NULL,
+  isikukood varchar(255)	 NOT NULL,
   synni_kp date NOT NULL,
   parool varchar(100)	 NOT NULL,
   reg_kp d_reg_kp,
-  eesnimi varchar(700)	,
-  perenimi varchar(700)	,
-  elukoht varchar(100)	,
+  eesnimi varchar(1000)	,
+  perenimi varchar(1000)	,
+  elukoht varchar(1000)	,
   CONSTRAINT PK_Isik PRIMARY KEY (isiku_id),
   CONSTRAINT AK_Isik_e_meil UNIQUE (e_meil),
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
@@ -169,8 +169,8 @@ TABLESPACE pg_default;
 CREATE TABLE Tootaja
 (
   isiku_id integer NOT NULL,
-  amet_kood integer NOT NULL,
-  tootaja_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  amet_kood smallint NOT NULL,
+  tootaja_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   mentor integer,
   CONSTRAINT tootaja_mentor_check_ei_ole_enda_mentor CHECK (isiku_id<>mentor),
   CONSTRAINT PK_Tootaja PRIMARY KEY (isiku_id),
@@ -189,8 +189,8 @@ TABLESPACE pg_default;
 
 CREATE TABLE Laua_materjal
 (
-  laua_materjal_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  laua_materjal_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_materjal PRIMARY KEY (laua_materjal_kood),
   CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus),
   CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
@@ -200,8 +200,8 @@ CREATE TABLE Laua_materjal
 
 CREATE TABLE Laua_seisundi_liik
 (
-  laua_seisundi_liik_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  laua_seisundi_liik_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_seisundi_liik PRIMARY KEY (laua_seisundi_liik_kood),
   CONSTRAINT AK_Laua_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT laua_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
@@ -213,8 +213,8 @@ CREATE TABLE Laud
 (
   laua_kood integer NOT NULL,
   isiku_id integer NOT NULL,
-  laua_seisundi_liik_kood integer NOT NULL DEFAULT 1,
-  laua_materjal_kood integer,
+  laua_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
+  laua_materjal_kood smallint,
   reg_kp d_reg_kp,
   kohtade_arv Integer NOT NULL,
   kommentaar varchar(255)	,
@@ -235,8 +235,8 @@ TABLESPACE pg_default;
 
 CREATE TABLE Laua_kategooria_tyyp
 (
-  laua_kategooria_tyyp_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  laua_kategooria_tyyp_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_kategooria_tyyp PRIMARY KEY (laua_kategooria_tyyp_kood),
   CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus),
   CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
@@ -246,9 +246,9 @@ CREATE TABLE Laua_kategooria_tyyp
 
 CREATE TABLE Laua_kategooria
 (
-  laua_kategooria_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
-  laua_kategooria_tyyp_kood integer NOT NULL,
+  laua_kategooria_kood smallint NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
+  laua_kategooria_tyyp_kood smallint NOT NULL,
   CONSTRAINT PK_Laua_kategooria PRIMARY KEY (laua_kategooria_kood),
   CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
   CONSTRAINT laua_kategooria_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$'),
@@ -263,7 +263,7 @@ CREATE TABLE Laua_kategooria_omamine
 (
   laua_kategooria_omamine_id integer NOT NULL DEFAULT nextval('seq_laua_kategooria_omamine_id'::regclass),
   laua_kood integer NOT NULL,
-  laua_kategooria_kood integer NOT NULL,
+  laua_kategooria_kood smallint NOT NULL,
   CONSTRAINT PK_laua_kategooria_omamine PRIMARY KEY (laua_kategooria_omamine_id),
   CONSTRAINT AK_laua_kategooria_omamine_Laua_katogooria_Laud UNIQUE (laua_kood,laua_kategooria_kood),
   CONSTRAINT FK_laua_kategooria_omamine_Laud FOREIGN KEY (laua_kood) REFERENCES Laud (laua_kood) ON DELETE Cascade ON UPDATE Cascade,
@@ -276,7 +276,7 @@ CREATE TABLE Laua_kategooria_omamine
 CREATE TABLE Kliendi_seisundi_liik
 (
   kliendi_seisundi_liik_kood integer NOT NULL,
-  nimetus varchar(50)	 NOT NULL,
+  nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Kliendi_seisundi_liik PRIMARY KEY (kliendi_seisundi_liik_kood),
   CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
@@ -289,7 +289,7 @@ CREATE TABLE Klient
 (
   isiku_id integer NOT NULL,
   on_nous_tylitamisega boolean NOT NULL DEFAULT false,
-  kliendi_seisundi_liik_kood integer NOT NULL DEFAULT 1,
+  kliendi_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   CONSTRAINT PK_Klient PRIMARY KEY (isiku_id),
   CONSTRAINT FK_Klient_Kliendi_seisundi_liik FOREIGN KEY (kliendi_seisundi_liik_kood) REFERENCES Kliendi_seisundi_liik (kliendi_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Klient_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action
