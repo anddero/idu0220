@@ -2,12 +2,7 @@ AIVAR:
 
 164225
 
-trigerite tegemine lk 43   Iseseisva too tegemise mustripohine juhend.pdf
-
 Lisaks sellele on  veeru nimi isik liiga yldine nimi. Parem oleks registreerija id níteks.
-
-PUBLIC ROUTINES.  Public 6iguse peame 2ra v6ma f on juhataja  rutiinilt.
-
 
 
 SUUR TESTER
@@ -40,8 +35,6 @@ Registreerimise aeg on kuup2ev + kellaaeg. Mitte lihtsalt kuup2ev.
 Robin:
 
 164225
-
-Trigerid iseseisva töö tegemine "creat or rep trigger kaup_u before update" lk 43
 
 isiku_id liiga üleüldine
 
