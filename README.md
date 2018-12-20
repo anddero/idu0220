@@ -7,10 +7,10 @@ Andmebaasid II rühmatöö failid
 - [x] Teha cool TODO list
 - [x] Non-foreign key columns that   ... check    Seal on checkid puudu.
 - [X] Isik.parool=parool    Tabelis peavad olema hashid, mitte paroolid
+- [x] Kirjeldus peab olema 1000 ja kommentaar kah 1000, mitte 255
 - [ ] Tõstutundetu email peab olema.  Upper või lower peab olema. 
 - [ ] Seda reeglit ei old, et emailis on väiketähed.
 - [ ] Emaili õrge vormi  check  peab olema  tilde tärn         ~ asemel mingi *
-- [x] Kirjeldus peab olema 1000 ja kommentaar kah 1000, mitte 255
 - [ ] Laua_materjal_kood ei ole äige. 
 - [ ] Registreerimise aeg peab olema kellaajaga
 - [ ] Isiku seisundi liik kood ei tohi olla integer vaid small int. käik klassifikaatorid peaks olema small int
