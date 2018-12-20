@@ -92,7 +92,7 @@ CREATE TABLE Amet
 (
   amet_kood smallint NOT NULL,
   nimetus varchar(60)	 NOT NULL,
-  kirjeldus varchar(255)	,
+  kirjeldus varchar(1000)	,
   CONSTRAINT PK_Amet_Amet_kood PRIMARY KEY (amet_kood),
   CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
   CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus!~'^[[:space:]]*$'),
@@ -218,7 +218,7 @@ CREATE TABLE Laud
   laua_materjal_kood smallint NOT NULL,
   reg_kp d_reg_kp,
   kohtade_arv Integer NOT NULL,
-  kommentaar varchar(255)	,
+  kommentaar varchar(1000)	,
   CONSTRAINT PK_Laud_laud_kood PRIMARY KEY (laud_kood),
   CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
