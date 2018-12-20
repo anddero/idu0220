@@ -81,11 +81,11 @@ DROP TABLE IF EXISTS Klient CASCADE
 DROP SEQUENCE IF EXISTS seq_laua_kategooria_omamine_id;
 DROP SEQUENCE IF EXISTS seq_isik_isiku_id;
 
-DROP DOMAIN IF EXISTS public.d_reg_kp;
-CREATE DOMAIN d_reg_kp date NOT NULL DEFAULT CURRENT_DATE;
-ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_lubatud_vahemik CHECK (VALUE >= '01.01.2010' AND VALUE < '01.01.2101');
-ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (VALUE <= CURRENT_DATE);
-ALTER DOMAIN public.d_reg_kp OWNER to t164416;
+DROP DOMAIN IF EXISTS public.d_reg_aeg;
+CREATE DOMAIN d_reg_aeg date NOT NULL DEFAULT CURRENT_DATE;
+ALTER DOMAIN d_reg_aeg ADD CONSTRAINT reg_aeg_check_lubatud_vahemik CHECK (VALUE >= '01.01.2010  00:00:00''' AND VALUE < '01.01.2101  00:00:00''');
+ALTER DOMAIN d_reg_aeg ADD CONSTRAINT reg_aeg_check_v2iksem_v6rdne_kui_hetke_aeg CHECK (VALUE <= LOCALTIMESTAMP(0));
+ALTER DOMAIN public.d_reg_aeg OWNER to t164416;
 
 
 CREATE TABLE Amet
@@ -141,7 +141,7 @@ CREATE TABLE Isik
   isikukood varchar(255)	 NOT NULL,
   synni_kp date NOT NULL,
   parool varchar(100)	 NOT NULL,
-  reg_kp d_reg_kp,
+  reg_aeg d_reg_aeg,
   eesnimi varchar(1000)	,
   perenimi varchar(1000)	,
   elukoht varchar(1000)	,
@@ -150,7 +150,7 @@ CREATE TABLE Isik
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
   CONSTRAINT isik_e_meil_check_oige_vorm CHECK (e_meil::text ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'::text),
   CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
-  CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_kp),
+  CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_aeg),
   CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
   CONSTRAINT isik_isikukood_check_ei_ole_tyhi_string CHECK (isikukood!~'^[[:space:]]*$'),
   CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
@@ -222,7 +222,7 @@ CREATE TABLE Laud
   registreerija_id integer NOT NULL,
   laua_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   laua_materjal_kood smallint NOT NULL,
-  reg_kp d_reg_kp,
+  reg_aeg d_reg_aeg,
   kohtade_arv Integer NOT NULL,
   kommentaar varchar(1000)	,
   CONSTRAINT PK_Laud_laud_kood PRIMARY KEY (laud_kood),
