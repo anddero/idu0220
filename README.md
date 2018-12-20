@@ -5,7 +5,7 @@ Andmebaasid II rühmatöö failid
 ## FEEDBACK:
 
 - [x] Teha cool TODO list
-- [ ] Non-foreign key columns that   ... check    Seal on checkid puudu.
+- [x] Non-foreign key columns that   ... check    Seal on checkid puudu.
 - [ ] Isik.parool=parool    Tabelis peavad olema hashid, mitte paroolid
 - [ ] Tõstutundetu email peab olema.  Upper või lower peab olema. 
 - [ ] Seda reeglit ei old, et emailis on väiketähed.
