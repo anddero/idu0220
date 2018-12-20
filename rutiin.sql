@@ -89,13 +89,13 @@ REVOKE ALL
 
 --Delete Functions
 
-DROP FUNCTION  f_lisa_laud(p_laua_kood Laud.laua_kood%TYPE, p_isiku_id Laud.isiku_id%TYPE,
-p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
-p_kommentaar Laud.kommentaar%TYPE) CASCADE;
+--DROP FUNCTION  f_lisa_laud(p_laua_kood Laud.laua_kood%TYPE, p_isiku_id Laud.isiku_id%TYPE,
+--p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
+--p_kommentaar Laud.kommentaar%TYPE) CASCADE;
 
-DROP FUNCTION f_laua_unustamine(p_laua_kood
-Laud.laua_kood%TYPE) CASCADE;
+--DROP FUNCTION f_laua_unustamine(p_laua_kood
+--Laud.laua_kood%TYPE) CASCADE;
 
-DROP FUNCTION f_muuda_laud (p_laua_kood_vana
-Laud.laua_kood%TYPE, p_laua_kood_uus Laud.laua_kood%TYPE,
-p_kohtade_arv Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE) CASCADE;
+--DROP FUNCTION f_muuda_laud (p_laua_kood_vana
+--Laud.laua_kood%TYPE, p_laua_kood_uus Laud.laua_kood%TYPE,
+--p_kohtade_arv Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE) CASCADE;

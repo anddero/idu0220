@@ -118,17 +118,17 @@ insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_mate
 insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (10,6,'05.03.2018',2,4, 2,'Eriline,habras.');
 insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (11,7,'05.03.2018',3,3, 8,'Ruumi on ka rohkemate jaoks');
 
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (1,FALSE,1);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (2,TRUE,1);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (3,FALSE,2);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (4,FALSE,1);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (5,TRUE,2);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (6,FALSE,1);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (7,FALSE,2);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (8,TRUE,1);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (9,FALSE,2);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (10,FALSE,2);
-insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (11,TRUE,1);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (1,FALSE,1);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (2,TRUE,1);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (3,FALSE,2);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (4,FALSE,1);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (5,TRUE,2);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (6,FALSE,1);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (7,FALSE,2);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (8,TRUE,1);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (9,FALSE,2);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (10,FALSE,2);
+insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (11,TRUE,1);
 
 
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (1,1);

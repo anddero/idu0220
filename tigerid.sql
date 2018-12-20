@@ -56,7 +56,7 @@ CREATE TRIGGER trig_laud_kustuta_laud
     BEFORE DELETE
     ON public.Laud
     FOR EACH ROW
-    WHEN ((old.laua_seisundi_liik_kood <> 1))
+    WHEN ((old.laua_seisundi_liik_kood IS DISTINCT FROM 1))
     EXECUTE PROCEDURE public.f_kustuta_laud();
 
 DROP TRIGGER IF EXISTS trig_laud_muuda_laua_seisundi_liik ON public.Laud;
