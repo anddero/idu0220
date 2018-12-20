@@ -95,16 +95,16 @@ AS lahteandmed
 WHERE isiku_seisundi_liik_kood::smallint=1;
 
 
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (1,1,2,null );
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (2,3,2,null );
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (3,4,1,null);
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (4,2,3,null );
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (5,2,2,null );
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (6,1,3,3);
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (7,3,5,null );
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (8,4,4,null);
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (9,2,6,null );
-insert into tootaja (isiku_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (10,2,7,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (1,1,2,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (2,3,2,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (3,4,1,null);
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (4,2,3,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (5,2,2,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (6,1,3,3);
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (7,3,5,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (8,4,4,null);
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (9,2,6,null );
+insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood,mentor) values (10,2,7,null );
 
 insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (1,3,'05.02.2018',1,1, 4,'Laud nagu laud ikka');
 insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (2,4,'05.02.2018',3,1, 4,'Laud nagu laud ikka');
@@ -118,17 +118,17 @@ insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_mate
 insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (10,6,'05.03.2018',2,4, 2,'Eriline,habras.');
 insert into laud (laua_kood, isiku_id, reg_kp, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (11,7,'05.03.2018',3,3, 8,'Ruumi on ka rohkemate jaoks');
 
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (1,FALSE,1);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (2,TRUE,1);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (3,FALSE,2);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (4,FALSE,1);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (5,TRUE,2);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (6,FALSE,1);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (7,FALSE,2);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (8,TRUE,1);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (9,FALSE,2);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (10,FALSE,2);
-insert into klient (isiku_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (11,TRUE,1);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (1,FALSE,1);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (2,TRUE,1);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (3,FALSE,2);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (4,FALSE,1);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (5,TRUE,2);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (6,FALSE,1);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (7,FALSE,2);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (8,TRUE,1);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (9,FALSE,2);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (10,FALSE,2);
+insert into klient (kliendi_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood) values (11,TRUE,1);
 
 
 insert into laua_kategooria_omamine (laua_kood, laua_kategooria_kood) values (1,1);

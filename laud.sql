@@ -17,6 +17,7 @@ riik JSONB )
 SERVER minu_testandmete_server_apex;
 SELECT * FROM Riik_jsonb;
 
+
 DROP TABLE IF EXISTS Riik CASCADE
 ;
 
@@ -168,16 +169,16 @@ TABLESPACE pg_default;
 
 CREATE TABLE Tootaja
 (
-  isiku_id integer NOT NULL,
+  tootaja_id integer NOT NULL,
   amet_kood smallint NOT NULL,
   tootaja_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   mentor integer,
-  CONSTRAINT tootaja_mentor_check_ei_ole_enda_mentor CHECK (isiku_id<>mentor),
-  CONSTRAINT PK_Tootaja PRIMARY KEY (isiku_id),
+  CONSTRAINT tootaja_mentor_check_ei_ole_enda_mentor CHECK (tootaja_id<>mentor),
+  CONSTRAINT PK_Tootaja PRIMARY KEY (tootaja_id),
   CONSTRAINT FK_Tootaja_Amet FOREIGN KEY (amet_kood) REFERENCES Amet (amet_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Tootaja_Tootaja_seisundi_liik FOREIGN KEY (tootaja_seisundi_liik_kood) REFERENCES Tootaja_seisundi_liik (tootaja_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-  CONSTRAINT FK_Tootaja_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action,
-  CONSTRAINT FK_Tootaja_Mentor FOREIGN KEY (mentor) REFERENCES Tootaja (isiku_id) ON DELETE Set Null ON UPDATE No Action
+  CONSTRAINT FK_Tootaja_Isik FOREIGN KEY (tootaja_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action,
+  CONSTRAINT FK_Tootaja_Mentor FOREIGN KEY (mentor) REFERENCES Tootaja (tootaja_id) ON DELETE Set Null ON UPDATE No Action
 )
 WITH (
     OIDS = FALSE,
@@ -223,7 +224,7 @@ CREATE TABLE Laud
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
   CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-  CONSTRAINT FK_Laud_isiku_id_registreerib FOREIGN KEY (isiku_id) REFERENCES Tootaja (isiku_id) ON DELETE No Action ON UPDATE No Action
+  CONSTRAINT FK_Laud_isiku_id_registreerib FOREIGN KEY (isiku_id) REFERENCES Tootaja (tootaja_id) ON DELETE No Action ON UPDATE No Action
 )
 WITH (
     OIDS = FALSE,
@@ -275,7 +276,7 @@ CREATE TABLE Laua_kategooria_omamine
 
 CREATE TABLE Kliendi_seisundi_liik
 (
-  kliendi_seisundi_liik_kood integer NOT NULL,
+  kliendi_seisundi_liik_kood smallint NOT NULL,
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Kliendi_seisundi_liik PRIMARY KEY (kliendi_seisundi_liik_kood),
   CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus),
@@ -287,12 +288,12 @@ CREATE TABLE Kliendi_seisundi_liik
 
 CREATE TABLE Klient
 (
-  isiku_id integer NOT NULL,
+  kliendi_id integer NOT NULL,
   on_nous_tylitamisega boolean NOT NULL DEFAULT false,
   kliendi_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
-  CONSTRAINT PK_Klient PRIMARY KEY (isiku_id),
+  CONSTRAINT PK_Klient PRIMARY KEY (kliendi_id),
   CONSTRAINT FK_Klient_Kliendi_seisundi_liik FOREIGN KEY (kliendi_seisundi_liik_kood) REFERENCES Kliendi_seisundi_liik (kliendi_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
-  CONSTRAINT FK_Klient_Isik FOREIGN KEY (isiku_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action
+  CONSTRAINT FK_Klient_Isik FOREIGN KEY (kliendi_id) REFERENCES Isik (isiku_id) ON DELETE Cascade ON UPDATE No Action
 )
 WITH (
     OIDS = FALSE,
