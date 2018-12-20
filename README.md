@@ -21,3 +21,11 @@ Andmebaasid II rühmatöö failid
   * Wordi korda tegemiseks peavad EA, kood, Access valmis olema.
   
 - [ ]  Boonuspunkti asju lisada (7 erinevat).
+
+
+** LAUD
+** VIEW
+** INSERT 
+** RUTIIN
+** TRIGGER
+** AUTH
