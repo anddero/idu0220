@@ -30,7 +30,7 @@ SELECT Laud.laud_kood,
        Laua_materjal.nimetus AS laua_materjali_nimetus,
        Laud.kohtade_arv,
        Laud.kommentaar,
-       Laud.reg_kp,
+       Laud.reg_aeg,
        Isik.eesnimi AS tootaja_eesnimi,
        Isik.perenimi AS tootaja_perenimi,
        Isik.e_meil
