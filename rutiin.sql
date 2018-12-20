@@ -67,7 +67,7 @@ kommentaar (parameeter p_kommentaar).
 Protseduur muudab etteantud laua.';
 --SELECT f_muuda_laud(p_laua_kood_vana:=13,p_laua_kood_uus:=12,p_kohtade_arv:=5,p_kommentaar:='Uuem ja parem laud');
 
---Välja kutsumiseks SELECT f_laua_kustutamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
+--Välja kutsumiseks SELECT f_laua_unustamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
 
 ALTER FUNCTION f_muuda_laud OWNER TO t164416;
 GRANT ALL PRIVILEGES ON FUNCTION f_muuda_laud TO t164416_juhataja;
