@@ -100,13 +100,13 @@ values (7, 'Ilus', 3);
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)
 values (8, 'kole', 3);
 
-insert into laua_materjal (laua_materjal_kood, nimetus)
+insert into laua_materjal (laud_materjal_kood, nimetus)
 values (1, 'Puit');
-insert into laua_materjal (laua_materjal_kood, nimetus)
+insert into laua_materjal (laud_materjal_kood, nimetus)
 values (2, 'Klaas');
-insert into laua_materjal (laua_materjal_kood, nimetus)
+insert into laua_materjal (laud_materjal_kood, nimetus)
 values (3, 'Metall');
-insert into laua_materjal (laua_materjal_kood, nimetus)
+insert into laua_materjal (laud_materjal_kood, nimetus)
 values (4, 'Plastik');
 
 insert into isik (isikukoodi_riik,
@@ -284,7 +284,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (1, 3, '05.02.2018', 1, 1, 4, 'Laud nagu laud ikka');
@@ -292,7 +292,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (2, 4, '05.02.2018', 3, 1, 4, 'Laud nagu laud ikka');
@@ -300,7 +300,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (3, 4, '05.02.2018', 2, 1, 4, 'Laud nagu laud ikka');
@@ -308,7 +308,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (4, 1, '05.02.2018', 2, 2, 2, 'Laud nagu laud ikka');
@@ -316,7 +316,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (5, 2, '05.02.2018', 3, 3, 2, 'Laud nagu laud ikka');
@@ -324,7 +324,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (6, 1, '05.03.2018', 3, 4, 2, 'Eriline,habras.');
@@ -332,7 +332,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (7, 9, '05.03.2018', 4, 3, 8, 'Ruumi on ka rohkemate jaoks');
@@ -340,7 +340,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (8, 3, '05.02.2018', 1, 2, 4, 'Laud nagu laud ikka');
@@ -348,7 +348,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (9, 5, '05.02.2018', 4, 3, 4, 'Laud nagu laud ikka');
@@ -356,7 +356,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (10, 6, '05.03.2018', 2, 4, 2, 'Eriline,habras.');
@@ -364,7 +364,7 @@ insert into laud (laud_kood,
                   registreerija_id,
                   reg_kp,
                   laua_seisundi_liik_kood,
-                  laua_materjal_kood,
+                  laud_materjal_kood,
                   kohtade_arv,
                   kommentaar)
 values (11, 7, '05.03.2018', 3, 3, 8, 'Ruumi on ka rohkemate jaoks');

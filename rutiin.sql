@@ -1,5 +1,5 @@
 DROP FUNCTION IF EXISTS f_lisa_laud(p_laud_kood Laud.laud_kood%TYPE, p_registreerija_id Laud.registreerija_id%TYPE,
-p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
+p_laud_materjal_kood Laud.laud_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
 p_kommentaar Laud.kommentaar%TYPE) CASCADE;
 
 DROP FUNCTION IF EXISTS f_laua_unustamine(p_laud_kood
@@ -11,26 +11,26 @@ p_kohtade_arv Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE) CASCADE;
 
 
 CREATE OR REPLACE FUNCTION f_lisa_laud(p_laud_kood Laud.laud_kood%TYPE, p_registreerija_id Laud.registreerija_id%TYPE,
-p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
+p_laud_materjal_kood Laud.laud_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
 p_kommentaar Laud.kommentaar%TYPE)
 RETURNS Laud.laud_kood%TYPE AS $$
-INSERT INTO Laud(laud_kood, registreerija_id, laua_materjal_kood, kohtade_arv, kommentaar) VALUES
-(p_laud_kood,p_registreerija_id, p_laua_materjal_kood, p_kohtade_arv, p_kommentaar) ON CONFLICT DO NOTHING
+INSERT INTO Laud(laud_kood, registreerija_id, laud_materjal_kood, kohtade_arv, kommentaar) VALUES
+(p_laud_kood,p_registreerija_id, p_laud_materjal_kood, p_kohtade_arv, p_kommentaar) ON CONFLICT DO NOTHING
 RETURNING laud_kood;
 $$ LANGUAGE SQL SECURITY DEFINER
 SET search_path=public, pg_temp;
 
 COMMENT ON FUNCTION f_lisa_laud(p_laud_kood Laud.laud_kood%TYPE, p_registreerija_id Laud.registreerija_id%TYPE,
-p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
+p_laud_materjal_kood Laud.laud_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
 p_kommentaar Laud.kommentaar%TYPE) IS
 'OP1 Protseduuri oodatavad
 sisendid on laua identifikaator (parameeter p_laud_kood),
 laua registreeija identifikaator (parameeter p_registreerija_id),
-laua materjali identifikaator (parameeter p_laua_materjal_kood),
+laua materjali identifikaator (parameeter p_laud_materjal_kood),
 kohtade arv (parameeter p_kohtade_arv) ja
 kommentaar (parameeter p_kommentaar).
 Protseduur lisab laua.';
---SELECT f_lisa_laud(p_laud_kood:=13, p_registreerija_id:=3, p_laua_materjal_kood:=4, p_kohtade_arv:=3, p_kommentaar:='Kena laud!');
+--SELECT f_lisa_laud(p_laud_kood:=13, p_registreerija_id:=3, p_laud_materjal_kood:=4, p_kohtade_arv:=3, p_kommentaar:='Kena laud!');
 
 ALTER FUNCTION f_lisa_laud OWNER TO t164416;
 GRANT ALL PRIVILEGES ON FUNCTION f_lisa_laud TO t164416_juhataja;
