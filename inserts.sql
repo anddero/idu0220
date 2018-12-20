@@ -112,7 +112,7 @@ values (4, 'Plastik');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
-                  reg_kp,
+                  reg_aeg,
                   isikukood,
                   synni_kp,
                   parool,
@@ -122,7 +122,7 @@ insert into isik (isikukoodi_riik,
 values ('EST',
         1,
         'nilsemil.lille2@gmail.com',
-        '06.06.2018',
+        '06.06.2018 23:00:25',
         3554152,
         '03.20.2018',
         public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Nils', 'Rakvere');
@@ -162,7 +162,7 @@ values ('DEU',
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
-                  reg_kp,
+                  reg_aeg,
                   isikukood,
                   synni_kp,
                   parool,
@@ -172,7 +172,7 @@ insert into isik (isikukoodi_riik,
 values ('RUS',
         1,
         'merje@mail.ee',
-        '09.09.2018',
+        '09.09.2018 23:00:25',
         5125125,
         '05.01.2018',
         public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Pajula', 'Keila');
@@ -189,7 +189,7 @@ values ('RUS',
         2,
         'maxim@max.ee',
         5512422,
-        '04.01.2018',
+        '04.01.2018 23:00:25',
         public.crypt('parool',  public.gen_salt('bf', 11)), 'Maxim', 'Nils', 'Tallinn');
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
@@ -209,7 +209,7 @@ values ('RUS',
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
-                  reg_kp,
+                  reg_aeg,
                   isikukood,
                   synni_kp,
                   parool,
@@ -219,7 +219,7 @@ insert into isik (isikukoodi_riik,
 values ('USA',
         1,
         'hans@restoran.com',
-        '11.23.2018',
+        '11.23.2018 23:00:25',
         55555555,
         '11.28.2017',
         public.crypt('parool',  public.gen_salt('bf', 11)), 'Hans', 'Nils', 'Ei tea');
@@ -282,39 +282,39 @@ values (10, 2, 7, null);
 
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (1, 3, '05.02.2018', 1, 1, 4, 'Laud nagu laud ikka');
+values (1, 3, '05.02.2018 23:00:25', 1, 1, 4, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (2, 4, '05.02.2018', 3, 1, 4, 'Laud nagu laud ikka');
+values (2, 4, '05.02.2018 23:00:25', 3, 1, 4, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (3, 4, '05.02.2018', 2, 1, 4, 'Laud nagu laud ikka');
+values (3, 4, '05.02.2018 23:00:25', 2, 1, 4, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (4, 1, '05.02.2018', 2, 2, 2, 'Laud nagu laud ikka');
+values (4, 1, '05.02.2018 23:00:25', 2, 2, 2, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
@@ -322,47 +322,47 @@ insert into laud (laud_kood,
 values (5, 2, '05.02.2018', 3, 3, 2, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (6, 1, '05.03.2018', 3, 4, 2, 'Eriline,habras.');
+values (6, 1, '05.03.2018 23:00:25', 3, 4, 2, 'Eriline,habras.');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (7, 9, '05.03.2018', 4, 3, 8, 'Ruumi on ka rohkemate jaoks');
+values (7, 9, '05.03.2018 23:00:25', 4, 3, 8, 'Ruumi on ka rohkemate jaoks');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (8, 3, '05.02.2018', 1, 2, 4, 'Laud nagu laud ikka');
+values (8, 3, '05.02.2018 23:00:25', 1, 2, 4, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (9, 5, '05.02.2018', 4, 3, 4, 'Laud nagu laud ikka');
+values (9, 5, '05.02.2018 23:00:25', 4, 3, 4, 'Laud nagu laud ikka');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,
                   kommentaar)
-values (10, 6, '05.03.2018', 2, 4, 2, 'Eriline,habras.');
+values (10, 6, '05.03.2018 23:00:25', 2, 4, 2, 'Eriline,habras.');
 insert into laud (laud_kood,
                   registreerija_id,
-                  reg_kp,
+                  reg_aeg,
                   laua_seisundi_liik_kood,
                   laua_materjal_kood,
                   kohtade_arv,

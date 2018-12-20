@@ -1,5 +1,5 @@
-DROP DOMAIN public.d_reg_kp;
-CREATE DOMAIN d_reg_kp date NOT NULL DEFAULT CURRENT_DATE;
-ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_lubatud_vahemik CHECK (VALUE >= '01.01.2010' AND VALUE < '01.01.2101');
-ALTER DOMAIN d_reg_kp ADD CONSTRAINT reg_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (VALUE <= CURRENT_DATE);
-ALTER DOMAIN public.d_reg_kp OWNER to t164416;
+DROP DOMAIN public.d_reg_aeg;
+CREATE DOMAIN d_reg_aeg date NOT NULL DEFAULT CURRENT_DATE;
+ALTER DOMAIN d_reg_aeg ADD CONSTRAINT reg_aeg_check_lubatud_vahemik CHECK (VALUE >= '01.01.2010 00:00:00' AND VALUE < '01.01.2101 00:00:00');
+ALTER DOMAIN d_reg_aeg ADD CONSTRAINT reg_aeg_check_v2iksem_v6rdne_kui_hetke_aeg CHECK (VALUE <=  LOCALTIMESTAMP(0));
+ALTER DOMAIN public.d_reg_aeg OWNER to t164416;
