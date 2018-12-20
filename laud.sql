@@ -168,6 +168,8 @@ WITH (
 )
 TABLESPACE pg_default;
 ;
+ALTER TABLE isik DROP CONSTRAINT AK_Isik_e_meil;
+CREATE UNIQUE INDEX IXFK_Isik_e_meil ON isik (Upper(e_meil));
 
 
 CREATE TABLE Tootaja
