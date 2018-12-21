@@ -25,26 +25,31 @@ GRANT SELECT ON TABLE public.aktiivsed_ja_mitteaktiivsed_lauad TO t164416_juhata
 DROP VIEW IF EXISTS koik_lauad;
 
 CREATE VIEW public.koik_lauad WITH (security_barrier) AS
-SELECT Laud.laud_kood,
-       Laua_seisundi_liik.nimetus AS hetkeseisund,
-       Laua_materjal.nimetus AS laua_materjali_nimetus,
-       Laud.kohtade_arv,
-       Laud.kommentaar,
-       Laud.reg_aeg,
-	   Isik.eesnimi AS tootaja_eesnimi,
-	   Isik.perenimi AS tootaja_perenimi,
-       Isik.e_meil
-FROM Laua_materjal,
-     Isik,
-     Laua_seisundi_liik
-       INNER JOIN Laud ON Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood
-WHERE (((Laud.laua_materjal_kood) = Laua_materjal.laua_materjal_kood) And ((Laud.registreerija_id) = Isik.isik_id));
+SELECT laud_kood AS laua_kood, UPPER(Laua_seisundi_liik.nimetus) AS laua_seisund, Laua_materjal.nimetus AS laua_materjal, kohtade_arv,Laud.reg_aeg,kommentaar, CONCAT(eesnimi,' ',perenimi) AS registreerija_nimi 
+FROM Laud, Laua_seisundi_liik,Isik, Laua_materjal
+WHERE Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood 
+AND Laud.registreerija_id=Isik.isik_id
+AND Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood ORDER BY laua_kood ASC;
 
 COMMENT ON VIEW koik_lauad IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, hetkeseisund, laua materjali nimetus, kohtade arv, kommentaar, registreerimise kuupäev, töötaja nimi ja tema e-meil.';
 
 ALTER TABLE public.koik_lauad OWNER TO t164416;
 GRANT ALL ON TABLE public.koik_lauad TO t164416;
 GRANT SELECT ON TABLE public.koik_lauad TO t164416_juhataja;
+
+DROP VIEW IF EXISTS koik_lauad_jsonis;
+
+CREATE VIEW public.koik_lauad_jsonis WITH (security_barrier) AS
+SELECT to_jsonb(t) FROM (SELECT laud_kood AS laua_kood, UPPER(Laua_seisundi_liik.nimetus) AS laua_seisund, Laua_materjal.nimetus AS laua_materjal, kohtade_arv,Laud.reg_aeg,kommentaar, CONCAT(eesnimi,' ',perenimi) AS registreerija_nimi 
+FROM Laud, Laua_seisundi_liik,Isik, Laua_materjal
+WHERE Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood 
+AND Laud.registreerija_id=Isik.isik_id
+AND Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood ORDER BY laua_kood ASC) t;
+COMMENT ON VIEW koik_lauad_jsonis IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, hetkeseisund, laua materjali nimetus, kohtade arv, registreerimise kuupäev, kommentaar ja töötaja nimi. Ning seda JSON formaadis.';
+
+ALTER TABLE public.koik_lauad_jsonis OWNER TO t164416;
+GRANT ALL ON TABLE public.koik_lauad_jsonis TO t164416;
+GRANT SELECT ON TABLE public.koik_lauad_jsonis TO t164416_juhataja;
 
 
 DROP VIEW IF EXISTS laudade_koondaruanne;
@@ -63,3 +68,17 @@ COMMENT ON VIEW laudade_koondaruanne IS 'See vaade näitab koondaruannet laua se
 ALTER TABLE public.laudade_koondaruanne OWNER TO t164416;
 GRANT ALL ON TABLE public.laudade_koondaruanne TO t164416;
 GRANT SELECT ON TABLE public.laudade_koondaruanne TO t164416_juhataja;
+
+
+DROP VIEW IF EXISTS laudade_seisundid;
+
+CREATE VIEW public.laudade_seisundid WITH (security_barrier) AS
+SELECT UPPER(laua_seisundi_liik.nimetus) AS laua_seisund, string_agg(laud.laud_kood::text, ', ') AS laudade_koodid 
+FROM laud, laua_seisundi_liik WHERE laud.laua_seisundi_liik_kood = laua_seisundi_liik.laua_seisundi_liik_kood
+GROUP BY laua_seisundi_liik.nimetus;
+
+COMMENT ON VIEW laudade_seisundid IS 'See vaade näitab, millised lauad on hetkel mitteaktiivsed, ootel, aktiivsed või lõpetatud.';
+
+ALTER TABLE public.laudade_seisundid OWNER TO t164416;
+GRANT ALL ON TABLE public.laudade_seisundid TO t164416;
+GRANT SELECT ON TABLE public.laudade_seisundid TO t164416_juhataja;

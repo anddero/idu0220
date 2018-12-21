@@ -2,27 +2,25 @@ CREATE OR REPLACE FUNCTION public.f_kustuta_laud()
     RETURNS trigger
     LANGUAGE 'plpgsql'
     COST 100
-    VOLATILE NOT LEAKPROOF 
+    SECURITY DEFINER
+	SET search_path=public, pg_temp
 AS $BODY$
-
+DECLARE
+	p_laua_seisundi_liik_kood SMALLINT;
 BEGIN
-	RAISE EXCEPTION 'Ainult ootel olevaid laudu on võimalik kustutada!';
-	RETURN OLD;
+SELECT laua_seisundi_liik_kood INTO p_laua_seisundi_liik_kood FROM Laud WHERE laud_kood=OLD.laud_kood FOR UPDATE;
+IF (p_laua_seisundi_liik_kood <> 1) THEN RAISE EXCEPTION 'Ainult ootel olevaid laudu on võimalik kustutada!';
+ELSE
+RETURN OLD;
+END IF;
 END;
-
 $BODY$;
-
 ALTER FUNCTION public.f_kustuta_laud()
     OWNER TO t164416;
-
 GRANT EXECUTE ON FUNCTION public.f_kustuta_laud() TO t164416;
-
 REVOKE ALL ON FUNCTION public.f_kustuta_laud() FROM PUBLIC;
-
 COMMENT ON FUNCTION public.f_kustuta_laud()
-    IS 'See trigger määrab ära selle, et kustutada saab ainult ootel olevaid laudu.';
-
-
+    IS 'See trigger määrab ära selle, et kustutada saab ainult ootel olevaid laudu ning olemas peab vähemalt üks laua kategooria.';
 
 CREATE OR REPLACE FUNCTION public.f_muuda_laua_seisundi_liik()
     RETURNS trigger
@@ -30,34 +28,27 @@ CREATE OR REPLACE FUNCTION public.f_muuda_laua_seisundi_liik()
     COST 100
     VOLATILE NOT LEAKPROOF 
 AS $BODY$
-
 BEGIN
 	RAISE EXCEPTION 'Nii pole võimalik muuta laua seisundit!';
 	RETURN NULL;
 END;
-
 $BODY$;
-
 ALTER FUNCTION public.f_muuda_laua_seisundi_liik()
     OWNER TO t164416;
-
 GRANT EXECUTE ON FUNCTION public.f_muuda_laua_seisundi_liik() TO t164416;
-
 REVOKE ALL ON FUNCTION public.f_muuda_laua_seisundi_liik() FROM PUBLIC;
-
 COMMENT ON FUNCTION public.f_muuda_laua_seisundi_liik()
     IS 'See trigger kontrollib, et toimub korrektne laua seisundi liigi muudatus. 
 	Kui old.laua_seisundi_liik_kood=new.laua_seisundi_liik_kood, siis laua seisundi kood jääb samaks.';
 
-	
 	
 DROP TRIGGER IF EXISTS trig_laud_kustuta_laud ON public.Laud;
 CREATE TRIGGER trig_laud_kustuta_laud
     BEFORE DELETE
     ON public.Laud
     FOR EACH ROW
-    WHEN ((old.laua_seisundi_liik_kood IS DISTINCT FROM 1))
     EXECUTE PROCEDURE public.f_kustuta_laud();
+
 
 DROP TRIGGER IF EXISTS trig_laud_muuda_laua_seisundi_liik ON public.Laud;
 CREATE TRIGGER trig_laud_muuda_laua_seisundi_liik
