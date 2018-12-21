@@ -1150,7 +1150,7 @@ insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar) values (1149, 4,'10.14.2015 13:48:38',2,4,19,'Kommentaar');
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar) values (1150, 2,'11.17.2016 21:19:40',1,3,10,'Mingi asjaga ära plökerdatud');
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar) values (1151, 6,'10.26.2016 16:45:55',3,1,7,'Tanel Padar istus seal lauas');
-19
+
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1,3);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1,4);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1,6);
