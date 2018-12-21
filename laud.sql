@@ -208,7 +208,7 @@ CREATE TABLE Laua_materjal
 ;
 
 
-CREATE TABLE Laua_seisundi_liik -- ootel, mitteaktiivne, aktiivne, lopetatud
+CREATE TABLE Laua_seisundi_liik
 (
   laua_seisundi_liik_kood smallint NOT NULL,
   nimetus varchar(60)	 NOT NULL,
