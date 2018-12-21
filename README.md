@@ -16,7 +16,7 @@ Andmebaasid II rühmatöö failid
 - [X] Registreerimise aeg peab olema kellaajaga
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
 - [ ] EA korda teha
-- [ ] View-des minna soovitud ajaformaatide peale ümber
+- [X] View-des minna soovitud ajaformaatide peale ümber
 - [ ] Kasutajaliides korda teha
 - [ ] Word korda teha
   * Wordi korda tegemiseks peavad EA, kood, Access valmis olema.
