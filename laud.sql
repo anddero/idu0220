@@ -204,7 +204,7 @@ CREATE TABLE Laua_materjal
 ;
 
 
-CREATE TABLE Laua_seisundi_liik
+CREATE TABLE Laua_seisundi_liik -- ootel, mitteaktiivne, aktiivne, lopetatud
 (
   laua_seisundi_liik_kood smallint NOT NULL,
   nimetus varchar(60)	 NOT NULL,
@@ -220,12 +220,13 @@ CREATE TABLE Laud
 (
   laud_kood integer NOT NULL,
   registreerija_id integer NOT NULL,
-  laua_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
-  laua_materjal_kood smallint NOT NULL,
+  laua_seisundi_liik_kood smallint NOT NULL DEFAULT 1, --ootel, mitteaktiivne, aktiivne, lopetatud
+  laua_materjal_kood smallint NOT NULL, --metall, puit, jne
   reg_aeg d_reg_aeg,
   kohtade_arv Integer NOT NULL,
   kommentaar varchar(1000)	,
   CONSTRAINT PK_Laud_laud_kood PRIMARY KEY (laud_kood),
+  CONSTRAINT laud_check_kood_suurem_nullist CHECK (laud_kood >= 1),
   CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
   CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
@@ -242,7 +243,7 @@ TABLESPACE pg_default;
 
 CREATE TABLE Laua_kategooria_tyyp
 (
-  laua_kategooria_tyyp_kood smallint NOT NULL,
+  laua_kategooria_tyyp_kood smallint NOT NULL, --omadussonad, liiklus, vaade
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_kategooria_tyyp_Laua_kategooria_tyyp_kood PRIMARY KEY (laua_kategooria_tyyp_kood),
   CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus),
@@ -254,9 +255,9 @@ CREATE TABLE Laua_kategooria_tyyp
 
 CREATE TABLE Laua_kategooria
 (
-  laua_kategooria_kood smallint NOT NULL,
-  nimetus varchar(60)	 NOT NULL,
-  laua_kategooria_tyyp_kood smallint NOT NULL,
+  laua_kategooria_kood smallint NOT NULL, -- kirjelduse kood
+  nimetus varchar(60)	 NOT NULL, -- kirjeldus
+  laua_kategooria_tyyp_kood smallint NOT NULL, --omadussona kood (omadussonad, liiklus, vaade)
   CONSTRAINT PK_Laua_kategooria_Laua_kategooria_kood PRIMARY KEY (laua_kategooria_kood),
   CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
   CONSTRAINT laua_kategooria_check_kood_suurem_nullist CHECK (laua_kategooria_kood >= 1),
@@ -271,8 +272,8 @@ CREATE SEQUENCE seq_laua_kategooria_omamine_id INCREMENT 1 START 1;
 CREATE TABLE Laua_kategooria_omamine
 (
   laua_kategooria_omamine_id integer NOT NULL DEFAULT nextval('seq_laua_kategooria_omamine_id'::regclass),
-  laud_kood integer NOT NULL,
-  laua_kategooria_kood smallint NOT NULL,
+  laud_kood integer NOT NULL, -- laua kood
+  laua_kategooria_kood smallint NOT NULL, -- kirjelduse kood
   CONSTRAINT Laua_kategooria_omamine_kood_check_lubatud_vaartus CHECK (laud_kood >= 1 AND laua_kategooria_kood >= 1),
   CONSTRAINT PK_laua_kategooria_omamine_Laua_kategooria_omamine_id PRIMARY KEY (laua_kategooria_omamine_id),
   CONSTRAINT AK_laua_kategooria_omamine_Laua_katogooria_Laud UNIQUE (laud_kood,laua_kategooria_kood),
