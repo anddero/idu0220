@@ -30,4 +30,3 @@ GRANT EXECUTE ON FUNCTION f_on_juhataja TO t164416;
 REVOKE ALL
   ON FUNCTION f_on_juhataja
   FROM PUBLIC ;
-
