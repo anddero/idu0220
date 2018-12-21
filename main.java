@@ -35,6 +35,7 @@ public class Main {
         }
 
 
+
         for (int i = 1; i <= 1151; i++) {
             if (ThreadLocalRandom.current().nextInt(2, 20) % 2 == 0)
                 System.out.println("insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (" + i + "," +  1 + ");");
