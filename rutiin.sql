@@ -77,11 +77,23 @@ kommentaar (parameeter p_kommentaar).
 Protseduur muudab etteantud laua.';
 --SELECT f_muuda_laud(p_laud_kood_vana:=13,p_laud_kood_uus:=12,p_kohtade_arv:=5,p_kommentaar:='Uuem ja parem laud');
 
+CREATE OR REPLACE FUNCTION f_lopeta_laud(p_laud_kood Laud.laud_kood%TYPE)
+RETURNS Laud.laud_kood%TYPE
+AS $$
+UPDATE Laud SET laua_seisundi_liik_kood=4
+WHERE laud_kood=p_laud_kood
+RETURNING laud_kood;
+$$ LANGUAGE sql SECURITY DEFINER STRICT
+SET search_path = public, pg_temp;
+
+COMMENT ON FUNCTION f_lopeta_laud(p_laud_kood Laud.laud_kood%TYPE) IS
+'OP4 Protsess, millega lõpetatakse laud. Sisendid on laua identifikaator (parameeter p_laud_kood).';
+
 --Välja kutsumiseks SELECT f_laua_unustamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
 
 --Public to Private
 REVOKE ALL
-  ON FUNCTION f_laua_unustamine, f_lisa_laud, f_muuda_laud
+  ON FUNCTION f_laua_unustamine, f_lisa_laud, f_muuda_laud, f_lopeta_laud
   FROM PUBLIC ;
 
 
