@@ -1150,7 +1150,6 @@ insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar) values (1149, 6,'10.19.2016 22:54:19',4,2,2,'Naelutatud');
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar) values (1150, 6,'10.12.2017 11:48:33',1,4,9,'See oli mingi hetk tagasi katki');
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar) values (1151, 2,'10.23.2014 16:21:31',2,2,11,'See oli mingi hetk tagasi katki');
-19
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1,1);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1,2);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1,5);
@@ -5055,4 +5054,4 @@ insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (10
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1000,5);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood) values (1000,7);
 
-Process finished with exit code 0
+commit;
