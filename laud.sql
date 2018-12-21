@@ -152,6 +152,7 @@ CREATE TABLE Isik
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
   CONSTRAINT isik_e_meil_check_oige_vorm CHECK (e_meil::text ~ '^.*@.*$'::text AND e_meil::text !~ '^.*@.*@.*$'::text),
   CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
+  CONSTRAINT isik_elukoht_check_ei_koosne_ainult_numbritest CHECK (elukoht !~ '^[[:digit:]]+$'),
   CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_aeg),
   CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
   CONSTRAINT isik_isikukood_check_ei_ole_tyhi_string CHECK (isikukood!~'^[[:space:]]*$'),
