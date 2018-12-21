@@ -81,6 +81,10 @@ DROP TABLE IF EXISTS Klient CASCADE
 DROP SEQUENCE IF EXISTS seq_laua_kategooria_omamine_id;
 DROP SEQUENCE IF EXISTS seq_isik_isiku_id;
 
+CREATE SEQUENCE seq_isik_isiku_id INCREMENT 1 START 1;
+CREATE SEQUENCE seq_laua_kategooria_omamine_id INCREMENT 1 START 1;
+
+
 DROP DOMAIN IF EXISTS public.d_reg_aeg;
 CREATE DOMAIN d_reg_aeg timestamp NOT NULL DEFAULT LOCALTIMESTAMP(0);
 ALTER DOMAIN d_reg_aeg ADD CONSTRAINT reg_aeg_check_lubatud_vahemik CHECK (VALUE >= '01.01.2010  00:00:00''' AND VALUE < '01.01.2101  00:00:00''');
@@ -129,8 +133,6 @@ CREATE TABLE Isiku_seisundi_liik
   CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
-
-CREATE SEQUENCE seq_isik_isiku_id INCREMENT 1 START 1;
 
 CREATE TABLE Isik
 (
@@ -265,8 +267,6 @@ CREATE TABLE Laua_kategooria
   CONSTRAINT FK_Laua_kategooria_Laua_kategooria_tyyp FOREIGN KEY (laua_kategooria_tyyp_kood) REFERENCES Laua_kategooria_tyyp (laua_kategooria_tyyp_kood) ON DELETE No Action ON UPDATE Cascade
 )
 ;
-
-CREATE SEQUENCE seq_laua_kategooria_omamine_id INCREMENT 1 START 1;
 
 
 CREATE TABLE Laua_kategooria_omamine

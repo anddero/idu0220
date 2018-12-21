@@ -126,6 +126,9 @@ values ('EST',
         3554152,
         '03.20.2018',
         public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Nils', 'Rakvere');
+		
+		
+		
 insert into isik (isikukoodi_riik,
                   isiku_seisundi_liik_kood,
                   e_meil,
@@ -225,6 +228,8 @@ values ('USA',
         public.crypt('parool',  public.gen_salt('bf', 11)), 'Hans', 'Nils', 'Ei tea');
 
 
+		
+		
 INSERT INTO Isik (isikukoodi_riik,
                   isikukood,
                   eesnimi,
@@ -279,6 +284,19 @@ insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood, mentor)
 values (9, 2, 6, null);
 insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood, mentor)
 values (10, 2, 7, null);
+
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (1,3,'05.02.2018',1,1, 4,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (2,4,'05.02.2018',3,1, 4,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (3,4,'05.02.2018',2,1, 4,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (4,1,'05.02.2018',2,2, 2,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (5,2,'05.02.2018',3,3, 2,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (6,1,'05.03.2018',3,4, 2,'Eriline,habras.');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (7,9,'05.03.2018',4,3, 8,'Ruumi on ka rohkemate jaoks');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (8,3,'05.02.2018',1,2, 4,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (9,5,'05.02.2018',4,3, 4,'Laud nagu laud ikka');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (10,6,'05.03.2018',2,4, 2,'Eriline,habras.');
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (11,7,'05.03.2018',3,3, 8,'Ruumi on ka rohkemate jaoks');
+
 
 insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood)
 values (1, FALSE, 1);
