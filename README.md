@@ -21,7 +21,8 @@ Andmebaasid II rühmatöö failid
 - [ ] Word korda teha
   * Wordi korda tegemiseks peavad EA, kood, Access valmis olema.
   
-- [ ]  Boonuspunkti asju lisada (7 erinevat).
+- [ ]  Boonuspunkti asju lisada (5 erinevat).
+- [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 
 
 ** LAUD
