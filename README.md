@@ -23,14 +23,14 @@ Andmebaasid II rühmatöö failid
   
 - [ ]  Boonuspunkti asju lisada (3 erinevat).
 - [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
-- [ ] f_kõik_lauad tuleb ära kustutada. See ei kõlba. Ja ei tohi olla Public õiguseid.
-- [ ] isikukoodi märkide check puudub
-- [ ] elukoha check puudub, et ei tohi olla ainult numbrid
+- [X] f_kõik_lauad tuleb ära kustutada. See ei kõlba. Ja ei tohi olla Public õiguseid.
+- [X] isikukoodi märkide check puudub
+- [X] elukoha check puudub, et ei tohi olla ainult numbrid
 - [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] f_kustuta_laud peab tegema nii nagu ülesanne 11 näitab. See ül on triggerite kohta. Viitab Mustripõhisele juhendile lk 43. Selecti on vaja triggeris ainult siis, kui on 
 seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
-- [ ] f_on_juhataja funktsioonis INNER JOIN amet ON tootaja.amet_kood=amet.amet_kood on üleliigne, kuna välisvõti juba kontrollib.
-- [ ] juhatajal on liiga palju õiguseid. Juhataja rakendus ei vaja laua vaatamist või laua unustamist. On vaja on_juhataja ja lopeta_laud funktsionaalsust.
+- [X] f_on_juhataja funktsioonis INNER JOIN amet ON tootaja.amet_kood=amet.amet_kood on üleliigne, kuna välisvõti juba kontrollib.
+- [X] juhatajal on liiga palju õiguseid. Juhataja rakendus ei vaja laua vaatamist või laua unustamist. On vaja on_juhataja ja lopeta_laud funktsionaalsust.
 - [ ] kõik funktsioonid ja trigerid peab tegema, mis puudutavad juhataja funktsionaalsust. 4 kasutusjuhtu on juhatajal. Ei piisa paarist funktsioonist. lopeta_laud on puudu.
 - [ ] osad kitsendused on rohkem kui vaja. Ülesanne ei näe neid ette. Näiteks kood >= 1  või et  registreerimiskuupäev on väiksem kui praegune kuupäev. Need tuleb Wordi kah siis sisse kirjutada.
 - [ ] Wordis on mingi ül, et peab tegema pgadminis ühe pildi ja selle lahti seletama. Explain on vaja klikkida. See on Data Output kõrval. ildil mööda nooli minnakse. räsitabelit võrreldakse. Mida kasutatakse, kas hashjoin või muu join. Iga rea kohta kvaliteet vaadatakse läbi. Kahe hashjoini resultaat on see, et 2 tabelit ühendatakse kokku. Tulemuseks on tabel. Ja see ühendatakse teise tabeliga kokku, kasutades hashjoini. 

@@ -5,7 +5,6 @@ BEGIN
   SELECT INTO rslt (parool = public.crypt(p_parool, parool))
   from isik
          INNER JOIN tootaja ON isik.isik_id = tootaja.tootaja_id
-         INNER JOIN Amet ON Tootaja.amet_kood = Amet.amet_kood
   WHERE Upper(e_meil) = Upper(p_kasutajanimi)
     AND Tootaja.amet_kood = 1
     AND Isiku_seisundi_liik_kood = 1

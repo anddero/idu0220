@@ -10,6 +10,8 @@ Laud.laud_kood%TYPE, p_laud_kood_uus Laud.laud_kood%TYPE,
 p_kohtade_arv Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE) CASCADE;
 
 
+
+
 CREATE OR REPLACE FUNCTION f_lisa_laud(p_laud_kood Laud.laud_kood%TYPE, p_registreerija_id Laud.registreerija_id%TYPE,
 p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
 p_kommentaar Laud.kommentaar%TYPE)
@@ -32,9 +34,8 @@ kommentaar (parameeter p_kommentaar).
 Protseduur lisab laua.';
 --SELECT f_lisa_laud(p_laud_kood:=13, p_registreerija_id:=3, p_laua_materjal_kood:=4, p_kohtade_arv:=3, p_kommentaar:='Kena laud!');
 
-ALTER FUNCTION f_lisa_laud OWNER TO t164416;
-GRANT ALL PRIVILEGES ON FUNCTION f_lisa_laud TO t164416_juhataja;
-GRANT EXECUTE ON FUNCTION f_lisa_laud TO t164416;
+
+
 
 CREATE OR REPLACE FUNCTION f_laua_unustamine(p_laud_kood
 Laud.laud_kood%TYPE) RETURNS
@@ -52,9 +53,8 @@ Protseduur kustutab etteantud laua.';
 
 --SELECT f_lisa_laud(p_laud_kood:=13);
 
-ALTER FUNCTION f_laua_unustamine OWNER TO t164416;
-GRANT ALL PRIVILEGES ON FUNCTION f_laua_unustamine TO t164416_juhataja;
-GRANT EXECUTE ON FUNCTION f_laua_unustamine TO t164416;
+
+
 
 CREATE OR REPLACE FUNCTION f_muuda_laud (p_laud_kood_vana
 Laud.laud_kood%TYPE, p_laud_kood_uus Laud.laud_kood%TYPE,
@@ -78,19 +78,6 @@ Protseduur muudab etteantud laua.';
 --SELECT f_muuda_laud(p_laud_kood_vana:=13,p_laud_kood_uus:=12,p_kohtade_arv:=5,p_kommentaar:='Uuem ja parem laud');
 
 --Välja kutsumiseks SELECT f_laua_unustamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
-
-ALTER FUNCTION f_muuda_laud OWNER TO t164416;
-GRANT ALL PRIVILEGES ON FUNCTION f_muuda_laud TO t164416_juhataja;
-GRANT EXECUTE ON FUNCTION f_muuda_laud TO t164416;
-
-
-ALTER FUNCTION postgres_fdw_handler OWNER TO t164416;
-GRANT ALL PRIVILEGES ON FUNCTION postgres_fdw_handler TO t164416_juhataja;
-GRANT EXECUTE ON FUNCTION postgres_fdw_handler TO t164416;
-
-ALTER FUNCTION postgres_fdw_validator OWNER TO t164416;
-GRANT ALL PRIVILEGES ON FUNCTION postgres_fdw_validator TO t164416_juhataja;
-GRANT EXECUTE ON FUNCTION postgres_fdw_validator TO t164416;
 
 --Public to Private
 REVOKE ALL
