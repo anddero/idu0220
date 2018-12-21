@@ -13,6 +13,8 @@ Andmebaasid II rühmatöö failid
 - [X] Laua_materjal_kood ei ole õige. 
 - [X] Registreerimise aeg peab olema kellaajaga
 - [X] f_on_juhataja funktsioonis INNER JOIN amet ON tootaja.amet_kood=amet.amet_kood on üleliigne, kuna välisvõti juba kontrollib.
+- [X] elukoha check puudub, et ei tohi olla ainult numbrid
+
 ## KOOD:
 
 
@@ -21,7 +23,6 @@ Andmebaasid II rühmatöö failid
 - [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 - [ ] f_kõik_lauad tuleb ära kustutada. See ei kõlba. Ja ei tohi olla Public õiguseid.
 - [ ] isikukoodi märkide check puudub
-- [ ] elukoha check puudub, et ei tohi olla ainult numbrid
 - [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] f_kustuta_laud peab tegema nii nagu ülesanne 11 näitab. See ül on triggerite kohta. Viitab Mustripõhisele juhendile lk 43. Selecti on vaja triggeris ainult siis, kui on 
 seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
