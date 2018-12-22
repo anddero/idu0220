@@ -24,14 +24,15 @@ Andmebaasid II rühmatöö failid
 - [X] View-des minna soovitud ajaformaatide peale ümber
 ## KOOD:
 
-
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
-- [ ]  Boonuspunkti asju lisada (3 erinevat).
-- [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
-- [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] f_kustuta_laud peab tegema nii nagu ülesanne 11 näitab. See ül on triggerite kohta. Viitab Mustripõhisele juhendile lk 43. Selecti on vaja triggeris ainult siis, kui on 
 seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [ ] kõik funktsioonid ja trigerid peab tegema, mis puudutavad juhataja funktsionaalsust. 4 kasutusjuhtu on juhatajal. Ei piisa paarist funktsioonist. lopeta_laud on puudu.
+
+## BOONUS
+- [ ]  Boonuspunkti asju lisada (3 erinevat).
+- [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
+- [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] Boonusülesandes jälgida Exeli tabelit. string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.
 - [ ] Javat ei tohi kasutada 1000 ja 4000 genereerimiseks. Võib kasutada AINULT generate series  funktsiooni.
 
