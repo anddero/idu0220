@@ -99,7 +99,7 @@ CREATE TABLE Amet
   kirjeldus text	,
   CONSTRAINT PK_Amet_Amet_kood PRIMARY KEY (amet_kood),
   CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
-  CONSTRAINT amet_check_kood_suurem_nullist CHECK (amet_kood >= 1),
+  CONSTRAINT amet_amet_kood_check_0 CHECK (amet_kood >= 1),
   CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus!~'^[[:space:]]*$'),
   CONSTRAINT amet_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
@@ -117,7 +117,7 @@ CREATE TABLE Tootaja_seisundi_liik
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Tootaja_seisundi_liik_Tootaja_seisundi_liik_kood PRIMARY KEY (tootaja_seisundi_liik_kood),
   CONSTRAINT AK_Tootaja_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-  CONSTRAINT tootaja_seisundi_liik_check_kood_suurem_nullist CHECK (tootaja_seisundi_liik_kood >= 1),
+  CONSTRAINT tootaja_seisundi_liik_tootaja_seisundi_liik_kood_check_0 CHECK (tootaja_seisundi_liik_kood >= 1),
   CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
@@ -128,7 +128,7 @@ CREATE TABLE Isiku_seisundi_liik
   isiku_seisundi_liik_kood smallint NOT NULL,
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Isiku_seisundi_liik_Isiku_seisundi_liik_kood PRIMARY KEY (isiku_seisundi_liik_kood),
-  CONSTRAINT isiku_seisundi_liik_check_kood_suurem_nullist CHECK (isiku_seisundi_liik_kood >= 1),
+  CONSTRAINT isiku_seisundi_liik_isiku_seisundi_liik_kood_check_0 CHECK (isiku_seisundi_liik_kood >= 1),
   CONSTRAINT AK_Isiku_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
@@ -144,9 +144,9 @@ CREATE TABLE Isik
   synni_kp date NOT NULL,
   parool varchar(60)	 NOT NULL,
   reg_aeg d_reg_aeg,
-  eesnimi text,
-  perenimi text	,
-  elukoht text	,
+  eesnimi varchar(1000),
+  perenimi varchar(1000)	,
+  elukoht varchar(255)	,
   CONSTRAINT PK_Isik_isik_id PRIMARY KEY (isik_id),
   CONSTRAINT AK_Isik_e_meil UNIQUE (e_meil),
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
@@ -160,7 +160,6 @@ CREATE TABLE Isik
   CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
   CONSTRAINT isik_perenimi_check_ei_ole_tyhi_string CHECK (perenimi<>''),
   CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht!~'^[[:space:]]*$'),
-  CONSTRAINT isik_elukoht_check_ei_koosne_numbritest CHECK (elukoht::text !~ '^[[:digit:]]+$'::text),
   CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (synni_kp <= current_date),
   CONSTRAINT isik_parool_check_ei_ole_tyhi_string CHECK (parool!~'^[[:space:]]*$'),
   CONSTRAINT FK_Isik_Isiku_seisundi_liik FOREIGN KEY (isiku_seisundi_liik_kood) REFERENCES Isiku_seisundi_liik (isiku_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
@@ -203,7 +202,7 @@ CREATE TABLE Laua_materjal
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_materjal_laua_materjal_kood PRIMARY KEY (laua_materjal_kood),
   CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus),
-  CONSTRAINT laua_materjal_check_kood_suurem_nullist CHECK (laua_materjal_kood >= 1),
+  CONSTRAINT laua_materjal_laua_materjal_kood_check_0 CHECK (laua_materjal_kood >= 1),
   CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
@@ -215,7 +214,7 @@ CREATE TABLE Laua_seisundi_liik
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_seisundi_liik_Laua_seisundi_liik_kood PRIMARY KEY (laua_seisundi_liik_kood),
   CONSTRAINT AK_Laua_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-  CONSTRAINT laua_seisundi_liik_check_kood_suurem_nullist CHECK (laua_seisundi_liik_kood >= 1),
+  CONSTRAINT laua_seisundi_liik_laua_seisundi_liik_kood_check_0 CHECK (laua_seisundi_liik_kood >= 1),
   CONSTRAINT laua_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
@@ -231,7 +230,7 @@ CREATE TABLE Laud
   kohtade_arv Integer NOT NULL,
   kommentaar text	,
   CONSTRAINT PK_Laud_laud_kood PRIMARY KEY (laud_kood),
-  CONSTRAINT laud_check_kood_suurem_nullist CHECK (laud_kood >= 1),
+  CONSTRAINT laud_laud_kood_check_0 CHECK (laud_kood >= 1),
   CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
   CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
   CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
@@ -252,7 +251,7 @@ CREATE TABLE Laua_kategooria_tyyp
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Laua_kategooria_tyyp_Laua_kategooria_tyyp_kood PRIMARY KEY (laua_kategooria_tyyp_kood),
   CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus),
-  CONSTRAINT laua_kategooria_tyyp_check_kood_suurem_nullist CHECK (laua_kategooria_tyyp_kood >= 1),
+  CONSTRAINT laua_kategooria_tyyp_laua_kategooria_tyyp_kood_check_0 CHECK (laua_kategooria_tyyp_kood >= 1),
   CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;
@@ -265,7 +264,7 @@ CREATE TABLE Laua_kategooria
   laua_kategooria_tyyp_kood smallint NOT NULL, --omadussona kood (omadussonad, liiklus, vaade)
   CONSTRAINT PK_Laua_kategooria_Laua_kategooria_kood PRIMARY KEY (laua_kategooria_kood),
   CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
-  CONSTRAINT laua_kategooria_check_kood_suurem_nullist CHECK (laua_kategooria_kood >= 1),
+  CONSTRAINT laua_kategooria_laua_kategooria_kood_check_0 CHECK (laua_kategooria_kood >= 1),
   CONSTRAINT laua_kategooria_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$'),
   CONSTRAINT FK_Laua_kategooria_Laua_kategooria_tyyp FOREIGN KEY (laua_kategooria_tyyp_kood) REFERENCES Laua_kategooria_tyyp (laua_kategooria_tyyp_kood) ON DELETE No Action ON UPDATE Cascade
 )
@@ -293,7 +292,7 @@ CREATE TABLE Kliendi_seisundi_liik
   nimetus varchar(60)	 NOT NULL,
   CONSTRAINT PK_Kliendi_seisundi_liik_Kliendi_seisundi_liik_kood PRIMARY KEY (kliendi_seisundi_liik_kood),
   CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-  CONSTRAINT kliendi_seisundi_liik_check_kood_suurem_nullist CHECK (kliendi_seisundi_liik_kood >= 1),
+  CONSTRAINT kliendi_seisundi_liik_kliendi_seisundi_liik_kood_check_0 CHECK (kliendi_seisundi_liik_kood >= 1),
   CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
 )
 ;

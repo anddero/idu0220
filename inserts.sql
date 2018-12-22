@@ -230,23 +230,8 @@ values ('USA',
 
 		
 		
-INSERT INTO Isik (isikukoodi_riik,
-                  isikukood,
-                  eesnimi,
-                  perenimi,
-                  e_meil,
-                  synni_kp,
-                  isiku_seisundi_liik_kood,
-                  parool,
-                  elukoht)
-
-SELECT riik_kood,
-       isikukood,
-       eesnimi,
-       perenimi,
-       e_mail,
-       synni_kp :: date,
-       isiku_seisundi_liik_kood :: smallint,
+INSERT INTO Isik (isikukoodi_riik, isikukood, eesnimi, perenimi, e_meil, synni_kp, isiku_seisundi_liik_kood, parool, elukoht)
+SELECT riik_kood,isikukood,eesnimi, perenimi, e_mail, synni_kp :: date,isiku_seisundi_liik_kood :: smallint,
        parool,
        elukoht
 FROM (SELECT isik->>'riik'                                          AS riik_kood,
