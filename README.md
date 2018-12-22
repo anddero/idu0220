@@ -22,15 +22,16 @@ Andmebaasid II rühmatöö failid
 - [X] f_kõik_lauad tuleb ära kustutada. See ei kõlba. Ja ei tohi olla Public õiguseid.
 - [X] isikukoodi märkide check puudub
 - [X] View-des minna soovitud ajaformaatide peale ümber
+- [X] f_kustuta_laud peab tegema nii nagu ülesanne 11 näitab. See ül on triggerite kohta. Viitab Mustripõhisele juhendile lk 43. Selecti on vaja triggeris ainult siis, kui on 
+seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
+- [X] kõik funktsioonid ja trigerid peab tegema, mis puudutavad juhataja funktsionaalsust. 4 kasutusjuhtu on juhatajal. Ei piisa paarist funktsioonist. lopeta_laud on puudu.
+- [X] Ei tohi kasutada varchar(1000) vaid text tüüpi.
 ## KOOD:
 
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
-- [ ] f_kustuta_laud peab tegema nii nagu ülesanne 11 näitab. See ül on triggerite kohta. Viitab Mustripõhisele juhendile lk 43. Selecti on vaja triggeris ainult siis, kui on 
-seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
-- [ ] kõik funktsioonid ja trigerid peab tegema, mis puudutavad juhataja funktsionaalsust. 4 kasutusjuhtu on juhatajal. Ei piisa paarist funktsioonist. lopeta_laud on puudu.
 
 ## BOONUS
-- [ ]  Boonuspunkti asju lisada (3 erinevat).
+- [ ]  Boonuspunkti asju lisada (7 erinevat).
 - [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 - [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] Boonusülesandes jälgida Exeli tabelit. string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.

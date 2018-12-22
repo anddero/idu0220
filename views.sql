@@ -70,15 +70,15 @@ GRANT ALL ON TABLE public.laudade_koondaruanne TO t164416;
 GRANT SELECT ON TABLE public.laudade_koondaruanne TO t164416_juhataja;
 
 
-DROP VIEW IF EXISTS laudade_seisundid;
+--DROP VIEW IF EXISTS laudade_seisundid; -- Ei sobinud õpsile
 
-CREATE VIEW public.laudade_seisundid WITH (security_barrier) AS
-SELECT UPPER(laua_seisundi_liik.nimetus) AS laua_seisund, string_agg(laud.laud_kood::text, ', ') AS laudade_koodid 
-FROM laud, laua_seisundi_liik WHERE laud.laua_seisundi_liik_kood = laua_seisundi_liik.laua_seisundi_liik_kood
-GROUP BY laua_seisundi_liik.nimetus;
+--CREATE VIEW public.laudade_seisundid WITH (security_barrier) AS
+--SELECT UPPER(laua_seisundi_liik.nimetus) AS laua_seisund, string_agg(laud.laud_kood::text, ', ') AS laudade_koodid 
+--FROM laud, laua_seisundi_liik WHERE laud.laua_seisundi_liik_kood = laua_seisundi_liik.laua_seisundi_liik_kood
+--GROUP BY laua_seisundi_liik.nimetus;
 
-COMMENT ON VIEW laudade_seisundid IS 'See vaade näitab, millised lauad on hetkel mitteaktiivsed, ootel, aktiivsed või lõpetatud.';
+--COMMENT ON VIEW laudade_seisundid IS 'See vaade näitab, millised lauad on hetkel mitteaktiivsed, ootel, aktiivsed või lõpetatud.';
 
-ALTER TABLE public.laudade_seisundid OWNER TO t164416;
-GRANT ALL ON TABLE public.laudade_seisundid TO t164416;
-GRANT SELECT ON TABLE public.laudade_seisundid TO t164416_juhataja;
+--ALTER TABLE public.laudade_seisundid OWNER TO t164416;
+--GRANT ALL ON TABLE public.laudade_seisundid TO t164416;
+--GRANT SELECT ON TABLE public.laudade_seisundid TO t164416_juhataja;
