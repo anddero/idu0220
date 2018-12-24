@@ -27,7 +27,7 @@ SET search_path=public, pg_temp;
 COMMENT ON FUNCTION f_lisa_laud(p_laud_kood Laud.laud_kood%TYPE, p_registreerija_id Laud.registreerija_id%TYPE,
 p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
 p_kommentaar Laud.kommentaar%TYPE) IS
-'OP1 Protseduuri oodatavad
+'OP1 Protsess, mis lisab laua. Protseduuri oodatavad
 sisendid on laua identifikaator (parameeter p_laud_kood),
 laua registreeija identifikaator (parameeter p_registreerija_id),
 laua materjali identifikaator (parameeter p_laua_materjal_kood),
@@ -49,8 +49,8 @@ $$ LANGUAGE sql SECURITY DEFINER STRICT
 SET search_path = public, pg_temp;
 
 COMMENT ON FUNCTION f_unusta_laud(p_laud_kood
-Laud.laud_kood%TYPE) IS ' OP2 Protseduuri oodatavad
-sisendid on laua identifikaator (parameeter p_laud_kood).
+Laud.laud_kood%TYPE) IS ' OP2 Protsess, mis unustab laua. Protseduuri 
+sisend on laua identifikaator (parameeter p_laud_kood).
 Protseduur kustutab etteantud laua.';
 
 --SELECT f_lisa_laud(p_laud_kood:=13);
@@ -71,7 +71,7 @@ SET search_path=public, pg_temp;
 COMMENT ON FUNCTION f_muuda_laud (p_laud_kood_vana
 Laud.laud_kood%TYPE, p_laud_kood_uus Laud.laud_kood%TYPE, p_kohtade_arv
 Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE) IS
-'OP3 Protseduuri oodatavad
+'OP6 Protsess, mis muudab laua andmeid. Protseduuri oodatavad
 sisendid on laua vana identifikaator (parameeter p_laud_kood_vana),
 laua uus identifikaator (parameeter p_laud_kood_uus),
 kohtade arv (parameeter p_kohtade_arv) ja
@@ -93,7 +93,7 @@ $$ LANGUAGE sql SECURITY DEFINER STRICT
 SET search_path = public, pg_temp;
 
 COMMENT ON FUNCTION f_lopeta_laud(p_laud_kood Laud.laud_kood%TYPE) IS
-'OP4 Protsess, millega lõpetatakse laud. Sisendid on laua identifikaator (parameeter p_laud_kood).';
+'OP5 Protsess, millega lõpetatakse laud. Protseduuri sisend on laua identifikaator (parameeter p_laud_kood).';
 
 ALTER FUNCTION f_lopeta_laud OWNER TO t164416;
 GRANT ALL PRIVILEGES ON FUNCTION f_lopeta_laud TO t164416_juhataja;
@@ -115,7 +115,7 @@ AS $BODY$
 $BODY$;
 
 COMMENT ON FUNCTION public.f_aktiveeri_laud
-    IS 'OP3 Protsess, millega aktiveeritakse laud. Sisend on laua identifikaator (parameeter p_laud_kood). Eelduseks on see, et laud on seisundis "Ootel" või "Mitteaktiivne".';
+    IS 'OP3 Protsess, millega aktiveeritakse laud. Protseduuri sisend on laua identifikaator (parameeter p_laud_kood). Eelduseks on see, et laud on seisundis "Ootel" või "Mitteaktiivne".';
 
 
 

@@ -100,8 +100,10 @@ CREATE TABLE Amet
   CONSTRAINT PK_Amet_Amet_kood PRIMARY KEY (amet_kood),
   CONSTRAINT AK_Amet_Nimetus UNIQUE (nimetus),
   CONSTRAINT amet_amet_kood_check_0 CHECK (amet_kood >= 1),
-  CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus!~'^[[:space:]]*$'),
-  CONSTRAINT amet_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT amet_kirjeldus_check_ei_koosne_tyhikutest CHECK (kirjeldus!~'^[[:space:]]*$'),
+  CONSTRAINT amet_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT amet_kirjeldus_check_ei_ole_tyhi_string CHECK (kirjeldus<>''),
+  CONSTRAINT amet_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 WITH (
     OIDS = FALSE,
@@ -118,7 +120,8 @@ CREATE TABLE Tootaja_seisundi_liik
   CONSTRAINT PK_Tootaja_seisundi_liik_Tootaja_seisundi_liik_kood PRIMARY KEY (tootaja_seisundi_liik_kood),
   CONSTRAINT AK_Tootaja_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT tootaja_seisundi_liik_tootaja_seisundi_liik_kood_check_0 CHECK (tootaja_seisundi_liik_kood >= 1),
-  CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT tootaja_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
@@ -130,7 +133,8 @@ CREATE TABLE Isiku_seisundi_liik
   CONSTRAINT PK_Isiku_seisundi_liik_Isiku_seisundi_liik_kood PRIMARY KEY (isiku_seisundi_liik_kood),
   CONSTRAINT isiku_seisundi_liik_isiku_seisundi_liik_kood_check_0 CHECK (isiku_seisundi_liik_kood >= 1),
   CONSTRAINT AK_Isiku_Seisundi_Liik_Nimetus UNIQUE (nimetus),
-  CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT isiku_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
@@ -152,15 +156,19 @@ CREATE TABLE Isik
   CONSTRAINT AK_Isikukood_riik UNIQUE (isikukood,isikukoodi_riik),
   CONSTRAINT isik_e_meil_check_oige_vorm CHECK (e_meil::text ~ '^.*@.*$'::text AND e_meil::text !~ '^.*@.*@.*$'::text),
   CONSTRAINT isik_synni_kp_check_lubatud_vahemik CHECK (synni_kp >= '01.01.1900' AND synni_kp <= '12.31.2100'),
-  CONSTRAINT isik_elukoht_check_ei_koosne_ainult_numbritest CHECK (elukoht !~ '^[[:digit:]]+$'),
   CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_isiku_registreerimise_ajast CHECK (synni_kp <= reg_aeg),
-  CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
-  CONSTRAINT isik_isikukood_check_ei_ole_tyhi_string CHECK (isikukood!~'^[[:space:]]*$'),
+  CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (synni_kp <= current_date),
+  CONSTRAINT isik_isikukood_check_ei_koosne_tyhikutest CHECK (isikukood!~'^[[:space:]]*$'),
+  CONSTRAINT isik_isikukood_check_ei_ole_tyhi_string CHECK (isikukood<>''),
   CONSTRAINT isik_isikukood_check_lubatud_symbolid CHECK (isikukood::text ~* '^[a-z0-9 /-]+$'::text),
+  CONSTRAINT isik_eesnimi_check_eesnimi_voi_perenimi_registreeritud CHECK (perenimi IS NOT NULL OR eesnimi IS NOT NULL),
   CONSTRAINT isik_eesnimi_check_ei_ole_tyhi_string CHECK (eesnimi<>''),
   CONSTRAINT isik_perenimi_check_ei_ole_tyhi_string CHECK (perenimi<>''),
-  CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht!~'^[[:space:]]*$'),
-  CONSTRAINT isik_synni_kp_check_v2iksem_v6rdne_kui_hetke_kuupaev CHECK (synni_kp <= current_date),
+  CONSTRAINT isik_eesnimi_check_ei_koosne_tyhikutest CHECK (eesnimi!~'^[[:space:]]*$'),
+  CONSTRAINT isik_perenimi_check_ei_koosne_tyhikutest CHECK (perenimi!~'^[[:space:]]*$'),
+  CONSTRAINT isik_elukoht_check_ei_koosne_tyhikutest CHECK (elukoht!~'^[[:space:]]*$'),
+  CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht<>''),
+  CONSTRAINT isik_elukoht_check_ei_koosne_ainult_numbritest CHECK (elukoht !~ '^[[:digit:]]+$'),
   CONSTRAINT isik_parool_check_ei_ole_tyhi_string CHECK (parool!~'^[[:space:]]*$'),
   CONSTRAINT FK_Isik_Isiku_seisundi_liik FOREIGN KEY (isiku_seisundi_liik_kood) REFERENCES Isiku_seisundi_liik (isiku_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Isik_Riik FOREIGN KEY (isikukoodi_riik) REFERENCES Riik (riik_kood) ON DELETE No Action ON UPDATE Cascade
@@ -203,7 +211,8 @@ CREATE TABLE Laua_materjal
   CONSTRAINT PK_Laua_materjal_laua_materjal_kood PRIMARY KEY (laua_materjal_kood),
   CONSTRAINT AK_Laua_Materjal_Nimetus UNIQUE (nimetus),
   CONSTRAINT laua_materjal_laua_materjal_kood_check_0 CHECK (laua_materjal_kood >= 1),
-  CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT laua_materjal_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT laua_materjal_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
@@ -215,7 +224,8 @@ CREATE TABLE Laua_seisundi_liik
   CONSTRAINT PK_Laua_seisundi_liik_Laua_seisundi_liik_kood PRIMARY KEY (laua_seisundi_liik_kood),
   CONSTRAINT AK_Laua_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT laua_seisundi_liik_laua_seisundi_liik_kood_check_0 CHECK (laua_seisundi_liik_kood >= 1),
-  CONSTRAINT laua_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT laua_seisundi_liik_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT laua_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
@@ -231,8 +241,9 @@ CREATE TABLE Laud
   kommentaar text	,
   CONSTRAINT PK_Laud_laud_kood PRIMARY KEY (laud_kood),
   CONSTRAINT laud_laud_kood_check_0 CHECK (laud_kood >= 1),
-  CONSTRAINT laud_kohtade_arv_check_suurem_yhest CHECK (kohtade_arv > 1),
-  CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar!~'^[[:space:]]*$'),
+  CONSTRAINT laud_kohtade_arv_check_vahemik CHECK (kohtade_arv >= 1 AND kohtade_arv <= 200),
+  CONSTRAINT laud_kommentaar_check_ei_koosne_tyhikutest CHECK (kommentaar!~'^[[:space:]]*$'),
+  CONSTRAINT laud_kommentaar_check_ei_ole_tyhi_string CHECK (kommentaar<>''),
   CONSTRAINT FK_Laud_Laua_materjal FOREIGN KEY (laua_materjal_kood) REFERENCES Laua_materjal (laua_materjal_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Laua_seisundi_liik FOREIGN KEY (laua_seisundi_liik_kood) REFERENCES Laua_seisundi_liik (laua_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Laud_Tootaja FOREIGN KEY (registreerija_id) REFERENCES Tootaja (tootaja_id) ON DELETE No Action ON UPDATE No Action
@@ -252,7 +263,8 @@ CREATE TABLE Laua_kategooria_tyyp
   CONSTRAINT PK_Laua_kategooria_tyyp_Laua_kategooria_tyyp_kood PRIMARY KEY (laua_kategooria_tyyp_kood),
   CONSTRAINT AK_Laua_Kategooria_Tyyp_Nimetus UNIQUE (nimetus),
   CONSTRAINT laua_kategooria_tyyp_laua_kategooria_tyyp_kood_check_0 CHECK (laua_kategooria_tyyp_kood >= 1),
-  CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT laua_kategooria_tyyp_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
@@ -265,7 +277,8 @@ CREATE TABLE Laua_kategooria
   CONSTRAINT PK_Laua_kategooria_Laua_kategooria_kood PRIMARY KEY (laua_kategooria_kood),
   CONSTRAINT AK_Nimetus_Laua_kategooria_tyyp UNIQUE (laua_kategooria_tyyp_kood,nimetus),
   CONSTRAINT laua_kategooria_laua_kategooria_kood_check_0 CHECK (laua_kategooria_kood >= 1),
-  CONSTRAINT laua_kategooria_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT laua_kategooria_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT laua_kategooria_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>''),
   CONSTRAINT FK_Laua_kategooria_Laua_kategooria_tyyp FOREIGN KEY (laua_kategooria_tyyp_kood) REFERENCES Laua_kategooria_tyyp (laua_kategooria_tyyp_kood) ON DELETE No Action ON UPDATE Cascade
 )
 ;
@@ -293,7 +306,8 @@ CREATE TABLE Kliendi_seisundi_liik
   CONSTRAINT PK_Kliendi_seisundi_liik_Kliendi_seisundi_liik_kood PRIMARY KEY (kliendi_seisundi_liik_kood),
   CONSTRAINT AK_Kliendi_Seisundi_Liik_Nimetus UNIQUE (nimetus),
   CONSTRAINT kliendi_seisundi_liik_kliendi_seisundi_liik_kood_check_0 CHECK (kliendi_seisundi_liik_kood >= 1),
-  CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT kliendi_seisundi_liik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
