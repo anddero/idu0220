@@ -98,7 +98,7 @@ values (6, 'Vähe', 2);
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)
 values (7, 'Ilus', 3);
 insert into laua_kategooria (laua_kategooria_kood, nimetus, laua_kategooria_tyyp_kood)
-values (8, 'kole', 3);
+values (8, 'Kole', 3);
 
 insert into laua_materjal (laua_materjal_kood, nimetus)
 values (1, 'Puit');
@@ -319,6 +319,10 @@ insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
 values (5, 4);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
 values (6, 2);
+insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
+values (6, 4);
+insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
+values (6, 7);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
 values (7, 2);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)

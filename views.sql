@@ -52,6 +52,15 @@ GRANT ALL ON TABLE public.koik_lauad_jsonis TO t164416;
 GRANT SELECT ON TABLE public.koik_lauad_jsonis TO t164416_juhataja;
 
 
+--SELECT laud_kood, CONCAT(laua_kategooria_tyyp.nimetus,' : ',laua_kategooria.nimetus)
+--FROM laua_kategooria_omamine, laua_kategooria, laua_kategooria_tyyp
+--WHERE laua_kategooria_omamine.laua_kategooria_kood=laua_kategooria.laua_kategooria_kood
+--AND laua_kategooria_tyyp.laua_kategooria_tyyp_kood=laua_kategooria.laua_kategooria_tyyp_kood;
+
+
+
+
+
 DROP VIEW IF EXISTS laudade_koondaruanne;
 
 CREATE VIEW public.laudade_koondaruanne WITH (security_barrier) AS

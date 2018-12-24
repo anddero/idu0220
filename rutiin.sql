@@ -102,11 +102,46 @@ GRANT EXECUTE ON FUNCTION f_lopeta_laud TO t164416;
 
 
 
+
+
+CREATE OR REPLACE FUNCTION public.f_aktiveeri_laud(p_laud_kood Laud.laud_kood%TYPE)
+    RETURNS void
+    LANGUAGE sql
+    COST 100
+    VOLATILE SECURITY DEFINER 
+    SET search_path= public, pg_temp
+AS $BODY$
+ UPDATE Laud SET laua_seisundi_liik_kood = 2 WHERE ((laua_seisundi_liik_kood = 1) OR (laua_seisundi_liik_kood = 3)) AND (laud_kood = p_laud_kood); 
+$BODY$;
+
+COMMENT ON FUNCTION public.f_aktiveeri_laud
+    IS 'OP3 Protsess, millega aktiveeritakse laud. Sisend on laua identifikaator (parameeter p_laud_kood). Eelduseks on see, et laud on seisundis "Ootel" või "Mitteaktiivne".';
+
+
+
+CREATE OR REPLACE FUNCTION public.f_muuda_laud_mitteaktiivseks(p_laud_kood Laud.laud_kood%TYPE)
+    RETURNS void
+    LANGUAGE sql
+    COST 100
+    VOLATILE SECURITY DEFINER 
+    SET search_path= public, pg_temp
+AS $BODY$
+ UPDATE Laud SET laua_seisundi_liik_kood = 3 
+ WHERE laud_kood = p_laud_kood AND laua_seisundi_liik_kood = 2;
+$BODY$;
+
+
+COMMENT ON FUNCTION public.f_muuda_laud_mitteaktiivseks
+    IS 'OP4 Protsess, millega muudetakse laud mitteaktiivseks. Sisend on laua identifikaator (parameeter p_laud_kood). Eelduseks on see, et laud on seisundis "Aktiivne".';
+
+
+
+
 --Välja kutsumiseks SELECT f_laua_unustamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
 
 --Public to Private
 REVOKE ALL
-  ON FUNCTION f_unusta_laud, f_lisa_laud, f_muuda_laud, f_lopeta_laud
+  ON FUNCTION f_unusta_laud, f_lisa_laud, f_muuda_laud, f_lopeta_laud, f_muuda_laud_mitteaktiivseks, f_aktiveeri_laud
   FROM PUBLIC ;
 
 

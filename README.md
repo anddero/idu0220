@@ -31,7 +31,7 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
 
 ## BOONUS
-- [ ]  Boonuspunkti asju lisada (7 erinevat).
+- [ ]  Boonuspunkti asju lisada (5 erinevat).
 - [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 - [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] Boonusülesandes jälgida Exeli tabelit. string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.
@@ -45,7 +45,7 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [ ] EA korda teha
 
 ## WORD:
-- [ ] Wordis on mingi ül, et peab tegema pgadminis ühe pildi ja selle lahti seletama. Explain on vaja klikkida. See on Data Output kõrval. ildil mööda nooli minnakse. räsitabelit võrreldakse. Mida kasutatakse, kas hashjoin või muu join. Iga rea kohta kvaliteet vaadatakse läbi. Kahe hashjoini resultaat on see, et 2 tabelit ühendatakse kokku. Tulemuseks on tabel. Ja see ühendatakse teise tabeliga kokku, kasutades hashjoini.
+- [ ] Wordis on mingi ül, et peab tegema pgadminis ühe pildi ja selle lahti seletama. Explain on vaja klikkida. See on Data Output kõrval. Pildil mööda nooli minnakse. räsitabelit võrreldakse. Mida kasutatakse, kas hashjoin või muu join. Iga rea kohta kvaliteet vaadatakse läbi. Kahe hashjoini resultaat on see, et 2 tabelit ühendatakse kokku. Tulemuseks on tabel. Ja see ühendatakse teise tabeliga kokku, kasutades hashjoini.
 - [ ] osad kitsendused on rohkem kui vaja. Ülesanne ei näe neid ette. Näiteks kood >= 1  või et  registreerimiskuupäev on väiksem kui praegune kuupäev. Need tuleb Wordi kah siis sisse kirjutada.
 - [ ] Word korda teha
   * Wordi korda tegemiseks peavad EA, kood, Access valmis olema.
