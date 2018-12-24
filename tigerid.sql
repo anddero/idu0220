@@ -7,7 +7,7 @@ AS $BODY$
 
 BEGIN
 	RAISE EXCEPTION 'Ainult ootel olevaid laudu on võimalik kustutada!';
-	RETURN OLD;
+	RETURN NULL; -- ennem oli RETURN OLD
 END;
 
 $BODY$;
@@ -54,7 +54,8 @@ BEGIN
 SELECT Coalesce(Bool_or(TRUE), FALSE) INTO laud_kuulub_kategooriasse WHERE EXISTS (SELECT laua_kategooria_kood FROM Laua_kategooria_omamine 
 WHERE laud_kood=OLD.laud_kood FOR UPDATE) ; 
 IF NOT (laud_kuulub_kategooriasse IS TRUE) THEN 
-RAISE EXCEPTION 'Laua aktiivseks muutmine ei ole võimalik, kui see laud pole seotud vähemalt ühe laua kategooriaga!'; 
+RAISE EXCEPTION 'Laua aktiivseks muutmine ei ole võimalik, kui see laud pole seotud vähemalt ühe laua kategooriaga!';
+RETURN NULL;
 ELSE RETURN NEW; 
 END IF; 
 END; 
@@ -75,7 +76,7 @@ CREATE TRIGGER trig_laud_kustuta_laud
     BEFORE DELETE
     ON public.Laud
     FOR EACH ROW
-    WHEN ((old.laua_seisundi_liik_kood <> 1))
+    WHEN ((old.laua_seisundi_liik_kood IS DISTINCT FROM 1))
     EXECUTE PROCEDURE public.f_kustuta_laud();
 
 

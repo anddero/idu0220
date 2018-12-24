@@ -28,7 +28,8 @@ CREATE TABLE Riik
   CONSTRAINT PK_Riik_Riik_kood PRIMARY KEY (riik_kood),
   CONSTRAINT AK_Riik_Nimetus UNIQUE (nimetus),
   CONSTRAINT riik_riik_kood_check_on_kolm_suurtahte CHECK (riik_kood~'^[A-Z]{3}$'),
-  CONSTRAINT riik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus!~'^[[:space:]]*$')
+  CONSTRAINT riik_nimetus_check_ei_koosne_tyhikutest CHECK (nimetus!~'^[[:space:]]*$'),
+  CONSTRAINT riik_nimetus_check_ei_ole_tyhi_string CHECK (nimetus<>'')
 )
 ;
 
@@ -169,7 +170,7 @@ CREATE TABLE Isik
   CONSTRAINT isik_elukoht_check_ei_koosne_tyhikutest CHECK (elukoht!~'^[[:space:]]*$'),
   CONSTRAINT isik_elukoht_check_ei_ole_tyhi_string CHECK (elukoht<>''),
   CONSTRAINT isik_elukoht_check_ei_koosne_ainult_numbritest CHECK (elukoht !~ '^[[:digit:]]+$'),
-  CONSTRAINT isik_parool_check_ei_ole_tyhi_string CHECK (parool!~'^[[:space:]]*$'),
+  CONSTRAINT isik_parool_check_ei_koosne_tyhikutest CHECK (parool!~'^[[:space:]]*$'),
   CONSTRAINT FK_Isik_Isiku_seisundi_liik FOREIGN KEY (isiku_seisundi_liik_kood) REFERENCES Isiku_seisundi_liik (isiku_seisundi_liik_kood) ON DELETE No Action ON UPDATE Cascade,
   CONSTRAINT FK_Isik_Riik FOREIGN KEY (isikukoodi_riik) REFERENCES Riik (riik_kood) ON DELETE No Action ON UPDATE Cascade
 )
