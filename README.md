@@ -28,6 +28,8 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [X] Ei tohi kasutada varchar(1000) vaid text tüüpi.
 - [X] kirjeldus ei tohi olla tyhi string CHECK.
 - [X] osad kitsendused on rohkem kui vaja. Ülesanne ei näe neid ette. Näiteks kood >= 1  või et  registreerimiskuupäev on väiksem kui praegune kuupäev. Need tuleb Wordi kah siis sisse kirjutada.
+- [X] Enterprise Archidektis on võimalik SQL faile ODCB abil EA-sse sisse lugeda. Enterprise Architect Reverse Engineering. Et ei pea käsitsi EA-d korda tegema.
+- [X] EA korda teha
 ## KOOD:
 
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
@@ -41,10 +43,6 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 
 ## ACCESS 
 - [ ] Kasutajaliides korda teha
-
-## ENTEPRISE ARHITECT:
-- [ ] Enterprise Archidektis on võimalik SQL faile ODCB abil EA-sse sisse lugeda. Enterprise Architect Reverse Engineering. Et ei pea käsitsi EA-d korda tegema.
-- [ ] EA korda teha
 
 ## WORD:
 - [ ] Wordis on mingi ül, et peab tegema pgadminis ühe pildi ja selle lahti seletama. Explain on vaja klikkida. See on Data Output kõrval. Pildil mööda nooli minnakse. räsitabelit võrreldakse. Mida kasutatakse, kas hashjoin või muu join. Iga rea kohta kvaliteet vaadatakse läbi. Kahe hashjoini resultaat on see, et 2 tabelit ühendatakse kokku. Tulemuseks on tabel. Ja see ühendatakse teise tabeliga kokku, kasutades hashjoini.
