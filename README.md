@@ -35,7 +35,7 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
 
 ## BOONUS
-- [ ]  Boonuspunkti asju lisada (5 erinevat).
+- [ ]  Boonuspunkti asju lisada (4 erinevat).
 - [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 - [ ] JSONi boonusül peab olema 2-tasemeline
 - [ ] Boonusülesandes jälgida Exeli tabelit. string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.

@@ -52,14 +52,6 @@ GRANT ALL ON TABLE public.koik_lauad_jsonis TO t164416;
 GRANT SELECT ON TABLE public.koik_lauad_jsonis TO t164416_juhataja;
 
 
---SELECT laud_kood, CONCAT(laua_kategooria_tyyp.nimetus,' : ',laua_kategooria.nimetus)
---FROM laua_kategooria_omamine, laua_kategooria, laua_kategooria_tyyp
---WHERE laua_kategooria_omamine.laua_kategooria_kood=laua_kategooria.laua_kategooria_kood
---AND laua_kategooria_tyyp.laua_kategooria_tyyp_kood=laua_kategooria.laua_kategooria_tyyp_kood;
-
-
-
-
 
 DROP VIEW IF EXISTS laudade_koondaruanne;
 
@@ -79,15 +71,21 @@ GRANT ALL ON TABLE public.laudade_koondaruanne TO t164416;
 GRANT SELECT ON TABLE public.laudade_koondaruanne TO t164416_juhataja;
 
 
---DROP VIEW IF EXISTS laudade_seisundid; -- Ei sobinud õpsile
 
---CREATE VIEW public.laudade_seisundid WITH (security_barrier) AS
---SELECT UPPER(laua_seisundi_liik.nimetus) AS laua_seisund, string_agg(laud.laud_kood::text, ', ') AS laudade_koodid 
---FROM laud, laua_seisundi_liik WHERE laud.laua_seisundi_liik_kood = laua_seisundi_liik.laua_seisundi_liik_kood
---GROUP BY laua_seisundi_liik.nimetus;
 
---COMMENT ON VIEW laudade_seisundid IS 'See vaade näitab, millised lauad on hetkel mitteaktiivsed, ootel, aktiivsed või lõpetatud.';
+DROP VIEW IF EXISTS laudade_kategooriad;
 
---ALTER TABLE public.laudade_seisundid OWNER TO t164416;
---GRANT ALL ON TABLE public.laudade_seisundid TO t164416;
---GRANT SELECT ON TABLE public.laudade_seisundid TO t164416_juhataja;
+CREATE VIEW public.laudade_kategooriad WITH (security_barrier) AS
+SELECT Laud.laud_kood, string_agg((((Laua_kategooria_tyyp.nimetus || ': ') || LOWER(Laua_kategooria.nimetus))), '; ') 
+AS laua_kategooriad 
+FROM (((Laud LEFT JOIN Laua_kategooria_omamine ON ((Laud.laud_kood = Laua_kategooria_omamine.laud_kood))) 
+LEFT JOIN Laua_kategooria ON ((Laua_kategooria_omamine.laua_kategooria_kood = Laua_kategooria.laua_kategooria_kood))) 
+LEFT JOIN Laua_kategooria_tyyp ON ((Laua_kategooria_tyyp.laua_kategooria_tyyp_kood = Laua_kategooria.laua_kategooria_tyyp_kood))) 
+GROUP BY Laud.laud_kood ORDER BY Laud.laud_kood ASC;
+
+COMMENT ON VIEW laudade_kategooriad IS 'See vaade näitab, millistesse kategooriatesse mingi laud kuulub.';
+
+ALTER TABLE public.laudade_kategooriad OWNER TO t164416;
+GRANT ALL ON TABLE public.laudade_kategooriad TO t164416;
+GRANT SELECT ON TABLE public.laudade_kategooriad TO t164416_juhataja;
+

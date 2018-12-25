@@ -6,8 +6,8 @@ CREATE OR REPLACE FUNCTION public.f_kustuta_laud()
 AS $BODY$
 
 BEGIN
-	RAISE EXCEPTION 'Ainult ootel olevaid laudu on võimalik kustutada!';
-	RETURN NULL; -- ennem oli RETURN OLD
+	RAISE EXCEPTION 'Laua kustutamine ei ole võimalik, kui see laud pole ootel!';
+	RETURN NULL;
 END;
 
 $BODY$;
@@ -16,7 +16,7 @@ ALTER FUNCTION public.f_kustuta_laud()
 GRANT EXECUTE ON FUNCTION public.f_kustuta_laud() TO t164416;
 REVOKE ALL ON FUNCTION public.f_kustuta_laud() FROM PUBLIC;
 COMMENT ON FUNCTION public.f_kustuta_laud()
-    IS 'See trigger määrab ära selle, et kustutada saab ainult ootel olevaid laudu ning olemas peab vähemalt üks laua kategooria.';
+    IS 'See trigger kontrollib, kas on võimalik korrektselt lauda kustutada.';
 
 
 
