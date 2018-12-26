@@ -30,15 +30,16 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [X] osad kitsendused on rohkem kui vaja. Ülesanne ei näe neid ette. Näiteks kood >= 1  või et  registreerimiskuupäev on väiksem kui praegune kuupäev. Need tuleb Wordi kah siis sisse kirjutada.
 - [X] Enterprise Archidektis on võimalik SQL faile ODCB abil EA-sse sisse lugeda. Enterprise Architect Reverse Engineering. Et ei pea käsitsi EA-d korda tegema.
 - [X] EA korda teha
+- [X] JSONi boonusül peab olema 2-tasemeline
+- [X] string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.
 ## KOOD:
 
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
 
 ## BOONUS
-- [ ]  Boonuspunkti asju lisada (4 erinevat).
+- [ ]  Boonuspunkti asju lisada (3 erinevat).
 - [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
-- [ ] JSONi boonusül peab olema 2-tasemeline
-- [ ] Boonusülesandes jälgida Exeli tabelit. string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.
+- [ ] Boonusülesandes jälgida Exeli tabelit.
 - [ ] Javat ei tohi kasutada 1000 ja 4000 genereerimiseks. Võib kasutada AINULT generate series  funktsiooni.
 
 ## ACCESS 

@@ -40,12 +40,17 @@ GRANT SELECT ON TABLE public.koik_lauad TO t164416_juhataja;
 DROP VIEW IF EXISTS koik_lauad_jsonis;
 
 CREATE VIEW public.koik_lauad_jsonis WITH (security_barrier) AS
-SELECT to_jsonb(t) FROM (SELECT laud_kood AS laua_kood, UPPER(Laua_seisundi_liik.nimetus) AS laua_seisund, Laua_materjal.nimetus AS laua_materjal, kohtade_arv,Laud.reg_aeg,kommentaar, CONCAT(eesnimi,' ',perenimi) AS registreerija_nimi 
-FROM Laud, Laua_seisundi_liik,Isik, Laua_materjal
-WHERE Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood 
-AND Laud.registreerija_id=Isik.isik_id
-AND Laud.laua_materjal_kood = Laua_materjal.laua_materjal_kood ORDER BY laua_kood ASC) t;
-COMMENT ON VIEW koik_lauad_jsonis IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, hetkeseisund, laua materjali nimetus, kohtade arv, registreerimise kuupäev, kommentaar ja töötaja nimi. Ning seda JSON formaadis.';
+SELECT json_agg(json_build_object('laud_kood', lauad.laud_kood, 'registreerija_id', lauad.registreerija_id, 
+'laua_seisund',UPPER(seisund.nimetus),'laua_materjal',materjal.nimetus,'reg_aeg', lauad.reg_aeg, 
+ 'kohtade_arv',lauad.kohtade_arv,'kommentaar',lauad.kommentaar,'kategooriad', omadused.kadegooriad))::jsonb AS lauad 
+FROM (( SELECT * FROM laud) lauad LEFT JOIN ( SELECT kategooria_omamine.laud_kood, json_agg(json_build_object('kategooria', 
+kategooria.nimetus))::jsonb AS kadegooriad 
+FROM (laua_kategooria kategooria LEFT JOIN laua_kategooria_omamine kategooria_omamine USING (laua_kategooria_kood)) 
+GROUP BY kategooria_omamine.laud_kood) omadused ON (lauad.laud_kood = omadused.laud_kood) 
+LEFT JOIN (SELECT Laua_seisundi_liik.laua_seisundi_liik_kood, Laua_seisundi_liik.nimetus FROM Laua_seisundi_liik) seisund 
+ON (seisund.laua_seisundi_liik_kood = lauad.laua_seisundi_liik_kood) 
+LEFT JOIN (SELECT laua_materjal_kood, nimetus FROM laua_materjal) materjal ON (materjal.laua_materjal_kood = lauad.laua_materjal_kood));
+COMMENT ON VIEW koik_lauad_jsonis IS 'See vaade näitab kõigi laudade nimekirja, kus on välja toodud laua kood, registreerija id, laua hetkeseisund, laua materjali nimetus,  registreerimise aeg, kohtade arv, kommentaar ja kategooriad, kuhu laud kuulub. Ning seda JSON formaadis.';
 
 ALTER TABLE public.koik_lauad_jsonis OWNER TO t164416;
 GRANT ALL ON TABLE public.koik_lauad_jsonis TO t164416;

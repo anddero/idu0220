@@ -308,7 +308,7 @@ values (11, TRUE, 1);
 
 
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (1, 1);
+values (2, 1);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
 values (2, 3);
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
