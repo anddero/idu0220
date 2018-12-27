@@ -326,4 +326,4 @@ where not exists(select 1
 
 --UPDATE isik SET parool = public.crypt(parool,public.gen_salt('bf', 11));
 
-select * from isik
+select * from isik;

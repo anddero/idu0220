@@ -33,13 +33,11 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [X] JSONi boonusül peab olema 2-tasemeline
 - [X] string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.
 - [X] Javat ei tohi kasutada 1000 ja 4000 genereerimiseks. Võib kasutada AINULT generate series  funktsiooni.
+- [X] Boonusülesandes jälgida Exeli tabelit.
 
 ## KOOD:
 
 - [ ] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
-
-## BOONUS
-- [ ] Boonusülesandes jälgida Exeli tabelit.
 
 ## ACCESS 
 - [ ] Kasutajaliides korda teha
