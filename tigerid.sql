@@ -31,8 +31,7 @@ BEGIN
 	RETURN NULL;
 END;
 $BODY$;
-ALTER FUNCTION public.f_muuda_laua_seisundi_liik()
-    OWNER TO t164416;
+ALTER FUNCTION public.f_muuda_laua_seisundi_liik() OWNER TO t164416;
 GRANT EXECUTE ON FUNCTION public.f_muuda_laua_seisundi_liik() TO t164416;
 REVOKE ALL ON FUNCTION public.f_muuda_laua_seisundi_liik() FROM PUBLIC;
 COMMENT ON FUNCTION public.f_muuda_laua_seisundi_liik()
@@ -60,8 +59,7 @@ ELSE RETURN NEW;
 END IF; 
 END; 
 $BODY$;
-ALTER FUNCTION public.f_muuda_laud_aktiivseks()
-    OWNER TO t164416;
+ALTER FUNCTION public.f_muuda_laud_aktiivseks() OWNER TO t164416;
 GRANT EXECUTE ON FUNCTION public.f_muuda_laud_aktiivseks() TO t164416;
 REVOKE ALL ON FUNCTION public.f_muuda_laud_aktiivseks() FROM PUBLIC;
 COMMENT ON FUNCTION public.f_muuda_laud_aktiivseks()
