@@ -107,7 +107,7 @@ insert into isik (isikukoodi_riik,
                   elukoht)
 values ('EST',
         1,
-        'juhataja.boss@gmail.com',
+        't164416_juhataja@gmail.com',
         '06.06.2018 23:00:25',
         3554152,
         '03.20.2018',

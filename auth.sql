@@ -5,7 +5,7 @@ BEGIN
   SELECT INTO rslt (parool = public.crypt(p_parool, parool))
   from isik
          INNER JOIN tootaja ON isik.isik_id = tootaja.tootaja_id
-  WHERE Upper(eesnimi) = Upper(p_kasutajanimi)
+  WHERE Upper(e_meil) = Upper(p_kasutajanimi)
     AND Tootaja.amet_kood = 1
     AND Isiku_seisundi_liik_kood = 1
     AND Tootaja.tootaja_seisundi_liik_kood IN (1, 2, 3, 4);
@@ -19,8 +19,8 @@ SET search_path = public, pg_temp;
 COMMENT ON FUNCTION f_on_juhataja(p_kasutajanimi text, p_parool text)
 IS 'Selle funktsiooni abil autenditakse juhatajat. Parameetri p_kasutajanimi oodatav väärtus on tõstutundetu kasutajanimi ehk e-meil ja parool oodatav väärtus on tõstutundlik avatekstiline parool. Juhatahal on õigus süsteemi siseneda, vaid siis kui tema seisundiks on tööl, haiguslehel, puhkusel või katseajal.';
 
-
---UPDATE isik SET parool = crypt('164416', gen_salt('md5')), eesnimi='t164416_juhataja' WHERE e_meil = 'nilsemil.lille2@gmail.com';
+-- kasutajanimi: t164416_juhataja@gmail.com
+-- parool: 164416
 
 ALTER FUNCTION f_on_juhataja OWNER TO t164416;
 GRANT ALL PRIVILEGES ON FUNCTION f_on_juhataja TO t164416_juhataja;
