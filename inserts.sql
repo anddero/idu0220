@@ -270,18 +270,28 @@ values (9, 2, 6, null);
 insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood, mentor)
 values (10, 2, 7, null);
 
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (1,3,'05.02.2018',1,1, 4,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (2,4,'05.02.2018',3,1, 4,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (3,4,'05.02.2018',2,1, 4,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (4,1,'05.02.2018',2,2, 2,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (5,2,'05.02.2018',3,3, 2,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (6,1,'05.03.2018',3,4, 2,'Eriline,habras.');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (7,9,'05.03.2018',4,3, 8,'Ruumi on ka rohkemate jaoks');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (8,3,'05.02.2018',1,2, 4,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (9,5,'05.02.2018',4,3, 4,'Laud nagu laud ikka');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (10,6,'05.03.2018',2,4, 2,'Eriline,habras.');
-insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (11,7,'05.03.2018',3,3, 8,'Ruumi on ka rohkemate jaoks');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (1,3,'05.02.2018',1,1, 4,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (2,4,'05.02.2018',3,1, 4,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (3,4,'05.02.2018',2,1, 4,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (4,1,'05.02.2018',2,2, 2,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (5,2,'05.02.2018',3,3, 2,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (6,1,'05.03.2018',3,4, 2,'Eriline,habras.');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (7,9,'05.03.2018',4,3, 8,'Ruumi on ka rohkemate jaoks');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (8,3,'05.02.2018',1,2, 4,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (9,5,'05.02.2018',4,3, 4,'Laud nagu laud ikka');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (10,6,'05.03.2018',2,4, 2,'Eriline,habras.');
+-- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (11,7,'05.03.2018',3,3, 8,'Ruumi on ka rohkemate jaoks');
 
+insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar)
+select generator.id,
+       (SELECT (floor(random() * generator.id + 1) :: int) % 4 + 1 as registreerija_id),
+       (select cast(now() - '1 hours' :: interval * ((random() * generator.id * 1000) :: int % 26297) as timestamp) as reg_aeg),
+       ((SELECT (floor(random() * generator.id + 1) :: int) % 3 + 1 as laua_seisundi_liik_kood)),
+       ((SELECT (floor(random() * generator.id + 1) :: int) % 4 + 1 as laua_materjal_kood)),
+       ((SELECT (floor(random() * generator.id + 2) :: int) % 16 + 2 as kohtade_arv)),
+       ((select kommentaar [ 1 + ((random() * generator.id) :: int) % 16 ] FROM (select '{Tuleks minema visata, Hetkel veel kõlbab, Enamus kliente ei taha sinna istuda, Tanel Padar istus seal lauas, See oli mingi hetk tagasi katki, Jõulupeol tehti see laud katki,                 Kole peletis laud, Naelutatud, Kommentaar, Üks kõige esimestest laudadest mis osteti, Täitsa maasikas laud, Läheb kergesti mustaks, Mingi asjaga ära plökerdatud, Tuleb remondimees remontima kutsuda, Mari ütles, et see laud on sigakole, Lihtsalt jõle, aga jätame alles kuna jüri arvas et see OK, Tuleks minema visata kuigi jüri arvab et see laud ka veel OK, Üks kleintide lemmikutest laudadest, Massivne remondiraha kulutaja}' :: text [] as kommentaar) kom))
+from generate_series(1, 3000) as generator (id)
+ON CONFLICT DO NOTHING;
 
 insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood)
 values (1, FALSE, 1);
