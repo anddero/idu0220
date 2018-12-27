@@ -11,6 +11,11 @@ p_kohtade_arv Laud.kohtade_arv%type, p_kommentaar Laud.kommentaar%TYPE) CASCADE;
 
 DROP FUNCTION IF EXISTS f_lopeta_laud(p_laud_kood Laud.laud_kood%TYPE) CASCADE;
 
+DROP FUNCTION IF EXISTS f_aktiveeri_laud(p_laud_kood Laud.laud_kood%TYPE) CASCADE;
+
+DROP FUNCTION IF EXISTS f_muuda_laud_mitteaktiivseks(p_laud_kood Laud.laud_kood%TYPE) CASCADE;
+
+
 
 
 
