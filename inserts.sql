@@ -121,11 +121,11 @@ insert into isik (isikukoodi_riik,
                   elukoht)
 values ('EST',
         1,
-        'nilsemil.lille2@gmail.com',
+        'juhataja.boss@gmail.com',
         '06.06.2018 23:00:25',
         3554152,
         '03.20.2018',
-        public.crypt('parool',  public.gen_salt('bf', 11)), 'Nils', 'Nils', 'Rakvere');
+        public.crypt('164416',  public.gen_salt('bf', 11)), 't164416_juhataja', 'Juhataja', 'Rakvere');
 		
 		
 		
