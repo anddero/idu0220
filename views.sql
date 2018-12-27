@@ -94,3 +94,25 @@ ALTER TABLE public.laudade_kategooriad OWNER TO t164416;
 GRANT ALL ON TABLE public.laudade_kategooriad TO t164416;
 GRANT SELECT ON TABLE public.laudade_kategooriad TO t164416_juhataja;
 
+
+
+DROP VIEW IF EXISTS laudade_pingeread;
+
+CREATE VIEW public.laudade_pingeread WITH (security_barrier) AS
+SELECT lauad.laud_kood, lauad.laua_kategooriate_arv, 
+RANK() OVER (
+ORDER BY lauad.laua_kategooriate_arv DESC) AS hore_pingerida, 
+DENSE_RANK() OVER (
+ORDER BY lauad.laua_kategooriate_arv DESC) AS tihe_pingerida 
+FROM (SELECT laud.laud_kood, COUNT(laua_kategooria_omamine.laud_kood) AS laua_kategooriate_arv 
+FROM laud LEFT JOIN laua_kategooria_omamine ON laud.laud_kood = laua_kategooria_omamine.laud_kood 
+LEFT JOIN laua_kategooria ON laua_kategooria_omamine.laua_kategooria_kood = laua_kategooria.laua_kategooria_kood 
+GROUP BY laud.laud_kood) AS lauad 
+ORDER BY lauad.laua_kategooriate_arv DESC, lauad.laud_kood ASC;
+
+COMMENT ON VIEW laudade_pingeread IS 'See vaade kuvab pingereas kõik lauad vastavalt kategooriate arvule, kuhu laud kuulub.';
+
+ALTER TABLE public.laudade_pingeread OWNER TO t164416;
+GRANT ALL ON TABLE public.laudade_pingeread TO t164416;
+GRANT SELECT ON TABLE public.laudade_pingeread TO t164416_juhataja;
+
