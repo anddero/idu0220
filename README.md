@@ -34,6 +34,7 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [X] string agg korda teha, sest see ei ole seotud tabelis määratud ülesandega.
 - [X] Javat ei tohi kasutada 1000 ja 4000 genereerimiseks. Võib kasutada AINULT generate series  funktsiooni.
 - [X] Boonusülesandes jälgida Exeli tabelit.
+- [X] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 
 ## KOOD:
 
@@ -44,10 +45,8 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 
 ## WORD:
 - [ ] Wordi lisatud "KOOD" panna halli backgroundiga.  
-- [ ] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 - [ ] Wordis on mingi ül, et peab tegema pgadminis ühe pildi ja selle lahti seletama. Explain on vaja klikkida. See on Data Output kõrval. Pildil mööda nooli minnakse. räsitabelit võrreldakse. Mida kasutatakse, kas hashjoin või muu join. Iga rea kohta kvaliteet vaadatakse läbi. Kahe hashjoini resultaat on see, et 2 tabelit ühendatakse kokku. Tulemuseks on tabel. Ja see ühendatakse teise tabeliga kokku, kasutades hashjoini.
 - [ ] Word korda teha
-  * Wordi korda tegemiseks peavad EA, kood, Access valmis olema.
   
  
 
