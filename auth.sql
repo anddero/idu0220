@@ -20,7 +20,7 @@ COMMENT ON FUNCTION f_on_juhataja(p_kasutajanimi text, p_parool text)
 IS 'Selle funktsiooni abil autenditakse juhatajat. Parameetri p_kasutajanimi oodatav väärtus on tõstutundetu kasutajanimi ehk e-meil ja parool oodatav väärtus on tõstutundlik avatekstiline parool. Juhatahal on õigus süsteemi siseneda, vaid siis kui tema seisundiks on tööl, haiguslehel, puhkusel või katseajal.';
 
 
---UPDATE isik SET parool = crypt('new password', gen_salt('md5')) WHERE e_meil = 'nilsemil.lille2@gmail.com';
+--UPDATE isik SET parool = crypt('164416', gen_salt('md5')), eesnimi='t164416_juhataja' WHERE e_meil = 'nilsemil.lille2@gmail.com';
 
 ALTER FUNCTION f_on_juhataja OWNER TO t164416;
 GRANT ALL PRIVILEGES ON FUNCTION f_on_juhataja TO t164416_juhataja;
