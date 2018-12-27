@@ -1,31 +1,17 @@
-delete
-from laua_kategooria_omamine;
-delete
-from laud;
-delete
-from tootaja;
-delete
-from klient;
-delete
-from isik;
-delete
-from laua_materjal;
-delete
-from laua_kategooria;
-delete
-from laua_kategooria_tyyp;
-delete
-from kliendi_seisundi_liik;
-delete
-from laua_seisundi_liik;
-delete
-from tootaja_seisundi_liik;
-delete
-from isiku_seisundi_liik;
-delete
-from amet;
-delete
-from riik;
+delete from laua_kategooria_omamine;
+delete from laud;
+delete from tootaja;
+delete from klient;
+delete from isik;
+delete from laua_materjal;
+delete from laua_kategooria;
+delete from laua_kategooria_tyyp;
+delete from kliendi_seisundi_liik;
+delete from laua_seisundi_liik;
+delete from tootaja_seisundi_liik;
+delete from isiku_seisundi_liik;
+delete from amet;
+delete from riik;
 
 INSERT INTO Riik (riik_kood, nimetus)
 SELECT riik->>'Alpha-3 code' AS riik_kood, riik->>'English short name lower case' AS nimetus
