@@ -316,33 +316,13 @@ values (10, FALSE, 2);
 insert into klient (klient_id, on_nous_tylitamisega, kliendi_seisundi_liik_kood)
 values (11, TRUE, 1);
 
-
 insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (2, 1);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (2, 3);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (3, 5);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (4, 6);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (5, 4);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (6, 2);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (6, 4);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (6, 7);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (7, 2);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (8, 1);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (9, 2);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (10, 2);
-insert into laua_kategooria_omamine (laud_kood, laua_kategooria_kood)
-values (11, 1);
+select distinct laud_kood, laua_kategooria_kood
+from (select generator.id % (select count(*) from laud) + 1 as laud_kood, (random() * generator.id) :: int % 8 + 1 as laua_kategooria_kood from generate_series(1, (5 * (select count(*) from laud))) as generator (id)) as test_data
+where not exists(select 1
+                 from laua_kategooria_omamine
+                 WHERE laua_kategooria_omamine.laud_kood = test_data.laud_kood
+                   AND laua_kategooria_omamine.laua_kategooria_kood = test_data.laua_kategooria_kood);
 
 --UPDATE isik SET parool = public.crypt(parool,public.gen_salt('bf', 11));
 
