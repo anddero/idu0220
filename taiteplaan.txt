@@ -22,7 +22,7 @@ WHERE Laud.laua_seisundi_liik_kood = Laua_seisundi_liik.laua_seisundi_liik_kood
 
 t164416=# ANALYZE;
 ANALYZE
-t164416=# EXPLAIN SELECT * FROM aktiivsed_ja_mitteaktiivsed_lauad;
+t164416=# EXPLAIN SELECT * FROM koik_lauad;
 
                                       QUERY PLAN
 -----------------------------------------------------------------------------------------
@@ -36,3 +36,27 @@ t164416=# EXPLAIN SELECT * FROM aktiivsed_ja_mitteaktiivsed_lauad;
 8                     Filter: (laua_seisundi_liik_kood = ANY ('{2,3}'::integer[]))
 9   ->  Hash  (cost=1.04..1.04 rows=4 width=8)
 10        ->  Seq Scan on laua_materjal  (cost=0.00..1.04 rows=4 width=8)
+
+
+
+
+
+
+
+
+ANALYZE;
+EXPLAIN SELECT * FROM laudade_koondaruanne ;
+
+total 4 rida
+
+
+Sort  (cost=112.40..112.41 rows=4 width=42)
+  Sort Key: (count(laud.laud_kood)) DESC, (upper((laua_seisundi_liik.nimetus)::text))
+  ->  HashAggregate  (cost=112.31..112.36 rows=4 width=42)
+        Group Key: laua_seisundi_liik.laua_seisundi_liik_kood, upper((laua_seisundi_liik.nimetus)::text)
+        ->  Hash Right Join  (cost=1.09..89.81 rows=3000 width=38)
+              Hash Cond: (laud.laua_seisundi_liik_kood = laua_seisundi_liik.laua_seisundi_liik_kood)
+              ->  Seq Scan on laud  (cost=0.00..65.00 rows=3000 width=6)
+              ->  Hash  (cost=1.04..1.04 rows=4 width=12)
+                    ->  Seq Scan on laua_seisundi_liik  (cost=0.00..1.04 rows=4 width=12)
+9 rows
