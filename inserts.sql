@@ -1,17 +1,17 @@
-TRUNCATE laua_kategooria_omamine;
-TRUNCATE laud;
-TRUNCATE tootaja;
-TRUNCATE klient;
-TRUNCATE isik;
-TRUNCATE laua_materjal;
-TRUNCATE laua_kategooria;
-TRUNCATE laua_kategooria_tyyp;
-TRUNCATE kliendi_seisundi_liik;
-TRUNCATE laua_seisundi_liik;
-TRUNCATE tootaja_seisundi_liik;
-TRUNCATE isiku_seisundi_liik;
-TRUNCATE amet;
-TRUNCATE riik;
+TRUNCATE laua_kategooria_omamine CASCADE ;
+TRUNCATE laud CASCADE;
+TRUNCATE tootaja CASCADE ;
+TRUNCATE klient CASCADE;
+TRUNCATE isik CASCADE;
+TRUNCATE laua_materjal CASCADE;
+TRUNCATE laua_kategooria CASCADE;
+TRUNCATE laua_kategooria_tyyp CASCADE;
+TRUNCATE kliendi_seisundi_liik CASCADE;
+TRUNCATE laua_seisundi_liik CASCADE;
+TRUNCATE tootaja_seisundi_liik CASCADE;
+TRUNCATE isiku_seisundi_liik CASCADE;
+TRUNCATE amet CASCADE;
+TRUNCATE riik CASCADE;
 
 INSERT INTO Riik (riik_kood, nimetus)
 SELECT riik->>'Alpha-3 code' AS riik_kood, riik->>'English short name lower case' AS nimetus
