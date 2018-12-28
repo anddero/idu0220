@@ -25,7 +25,8 @@ GRANT SELECT ON TABLE public.aktiivsed_ja_mitteaktiivsed_lauad TO t164416_juhata
 DROP VIEW IF EXISTS koik_lauad;
 
 CREATE OR REPLACE VIEW public.koik_lauad WITH (security_barrier) AS
-SELECT laud_kood AS laua_kood, UPPER(Laua_seisundi_liik.nimetus) AS laua_seisund, Laua_materjal.nimetus AS laua_materjal, kohtade_arv,Laud.reg_aeg,kommentaar, CONCAT(eesnimi,' ',perenimi) AS registreerija_nimi 
+SELECT laud_kood AS laua_kood, UPPER(Laua_seisundi_liik.nimetus) AS laua_seisund, Laua_materjal.nimetus AS laua_materjal, kohtade_arv,Laud.reg_aeg,kommentaar, 
+CONCAT(eesnimi,' ',perenimi) AS registreerija_nimi, Isik.e_meil AS registreerija_e_meil
 FROM Laud, Laua_seisundi_liik,Isik, Laua_materjal
 WHERE Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood 
 AND Laud.registreerija_id=Isik.isik_id
