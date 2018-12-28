@@ -2,7 +2,7 @@
 
 DROP VIEW IF EXISTS aktiivsed_ja_mitteaktiivsed_lauad;
 
-CREATE VIEW public.aktiivsed_ja_mitteaktiivsed_lauad WITH (security_barrier) AS
+CREATE OR REPLACE VIEW public.aktiivsed_ja_mitteaktiivsed_lauad WITH (security_barrier) AS
 SELECT laud.laud_kood,
        laua_seisundi_liik.nimetus as laua_seisundi_liik_nimetus,
        laua_materjal.nimetus      as materjal_nimetus,
@@ -24,7 +24,7 @@ GRANT SELECT ON TABLE public.aktiivsed_ja_mitteaktiivsed_lauad TO t164416_juhata
 
 DROP VIEW IF EXISTS koik_lauad;
 
-CREATE VIEW public.koik_lauad WITH (security_barrier) AS
+CREATE OR REPLACE VIEW public.koik_lauad WITH (security_barrier) AS
 SELECT laud_kood AS laua_kood, UPPER(Laua_seisundi_liik.nimetus) AS laua_seisund, Laua_materjal.nimetus AS laua_materjal, kohtade_arv,Laud.reg_aeg,kommentaar, CONCAT(eesnimi,' ',perenimi) AS registreerija_nimi 
 FROM Laud, Laua_seisundi_liik,Isik, Laua_materjal
 WHERE Laua_seisundi_liik.laua_seisundi_liik_kood = Laud.laua_seisundi_liik_kood 
@@ -39,7 +39,7 @@ GRANT SELECT ON TABLE public.koik_lauad TO t164416_juhataja;
 
 DROP VIEW IF EXISTS koik_lauad_jsonis;
 
-CREATE VIEW public.koik_lauad_jsonis WITH (security_barrier) AS
+CREATE OR REPLACE VIEW public.koik_lauad_jsonis WITH (security_barrier) AS
 SELECT json_agg(json_build_object('laud_kood', lauad.laud_kood, 'registreerija_id', lauad.registreerija_id, 
 'laua_seisund',UPPER(seisund.nimetus),'laua_materjal',materjal.nimetus,'reg_aeg', lauad.reg_aeg, 
  'kohtade_arv',lauad.kohtade_arv,'kommentaar',lauad.kommentaar,'kategooriad', omadused.kadegooriad))::jsonb AS lauad 
@@ -60,7 +60,7 @@ GRANT SELECT ON TABLE public.koik_lauad_jsonis TO t164416_juhataja;
 
 DROP VIEW IF EXISTS laudade_koondaruanne;
 
-CREATE VIEW public.laudade_koondaruanne WITH (security_barrier) AS
+CREATE OR REPLACE VIEW public.laudade_koondaruanne WITH (security_barrier) AS
 SELECT Laua_seisundi_liik.laua_seisundi_liik_kood,
        UPPER(Laua_seisundi_liik.nimetus) AS seisundi_nimetus,
        Count(Laud.laud_kood)             AS laudade_arv
@@ -80,7 +80,7 @@ GRANT SELECT ON TABLE public.laudade_koondaruanne TO t164416_juhataja;
 
 DROP VIEW IF EXISTS laudade_kategooriad;
 
-CREATE VIEW public.laudade_kategooriad WITH (security_barrier) AS
+CREATE OR REPLACE VIEW public.laudade_kategooriad WITH (security_barrier) AS
 SELECT Laud.laud_kood, string_agg((((Laua_kategooria_tyyp.nimetus || ': ') || LOWER(Laua_kategooria.nimetus))), '; ') 
 AS laua_kategooriad 
 FROM (((Laud LEFT JOIN Laua_kategooria_omamine ON ((Laud.laud_kood = Laua_kategooria_omamine.laud_kood))) 
@@ -98,7 +98,7 @@ GRANT SELECT ON TABLE public.laudade_kategooriad TO t164416_juhataja;
 
 DROP VIEW IF EXISTS laudade_pingeread;
 
-CREATE VIEW public.laudade_pingeread WITH (security_barrier) AS
+CREATE OR REPLACE VIEW public.laudade_pingeread WITH (security_barrier) AS
 SELECT lauad.laud_kood, lauad.laua_kategooriate_arv, 
 RANK() OVER (
 ORDER BY lauad.laua_kategooriate_arv DESC) AS hore_pingerida, 
