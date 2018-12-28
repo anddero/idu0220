@@ -37,12 +37,13 @@ seotud ka teiste tabelitega. Mitte ei ole oma tabeli piires muudatused.
 - [X] 4000 rea lisamisel "Kasutatud laused/käsud tuleb dokumenteerida töö alajaotuses "Täiendavate testandmete lisamine"." 
 - [X] Wordi lisatud "KOOD" panna halli backgroundiga.  
 - [X] 3 vaate puhul peab tähelepanu päärama sellele, et kasutus käib läbi virtuaalse andmete kihi. Vaata käiki laudu view puhul ei tohiks näha laua detaili. Peab olema eraldi view selle jaoks.
+- [X] Kasutajaliides korda teha
 
 ## KOOD:
 
 
 ## ACCESS 
-- [ ] Kasutajaliides korda teha
+
 
 ## WORD:
 - [ ] Wordi TODO-d korda teha
