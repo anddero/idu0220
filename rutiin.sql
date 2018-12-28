@@ -16,9 +16,6 @@ DROP FUNCTION IF EXISTS f_aktiveeri_laud(p_laud_kood Laud.laud_kood%TYPE) CASCAD
 DROP FUNCTION IF EXISTS f_muuda_laud_mitteaktiivseks(p_laud_kood Laud.laud_kood%TYPE) CASCADE;
 
 
-
-
-
 CREATE OR REPLACE FUNCTION f_lisa_laud(p_laud_kood Laud.laud_kood%TYPE, p_registreerija_id Laud.registreerija_id%TYPE,
 p_laua_materjal_kood Laud.laua_materjal_kood%TYPE,p_kohtade_arv Laud.kohtade_arv%type,
 p_kommentaar Laud.kommentaar%TYPE)
@@ -39,9 +36,6 @@ laua materjali identifikaator (parameeter p_laua_materjal_kood),
 kohtade arv (parameeter p_kohtade_arv) ja
 kommentaar (parameeter p_kommentaar).
 Protseduur lisab laua.';
---SELECT f_lisa_laud(p_laud_kood:=13, p_registreerija_id:=3, p_laua_materjal_kood:=4, p_kohtade_arv:=3, p_kommentaar:='Kena laud!');
-
-
 
 
 CREATE OR REPLACE FUNCTION f_unusta_laud(p_laud_kood
@@ -57,10 +51,6 @@ COMMENT ON FUNCTION f_unusta_laud(p_laud_kood
 Laud.laud_kood%TYPE) IS ' OP2 Protsess, mis unustab laua. Protseduuri 
 sisend on laua identifikaator (parameeter p_laud_kood).
 Protseduur kustutab etteantud laua.';
-
---SELECT f_lisa_laud(p_laud_kood:=13);
-
-
 
 
 CREATE OR REPLACE FUNCTION f_muuda_laud(p_laud_kood_vana
@@ -82,9 +72,6 @@ laua uus identifikaator (parameeter p_laud_kood_uus),
 kohtade arv (parameeter p_kohtade_arv) ja
 kommentaar (parameeter p_kommentaar).
 Protseduur muudab etteantud laua.';
---SELECT f_muuda_laud(p_laud_kood_vana:=13,p_laud_kood_uus:=12,p_kohtade_arv:=5,p_kommentaar:='Uuem ja parem laud');
-
-
 
 
 
@@ -103,9 +90,6 @@ COMMENT ON FUNCTION f_lopeta_laud(p_laud_kood Laud.laud_kood%TYPE) IS
 ALTER FUNCTION f_lopeta_laud OWNER TO t164416;
 GRANT ALL PRIVILEGES ON FUNCTION f_lopeta_laud TO t164416_juhataja;
 GRANT EXECUTE ON FUNCTION f_lopeta_laud TO t164416;
-
-
-
 
 
 
@@ -140,11 +124,6 @@ COMMENT ON FUNCTION public.f_muuda_laud_mitteaktiivseks
     IS 'OP4 Protsess, millega muudetakse laud mitteaktiivseks. Sisend on laua identifikaator (parameeter p_laud_kood). Eelduseks on see, et laud on seisundis "Aktiivne".';
 
 
-
-
---Välja kutsumiseks SELECT f_laua_unustamine(p_laua_id:=X); X=laua_id mida tahetakse kustutada
-
---Public to Private
 REVOKE ALL
   ON FUNCTION f_unusta_laud, f_lisa_laud, f_muuda_laud, f_lopeta_laud, f_muuda_laud_mitteaktiivseks, f_aktiveeri_laud
   FROM PUBLIC ;

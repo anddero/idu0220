@@ -256,17 +256,6 @@ values (9, 2, 6, null);
 insert into tootaja (tootaja_id, amet_kood, tootaja_seisundi_liik_kood, mentor)
 values (10, 2, 7, null);
 
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (1,3,'05.02.2018',1,1, 4,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (2,4,'05.02.2018',3,1, 4,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (3,4,'05.02.2018',2,1, 4,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (4,1,'05.02.2018',2,2, 2,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (5,2,'05.02.2018',3,3, 2,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (6,1,'05.03.2018',3,4, 2,'Eriline,habras.');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (7,9,'05.03.2018',4,3, 8,'Ruumi on ka rohkemate jaoks');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (8,3,'05.02.2018',1,2, 4,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (9,5,'05.02.2018',4,3, 4,'Laud nagu laud ikka');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (10,6,'05.03.2018',2,4, 2,'Eriline,habras.');
--- insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood,laua_materjal_kood, kohtade_arv, kommentaar)values (11,7,'05.03.2018',3,3, 8,'Ruumi on ka rohkemate jaoks');
 
 insert into laud (laud_kood, registreerija_id, reg_aeg, laua_seisundi_liik_kood, laua_materjal_kood, kohtade_arv, kommentaar)
 select generator.id,
@@ -309,7 +298,3 @@ where not exists(select 1
                  from laua_kategooria_omamine
                  WHERE laua_kategooria_omamine.laud_kood = test_data.laud_kood
                    AND laua_kategooria_omamine.laua_kategooria_kood = test_data.laua_kategooria_kood);
-
---UPDATE isik SET parool = public.crypt(parool,public.gen_salt('bf', 11));
-
-select * from isik;

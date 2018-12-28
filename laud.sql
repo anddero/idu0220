@@ -53,12 +53,6 @@ DROP TABLE IF EXISTS Laua_kategooria_omamine CASCADE;
 DROP TABLE IF EXISTS Kliendi_seisundi_liik CASCADE;
 DROP TABLE IF EXISTS Klient CASCADE;
 
-DROP SEQUENCE IF EXISTS seq_laua_kategooria_omamine_id;
-DROP SEQUENCE IF EXISTS seq_isik_isiku_id;
-
-CREATE SEQUENCE seq_isik_isiku_id INCREMENT 1 START 1;
-CREATE SEQUENCE seq_laua_kategooria_omamine_id INCREMENT 1 START 1;
-
 
 DROP DOMAIN IF EXISTS public.d_reg_aeg;
 CREATE DOMAIN d_reg_aeg timestamp NOT NULL DEFAULT LOCALTIMESTAMP(0);
@@ -115,11 +109,11 @@ CREATE TABLE Isiku_seisundi_liik
 
 CREATE TABLE Isik
 (
-  isik_id integer NOT NULL DEFAULT nextval('seq_isik_isiku_id'::regclass),
+  isik_id SERIAL,
   isikukoodi_riik varchar(3)	 NOT NULL,
   isiku_seisundi_liik_kood smallint NOT NULL DEFAULT 1,
   e_meil varchar(254)	 NOT NULL,
-  isikukood varchar(255)	 NOT NULL,
+  isikukood varchar(60)	 NOT NULL,
   synni_kp date NOT NULL,
   parool varchar(60)	 NOT NULL,
   reg_aeg d_reg_aeg,
@@ -261,7 +255,7 @@ CREATE TABLE Laua_kategooria
 
 CREATE TABLE Laua_kategooria_omamine
 (
-  laua_kategooria_omamine_id integer NOT NULL DEFAULT nextval('seq_laua_kategooria_omamine_id'::regclass),
+  laua_kategooria_omamine_id SERIAL,
   laud_kood integer NOT NULL, -- laua kood
   laua_kategooria_kood smallint NOT NULL, -- kirjelduse kood
   CONSTRAINT Laua_kategooria_omamine_kood_check_lubatud_vaartus CHECK (laud_kood >= 1 AND laua_kategooria_kood >= 1),
